@@ -1,178 +1,199 @@
 <title>Grammaire Tex</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playwrite+FR+Moderne:wght@300;400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <style>
-/* Layout: study app; left rail (tools + lesson list), main pane switches between views */
+/* Layout: a French school notebook (cahier Seyès) — ruled paper, ink-blue text, red margin, teacher's red pen; dark theme is the classroom slate (ardoise) */
 :root{
-  --bg:#f3f5fa; --surface:#ffffff; --ink:#18213a; --muted:#5b6582; --line:#dde2ee;
-  --accent:#2a4fb8; --accent-soft:#e3e9fb; --done:#1f8a5b; --done-soft:#dcf2e6; --warn:#b8480f; --warn-soft:#fbe9dd; --bad:#c8323f; --bad-soft:#fbe1e3;
-  --on-accent:#ffffff; --mark:#ffe58a;
-  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --paper:#fbfcff; --sheet:#ffffff; --ink:#1c2140; --muted:#5d6584; --rule:#e1e6f4; --seyes:#dfe5f7; --seyes-bold:#c3cdec;
+  --encre:#2e3a9e; --encre-soft:#e8ebfa; --marge:#d2475b; --rouge:#c42f3f; --rouge-soft:#fbe6e8; --vert:#1e7d52; --vert-soft:#e0f2e8; --orange:#a55a0a; --orange-soft:#fbefdc;
+  --surligneur:#fff0a0; --on-encre:#ffffff;
+  --hand:"Playwrite FR Moderne","Segoe Script","Brush Script MT",cursive;
+  --text:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f1422; --surface:#171e30; --ink:#e6eaf5; --muted:#97a1bd; --line:#2a3350;
-  --accent:#8aa6ff; --accent-soft:#222c4a; --done:#4cc08a; --done-soft:#173628; --warn:#ff9a5c; --warn-soft:#3a2617; --bad:#ff6b76; --bad-soft:#3d1c22;
-  --on-accent:#0f1422; --mark:#7a6420; color-scheme:dark}}
+  --paper:#1d2422; --sheet:#242c2a; --ink:#e8ebe4; --muted:#9aa59f; --rule:#344039; --seyes:#27302d; --seyes-bold:#2f3a36;
+  --encre:#a9c4ff; --encre-soft:#2b3646; --marge:#e07a84; --rouge:#ff8d93; --rouge-soft:#3c2628; --vert:#8ad6a8; --vert-soft:#20372b; --orange:#f0b764; --orange-soft:#3b3020;
+  --surligneur:#5e5622; --on-encre:#1d2422; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0f1422; --surface:#171e30; --ink:#e6eaf5; --muted:#97a1bd; --line:#2a3350;
-  --accent:#8aa6ff; --accent-soft:#222c4a; --done:#4cc08a; --done-soft:#173628; --warn:#ff9a5c; --warn-soft:#3a2617; --bad:#ff6b76; --bad-soft:#3d1c22;
-  --on-accent:#0f1422; --mark:#7a6420; color-scheme:dark}
+  --paper:#1d2422; --sheet:#242c2a; --ink:#e8ebe4; --muted:#9aa59f; --rule:#344039; --seyes:#27302d; --seyes-bold:#2f3a36;
+  --encre:#a9c4ff; --encre-soft:#2b3646; --marge:#e07a84; --rouge:#ff8d93; --rouge-soft:#3c2628; --vert:#8ad6a8; --vert-soft:#20372b; --orange:#f0b764; --orange-soft:#3b3020;
+  --surligneur:#5e5622; --on-encre:#1d2422; color-scheme:dark}
 html,body{height:100%}
 html{box-sizing:border-box}
 [hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:15.5px;line-height:1.6}
 select{max-width:100%;min-width:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
-.app{display:grid;grid-template-columns:290px minmax(0,1fr);height:100%}
-aside{background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0;padding-left:env(safe-area-inset-left,0px)}
-.brand{padding:16px 16px 8px}
-.brand h1{font-family:var(--display);font-weight:800;font-size:23px;margin:0;letter-spacing:-.02em}
-.sync{font-size:12px;color:var(--muted);margin-top:2px}
-.tools{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:6px 10px 10px;border-bottom:1px solid var(--line)}
-.tools a{display:flex;align-items:center;gap:6px;padding:7px 8px;border-radius:7px;color:var(--ink);text-decoration:none;font-size:13.5px;font-weight:500}
-.tools a:hover{background:var(--accent-soft)}
-.tools a.cur{background:var(--accent);color:var(--on-accent)}
-.tools .n{margin-left:auto;font-size:11px;font-weight:700;background:var(--warn);color:var(--on-accent);border-radius:99px;padding:0 6px;font-variant-numeric:tabular-nums}
-.tools a.cur .n{background:var(--on-accent);color:var(--accent)}
-.filter{padding:10px 12px 4px}
-.filter input{width:100%;box-sizing:border-box;font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
-nav{overflow-y:auto;flex:1;padding:0 8px 24px}
-nav h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:14px 8px 4px;display:flex;justify-content:space-between;font-weight:600}
-nav h3 span{font-variant-numeric:tabular-nums}
-nav a{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:6px;color:var(--ink);text-decoration:none;font-size:13.5px}
-nav a:hover{background:var(--accent-soft)}
-nav a.cur{background:var(--accent);color:var(--on-accent)}
-nav .dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--muted);flex:none}
-nav a.done .dot{background:var(--done);border-color:var(--done)}
-nav a.cur .dot{border-color:var(--on-accent)}
-nav .star{margin-left:auto;color:var(--warn);font-size:12px}
-main{overflow-y:auto;min-width:0;position:relative}
-.top{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--line)}
+.app{display:grid;grid-template-columns:280px minmax(0,1fr);height:100%}
+/* sidebar = the notebook's table of contents */
+aside{background:var(--sheet);border-right:1px solid var(--rule);display:flex;flex-direction:column;min-height:0;padding-left:env(safe-area-inset-left,0px)}
+.brand{padding:18px 18px 6px}
+.brand h1{font-family:var(--hand);font-weight:400;font-size:21px;margin:0;color:var(--encre);line-height:1.5}
+.sync{font-size:12px;color:var(--muted)}
+.tools{display:flex;flex-direction:column;padding:8px 10px 12px;border-bottom:1px solid var(--rule)}
+.tools a{display:flex;align-items:center;gap:8px;padding:5px 8px;color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:500;border-radius:3px}
+.tools a:hover{background:var(--encre-soft)}
+.tools a.cur{color:var(--encre);font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.tools .n{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--rouge);font-variant-numeric:tabular-nums}
+.filter{padding:12px 14px 4px}
+.filter input{width:100%;box-sizing:border-box;font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:6px 9px}
+nav{overflow-y:auto;flex:1;padding:0 10px 24px}
+nav h3{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 6px 4px;display:flex;justify-content:space-between;font-weight:600}
+nav h3 span{font-variant-numeric:tabular-nums;letter-spacing:0}
+nav a{display:flex;align-items:baseline;gap:8px;padding:3px 6px;color:var(--ink);text-decoration:none;font-size:14px;border-radius:3px}
+nav a:hover{background:var(--encre-soft)}
+nav a.cur{background:var(--encre-soft);color:var(--encre);font-weight:600}
+nav .dot{width:12px;flex:none;font-size:12px;color:var(--vert);text-align:center}
+nav a.done .dot::before{content:"✓"}
+nav .star{margin-left:auto;color:var(--orange);font-size:12px}
+/* main = a page of the notebook */
+main{overflow-y:auto;min-width:0;position:relative;
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--seyes-bold) 1px,transparent 1px),linear-gradient(90deg,var(--seyes) 1px,transparent 1px),linear-gradient(var(--seyes) 1px,transparent 1px);
+  background-size:100% 32px,32px 32px,100% 8px}
+.top{position:sticky;top:0;z-index:5;background:var(--paper);display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-block:9px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--rule)}
 .top .crumb{flex:1;min-width:0;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.view{max-width:820px;margin:0 auto;padding-block:22px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h2.title{font-family:var(--display);font-weight:800;font-size:clamp(25px,4vw,33px);line-height:1.15;margin:2px 0 6px;text-wrap:balance;letter-spacing:-.01em}
-.eyebrow{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.view{max-width:780px;margin:0 auto;padding-block:26px 64px;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-left:2px solid var(--marge);min-height:calc(100% - 60px);box-sizing:border-box;background:color-mix(in srgb,var(--paper) 55%,transparent)}
+.date{font-family:var(--hand);color:var(--encre);font-size:15px;margin:0 0 4px}
+h2.title{font-family:var(--hand);font-weight:400;font-size:clamp(23px,3.6vw,30px);line-height:1.5;margin:0 0 10px;color:var(--encre);text-wrap:balance}
+.code{font-size:12px;color:var(--muted);letter-spacing:.06em;font-variant-numeric:tabular-nums}
 .lead{color:var(--muted);margin:0 0 18px;max-width:62ch}
-h3.sec{font-family:var(--display);font-weight:600;font-size:18px;margin:26px 0 10px}
-button,.btn{font:inherit;font-size:14px;font-weight:600;border:0;border-radius:8px;padding:7px 12px;cursor:pointer;background:var(--accent-soft);color:var(--accent);white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-button.primary,.btn.primary{background:var(--accent);color:var(--on-accent)}
-button.ok{background:var(--done);color:var(--on-accent)}
-button.ghost{background:transparent;color:var(--muted);padding-inline:8px}
-button:disabled{opacity:.45;cursor:default}
+h3.sec{font-weight:700;font-size:16px;margin:30px 0 8px;color:var(--ink);border-bottom:1px solid var(--seyes-bold);padding-bottom:4px}
+button,.btn{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--encre);border-radius:3px;padding:6px 12px;cursor:pointer;background:var(--sheet);color:var(--encre);white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+button:hover,.btn:hover{background:var(--encre-soft)}
+button.primary,.btn.primary{background:var(--encre);color:var(--on-encre)}
+button.ok{background:var(--vert);border-color:var(--vert);color:var(--on-encre)}
+button.ghost{background:transparent;border-color:transparent;color:var(--muted);padding-inline:8px}
+button:disabled{opacity:.4;cursor:default}
 #menu{display:none}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-input[type=text],input[type=search],textarea,select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
-textarea{width:100%;box-sizing:border-box;min-height:110px;resize:vertical}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
-.stat b{display:block;font-family:var(--display);font-size:28px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
-.stat span{color:var(--muted);font-size:13px}
+:focus-visible{outline:2px solid var(--encre);outline-offset:2px}
+input[type=text],input[type=search],textarea,select{font:inherit;color:var(--ink);background:var(--sheet);border:1px solid var(--seyes-bold);border-radius:3px;padding:7px 10px}
+textarea{width:100%;box-sizing:border-box;min-height:120px;resize:vertical;font-family:var(--hand);font-size:14px;line-height:32px;padding-block:0;color:var(--encre);
+  background-color:var(--sheet);background-image:linear-gradient(transparent 31px,var(--seyes-bold) 31px);background-size:100% 32px;background-attachment:local}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:2px;padding:14px 16px}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;flex:1}
-.bar>div{height:100%;background:var(--done)}
-.catrow{display:grid;grid-template-columns:minmax(0,1fr) 120px 48px;gap:10px;align-items:center;padding:5px 0;font-size:14px}
-.catrow .num{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-size:13px}
-.chip{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;padding:2px 8px;border-radius:99px;background:var(--accent-soft);color:var(--accent);text-decoration:none;font-weight:500;white-space:nowrap}
-.chip.muted{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
-mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
-mark.cur{outline:2px solid var(--warn)}
-.empty{color:var(--muted);padding:24px 0;text-align:center}
+.summary-line{font-size:17px;max-width:60ch;margin:0 0 16px}
+.summary-line b{color:var(--encre);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--rule);overflow:hidden;flex:1}
+.bar>div{height:100%;background:var(--encre)}
+/* bulletin (school report card) */
+.bulletin{width:100%;border-collapse:collapse;background:var(--sheet);font-size:14px}
+.bulletin th{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;text-align:left;padding:8px 10px;border-bottom:2px solid var(--ink)}
+.bulletin td{padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:middle}
+.bulletin td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.bulletin td.note{font-family:var(--hand);color:var(--rouge);font-size:15px;white-space:nowrap}
+.bulletin td.appr{font-family:var(--hand);color:var(--rouge);font-size:13px}
+.bulletin .mini{display:flex;align-items:center;gap:8px;min-width:120px}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule)}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:13px;padding:1px 7px;border-radius:2px;background:var(--encre-soft);color:var(--encre);text-decoration:none;font-weight:500;white-space:nowrap}
+.chip.muted{background:transparent;color:var(--muted);border:1px solid var(--rule)}
+.chip.red{background:var(--rouge-soft);color:var(--rouge)}
+mark{background:var(--surligneur);color:inherit;padding:0 1px}
+mark.cur{box-shadow:0 0 0 2px var(--orange)}
+.empty{color:var(--muted);padding:20px 0}
 /* lesson */
 .lesson{overflow-wrap:anywhere}
 .lesson table{border-collapse:collapse;margin:6px 0;max-width:100%}
-.lesson td{padding:3px 10px 3px 0;vertical-align:top}
+.lesson td{padding:3px 12px 3px 0;vertical-align:top}
 .lesson td:empty{display:none}
-.lesson .tbl{overflow-x:auto;margin:10px 0;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.lesson .tbl{overflow-x:auto;margin:12px 0;padding:10px 14px;background:var(--sheet);border:1px solid var(--rule);border-left:3px double var(--seyes-bold)}
 .lesson .tbl .tbl{border:0;padding:0;margin:0;background:none}
-.lesson .tb_blue,.lesson .tt_blue{color:var(--accent);font-weight:600}
-.lesson .tb_org,.lesson .tt_org,.lesson .red{color:var(--warn);font-weight:600}
-.lesson .tb_blk,.lesson .tbs_blk{display:inline-block;font-family:var(--display);font-weight:600;font-size:19px;margin-top:14px}
+.lesson .tb_blue,.lesson .tt_blue{color:var(--encre);font-weight:600}
+.lesson .tb_org,.lesson .tt_org,.lesson .red{color:var(--rouge);font-weight:600}
+.lesson .tb_blk,.lesson .tbs_blk{display:inline-block;font-weight:700;font-size:17px;margin-top:16px;border-bottom:2px solid var(--marge);line-height:1.3}
 .lesson .tt_grey{color:var(--muted);font-weight:600}
-.lesson img{display:block;max-width:min(100%,340px);height:auto;margin:10px auto;background:#fff;border-radius:8px;padding:4px}
-.lesson a{color:var(--accent)}
-button.aud{width:30px;height:30px;padding:0;border-radius:50%;font-size:11px;justify-content:center;vertical-align:middle;margin:2px 4px;flex:none}
-button.aud.playing{background:var(--accent);color:var(--on-accent)}
-button.aud.err{background:var(--line);color:var(--muted)}
-.findbar{position:sticky;top:58px;z-index:4;display:flex;gap:8px;align-items:center;background:var(--warn-soft);border-radius:10px;padding:6px 10px;margin-bottom:12px;font-size:14px}
+.lesson img{display:block;max-width:min(100%,320px);height:auto;margin:12px auto;background:#fff;padding:6px;border:1px solid var(--rule);transform:rotate(-.6deg)}
+.lesson a{color:var(--encre)}
+button.aud{width:28px;height:28px;padding:0;border-radius:50%;font-size:10px;justify-content:center;vertical-align:middle;margin:2px 4px;flex:none}
+button.aud.playing{background:var(--encre);color:var(--on-encre)}
+button.aud.err{border-color:var(--rule);color:var(--muted)}
+.findbar{position:sticky;top:56px;z-index:4;display:flex;gap:8px;align-items:center;background:var(--surligneur);padding:5px 10px;margin-bottom:12px;font-size:14px}
 .findbar span{flex:1}
-.lessontools{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 18px}
-.pager{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:36px;padding-top:18px;border-top:1px solid var(--line)}
+.findbar button{background:var(--sheet)}
+.lessontools{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.pager{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:36px;padding-top:16px;border-top:1px solid var(--seyes-bold)}
 .pager button{max-width:48%;overflow:hidden;text-overflow:ellipsis}
-.side-note{margin-top:28px}
-.saved{font-size:12px;color:var(--muted)}
+.saved{font-size:12.5px;color:var(--muted)}
+.credit{font-size:12.5px;color:var(--muted);margin-top:20px}
 /* tutor */
-.tutor{margin-top:28px;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
-.tutor header{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.tutor header strong{font-family:var(--display);font-size:17px;flex:1}
+.tutor{margin-top:30px;border:1px solid var(--rule);background:var(--sheet)}
+.tutor header{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.tutor header strong{flex:1;font-family:var(--hand);font-weight:400;color:var(--encre);font-size:16px}
 .tutor .log{padding:14px;display:flex;flex-direction:column;gap:12px;max-height:520px;overflow-y:auto}
-.msg{max-width:92%;padding:10px 12px;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere}
-.msg.me{align-self:flex-end;background:var(--accent);color:var(--on-accent)}
-.msg.ai{align-self:flex-start;background:var(--bg);border:1px solid var(--line)}
-.msg.ai.err{color:var(--bad)}
-.tutor form{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line)}
+.msg{max-width:92%;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.me{align-self:flex-end;font-family:var(--hand);color:var(--encre);font-size:14px;text-align:right}
+.msg.ai{align-self:flex-start;border-left:2px solid var(--marge);padding:2px 0 2px 12px}
+.msg.ai.err{color:var(--rouge)}
+.tutor form{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--rule)}
 .tutor form input{flex:1;min-width:0}
-.quiz{display:flex;flex-direction:column;gap:14px}
-.q{padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
-.q p{margin:0 0 8px;font-weight:600}
-.q .opts{display:flex;flex-direction:column;gap:6px}
-.q .opts button{justify-content:flex-start;white-space:normal;text-align:left;background:var(--surface);color:var(--ink);border:1px solid var(--line);font-weight:500}
-.q .opts button.right{background:var(--done-soft);border-color:var(--done)}
-.q .opts button.wrong{background:var(--bad-soft);border-color:var(--bad)}
-.q .why{font-size:13.5px;color:var(--muted);margin-top:8px}
+.quiz{display:flex;flex-direction:column;gap:16px}
+.q p{margin:0 0 6px;font-weight:600}
+.q .opts{display:flex;flex-direction:column;gap:4px}
+.q .opts button{justify-content:flex-start;white-space:normal;text-align:left;border-color:var(--rule);color:var(--ink);font-weight:500}
+.q .opts button.right{background:var(--vert-soft);border-color:var(--vert)}
+.q .opts button.wrong{background:var(--rouge-soft);border-color:var(--rouge);text-decoration:line-through}
+.q .why{font-family:var(--hand);font-size:13px;color:var(--rouge);margin-top:6px}
 /* search */
 .searchbox{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.searchbox input[type=search]{flex:1 1 260px;font-size:17px;padding:10px 12px;min-width:0}
+.searchbox input[type=search]{flex:1 1 260px;font-size:17px;padding:9px 12px;min-width:0}
 .searchbox label{font-size:13.5px;color:var(--muted);display:flex;gap:5px;align-items:center}
-.summary{margin:14px 0;color:var(--muted);font-size:14px}
-.hitgroup{border:1px solid var(--line);background:var(--surface);border-radius:12px;margin-bottom:10px;overflow:hidden}
-.hitgroup>header{display:flex;gap:10px;align-items:baseline;padding:10px 14px;border-bottom:1px solid var(--line)}
-.hitgroup>header a{font-weight:600;color:var(--ink);text-decoration:none;flex:1;min-width:0}
-.hitgroup>header a:hover{color:var(--accent)}
+.summary{margin:16px 0 8px;font-size:15px}
+.summary b{color:var(--encre)}
+.hitgroup{margin-bottom:18px}
+.hitgroup>header{display:flex;gap:10px;align-items:baseline;padding:4px 0;border-bottom:2px solid var(--ink)}
+.hitgroup>header a{font-weight:700;color:var(--ink);text-decoration:none;flex:1;min-width:0}
+.hitgroup>header a:hover{color:var(--encre)}
 .hitgroup>header .count{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
-.hit{display:block;padding:7px 14px;font-size:14px;color:var(--ink);text-decoration:none;border-top:1px dashed var(--line)}
-.hit:first-of-type{border-top:0}
-.hit:hover{background:var(--accent-soft)}
-.more{padding:6px 14px 10px}
-.distrib{display:flex;gap:2px;align-items:flex-end;height:36px;margin:8px 0 2px}
-.distrib div{flex:1;background:var(--accent);border-radius:2px 2px 0 0;min-height:2px;opacity:.85}
-/* flashcards */
-.deckbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 22px;min-height:220px;display:flex;flex-direction:column;gap:14px;justify-content:center;text-align:center}
-.card .face{font-size:21px;line-height:1.45}
-.card .face .tb_blue,.card .face .tt_blue,.cz .tb_blue{color:var(--accent);font-weight:600}
-.card .back{border-top:1px dashed var(--line);padding-top:14px;font-size:17px;color:var(--muted)}
-.card .meta{font-size:12.5px;color:var(--muted);display:flex;gap:8px;justify-content:center;flex-wrap:wrap;align-items:center}
-.rate{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-.rate button{flex-direction:column;gap:0;padding:9px 4px;white-space:normal}
-.rate button small{font-weight:400;font-size:11.5px;opacity:.8}
-.rate .r0{background:var(--bad-soft);color:var(--bad)}
-.rate .r1{background:var(--warn-soft);color:var(--warn)}
-.rate .r2{background:var(--done-soft);color:var(--done)}
-.rate .r3{background:var(--accent-soft);color:var(--accent)}
+.hit{display:block;padding:6px 0 6px 10px;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+.hit:hover{background:var(--encre-soft)}
+.more{padding:4px 0}
+.distrib{display:flex;gap:3px;align-items:flex-end;height:44px;margin:4px 0 2px;border-bottom:1px solid var(--ink)}
+.distrib div{flex:1;background:var(--encre);min-height:0}
+/* flashcards = fiches bristol */
+.deckbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.card{position:relative;background-color:var(--sheet);border:1px solid var(--rule);box-shadow:0 1px 0 var(--rule),0 6px 18px -12px rgba(20,30,70,.35);
+  background-image:linear-gradient(transparent 46px,var(--marge) 46px,var(--marge) 48px,transparent 48px),repeating-linear-gradient(transparent 0 27px,var(--seyes) 27px 28px);background-position:0 0,0 20px;
+  padding:14px 22px 22px;min-height:230px;display:flex;flex-direction:column;gap:14px;justify-content:flex-start;text-align:center}
+.card .face{font-size:21px;line-height:1.5;margin-top:22px}
+.card .face .tb_blue,.card .face .tt_blue,.cz .tb_blue{color:var(--encre);font-weight:600}
+.card .back{padding-top:6px;font-family:var(--hand);font-size:15px;line-height:1.8;color:var(--rouge)}
+.card .back .tb_blue{color:inherit}
+.card .meta{font-size:12.5px;color:var(--muted);display:flex;gap:6px;justify-content:space-between;flex-wrap:wrap;align-items:center;height:26px}
+.rate{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:14px}
+.rate button{flex-direction:column;gap:0;padding:8px 4px;white-space:normal}
+.rate button small{font-weight:400;font-size:11.5px;opacity:.85}
+.rate .r0{border-color:var(--rouge);color:var(--rouge)}
+.rate .r1{border-color:var(--orange);color:var(--orange)}
+.rate .r2{border-color:var(--vert);color:var(--vert)}
+.rate .r3{border-color:var(--encre);color:var(--encre)}
 .kbd{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
 /* cloze */
-.cz{font-size:20px;line-height:1.7}
-.cz input{font-size:18px;width:9ch;padding:2px 6px;border-radius:6px;text-align:center}
-.cz input.right{border-color:var(--done);background:var(--done-soft)}
-.cz input.near{border-color:var(--warn);background:var(--warn-soft)}
-.cz input.wrong{border-color:var(--bad);background:var(--bad-soft)}
-.feedback{font-size:15px;min-height:24px}
-.feedback.right{color:var(--done)} .feedback.near{color:var(--warn)} .feedback.wrong{color:var(--bad)}
+.cz{font-size:20px;line-height:1.8;margin-top:22px;text-align:left}
+.cz input{font:inherit;font-size:18px;padding:0 6px;border:0;border-bottom:2px solid var(--encre);border-radius:0;background:transparent;text-align:center;color:var(--encre)}
+.cz input:focus-visible{outline:none;border-bottom-width:3px}
+.cz input.right{border-color:var(--vert);color:var(--vert)}
+.cz input.near{border-color:var(--orange);color:var(--orange)}
+.cz input.wrong{border-color:var(--rouge);color:var(--rouge);text-decoration:line-through}
+.trans{color:var(--muted);text-align:left}
+.feedback{font-family:var(--hand);font-size:15px;min-height:28px;text-align:left}
+.feedback.right{color:var(--vert)} .feedback.near{color:var(--orange)} .feedback.wrong{color:var(--rouge)}
+.keys{display:flex;gap:4px;flex-wrap:wrap}
+.keys button{padding:2px 8px;border-color:var(--rule);color:var(--ink);font-weight:500}
 /* index */
-.letters{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0 16px}
-.letters a{font-weight:600;font-size:13px;padding:3px 8px;border-radius:6px;background:var(--surface);border:1px solid var(--line);color:var(--ink);text-decoration:none}
-.term{display:grid;grid-template-columns:minmax(110px,200px) minmax(0,1fr);gap:10px;padding:8px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.term a.t{font-weight:600;color:var(--accent);text-decoration:none}
+.letters{display:flex;flex-wrap:wrap;gap:2px;margin:12px 0 16px}
+.letters a{font-weight:700;font-size:13.5px;padding:2px 7px;color:var(--encre);text-decoration:none;border-radius:2px}
+.letters a:hover{background:var(--encre-soft)}
+.term{display:grid;grid-template-columns:minmax(110px,190px) minmax(0,1fr);gap:10px;padding:6px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.term a.t{font-weight:700;color:var(--encre);text-decoration:none}
 .term .chips{display:flex;gap:4px;flex-wrap:wrap}
-.notecard{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;margin-bottom:10px}
-.notecard a{font-weight:600;color:var(--ink);text-decoration:none}
-.notecard p{margin:6px 0 0;white-space:pre-wrap;color:var(--muted);font-size:14px}
+.notecard{padding:10px 0 12px;border-bottom:1px solid var(--rule)}
+.notecard a{font-weight:700;color:var(--ink);text-decoration:none}
+.notecard p{margin:4px 0 0;white-space:pre-wrap;font-family:var(--hand);color:var(--encre);font-size:14px;line-height:1.9}
 @media (max-width:860px){
   .app{grid-template-columns:minmax(0,1fr)}
   aside{position:fixed;inset:0 auto 0 0;width:min(320px,88vw);z-index:20;transform:translateX(-100%);transition:transform .2s;padding-top:env(safe-area-inset-top,0px)}
   aside.open{transform:none;box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
   #menu{display:inline-flex}
+  .view{padding-left:max(20px,env(safe-area-inset-left,0px));border-left-width:1.5px;margin-left:8px}
   .rate{grid-template-columns:repeat(2,1fr)}
   .term{grid-template-columns:minmax(0,1fr)}
 }
@@ -380,32 +401,35 @@ views.inicio = () => {
   for (const [id, s] of Object.entries(S.srs)) { const c = cardById[id]; if (c && s.x) weak[c.l] = (weak[c.l] || 0) + s.x; }
   for (const [l, r] of Object.entries(S.cz)) if (r.n - r.ok > 0) weak[l] = (weak[l] || 0) + (r.n - r.ok);
   const weakList = Object.entries(weak).filter(([l]) => byCode[l]).sort((a, b) => b[1] - a[1]).slice(0, 6);
+  // per-theme score on the French 0–20 scale, from flashcard reviews and cloze answers
+  const score = {};
+  const add = (l, ok, n) => { const c = byCode[l]?.cat; if (!c) return; const r = score[c] || (score[c] = { ok: 0, n: 0 }); r.ok += ok; r.n += n; };
+  for (const [id, s] of Object.entries(S.srs)) { const c = cardById[id]; if (c) add(c.l, s.n - s.x, s.n); }
+  for (const [l, r] of Object.entries(S.cz)) add(l, r.ok, r.n);
+  const appr = n => n >= 16 ? "Très bien" : n >= 14 ? "Bien" : n >= 12 ? "Assez bien" : n >= 10 ? "Passable" : "Peut mieux faire";
+  const dateFr = new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
   $("view").innerHTML = `
-    <div class="eyebrow">Seu painel</div>
-    <h2 class="title">Bonjour ! Vamos estudar.</h2>
-    <p class="lead">Leia as lições, marque como estudadas e fixe com flashcards e exercícios gerados a partir dos exemplos de cada lição.</p>
-    <div class="grid">
-      <div class="stat"><b>${done}<small style="font-size:15px;color:var(--muted)">/${pages.length}</small></b><span>lições estudadas</span><div class="bar" style="margin-top:8px"><div style="width:${done / pages.length * 100}%"></div></div></div>
-      <div class="stat"><b>${nd}</b><span>cartões para revisar hoje</span></div>
-      <div class="stat"><b>${streak()}</b><span>dias seguidos estudando</span></div>
-      <div class="stat"><b>${n7 ? Math.round(ok7 / n7 * 100) + "%" : "–"}</b><span>acertos nos últimos 7 dias (${n7} respostas)</span></div>
-    </div>
-    <div class="row" style="margin-top:16px">
+    <p class="date">${esc(dateFr)}</p>
+    <h2 class="title">Grammaire française</h2>
+    <p class="summary-line">Você estudou <b>${done}</b> de <b>${pages.length}</b> lições. ${nd ? `Hoje há <b>${nd}</b> ${nd > 1 ? "cartões" : "cartão"} para revisar.` : "Nenhum cartão para revisar hoje."} ${streak() ? `Você estuda há <b>${streak()}</b> ${streak() > 1 ? "dias seguidos" : "dia"}.` : ""} ${n7 ? `Acertou <b>${Math.round(ok7 / n7 * 100)}%</b> ${n7 > 1 ? `das ${n7} respostas` : "da única resposta"} desta semana.` : ""}</p>
+    <div class="row">
       ${next ? `<a class="btn primary" href="#${next.id}">Continuar: ${esc(next.title)}</a>` : ""}
-      ${nd ? `<a class="btn" href="#cartoes">Revisar ${nd} cartões</a>` : `<a class="btn" href="#cartoes">Flashcards (${seen} vistos de ${CARDS.length})</a>`}
-      <a class="btn" href="#completar">Exercício de completar</a>
+      ${nd ? `<a class="btn" href="#cartoes">Revisar ${nd} cartões</a>` : `<a class="btn" href="#cartoes">Flashcards</a>`}
+      <a class="btn" href="#completar">Completar frases</a>
     </div>
-    ${weakList.length ? `<h3 class="sec">Onde você mais erra</h3><div class="row">${weakList.map(([l, n]) => `<a class="chip" href="#${slug(l)}">${esc(byCode[l].title)} · ${n} erro${n > 1 ? "s" : ""}</a>`).join("")}</div>` : ""}
-    <h3 class="sec">Progresso por tema</h3>
-    <div class="panel">${INDEX.sections.map(s => {
+    ${weakList.length ? `<h3 class="sec">Para revisar com atenção</h3><div class="row">${weakList.map(([l, n]) => `<a class="chip red" href="#${slug(l)}">${esc(byCode[l].title)} · ${n} erro${n > 1 ? "s" : ""}</a>`).join("")}</div>` : ""}
+    <h3 class="sec">Bulletin</h3>
+    <p class="saved" style="margin:0 0 8px">Nota sobre 20, como na escola francesa, calculada com seus acertos nos flashcards e no completar.</p>
+    <div class="tablewrap"><table class="bulletin"><thead><tr><th>Matéria</th><th>Lições</th><th>Nota</th><th>Appréciation</th></tr></thead><tbody>${INDEX.sections.map(s => {
       const list = pages.filter(p => p.cat === s.category); if (!list.length) return "";
-      const n = list.filter(p => S.done[p.code]).length;
-      return `<div class="catrow"><span>${esc(catPt(s.category))}</span><div class="bar"><div style="width:${n / list.length * 100}%"></div></div><span class="num">${n}/${list.length}</span></div>`;
-    }).join("")}</div>
-    <h3 class="sec">Atividade (últimos 30 dias)</h3>
-    <div class="panel"><div class="distrib" aria-label="Respostas por dia">${Array.from({ length: 30 }, (_, i) => { const l = S.log[dayKey(today() - 29 + i)]; return `<div title="${dayKey(today() - 29 + i)}: ${l ? l.n : 0} respostas" style="height:${l ? Math.min(100, 8 + l.n * 3) : 0}%"></div>`; }).join("")}</div>
-    <div class="row" style="justify-content:space-between;font-size:12px;color:var(--muted)"><span>há 30 dias</span><span>hoje</span></div></div>
-    <p class="lead" style="margin-top:24px;font-size:13px">Atalhos: nos flashcards, <b>espaço</b> vira o cartão e <b>1–4</b> dão a nota; no completar, <b>Enter</b> confere e avança.</p>`;
+      const n = list.filter(p => S.done[p.code]).length, sc = score[s.category];
+      const note = sc && sc.n >= 5 ? Math.round(sc.ok / sc.n * 20) : null;
+      return `<tr><td>${esc(catPt(s.category))}</td><td class="num"><div class="mini"><div class="bar"><div style="width:${n / list.length * 100}%"></div></div>${n}/${list.length}</div></td><td class="note">${note === null ? "" : note + "/20"}</td><td class="appr">${note === null ? "" : appr(note)}</td></tr>`;
+    }).join("")}</tbody></table></div>
+    <h3 class="sec">Respostas por dia</h3>
+    <div class="distrib" aria-label="Respostas por dia nos últimos 30 dias">${Array.from({ length: 30 }, (_, i) => { const l = S.log[dayKey(today() - 29 + i)]; return `<div title="${dayKey(today() - 29 + i)}: ${l ? l.n : 0} respostas" style="height:${l ? Math.min(100, 6 + l.n * 3) : 0}%"></div>`; }).join("")}</div>
+    <div class="row" style="justify-content:space-between;font-size:12px;color:var(--muted)"><span>30 dias atrás</span><span>hoje</span></div>
+    <p class="saved" style="margin-top:26px">Atalhos: nos flashcards, espaço vira o cartão e as teclas 1 a 4 dão a nota. No completar, Enter confere e passa para a próxima.</p>`;
 };
 
 /* ---------- Lesson ---------- */
@@ -420,7 +444,7 @@ function viewLesson(p) {
   upd();
   $("view").innerHTML = `
     <div id="findbar"></div>
-    <div class="eyebrow">${esc(p.code)}</div>
+    <div class="code">${esc(p.code)}</div>
     <h2 class="title">${esc(p.title)}</h2>
     <div class="lessontools">
       <button id="favBtn"></button>
@@ -437,7 +461,7 @@ function viewLesson(p) {
     </section>
     <section class="tutor" id="tutor" hidden></section>
     <div class="pager"><button id="prev" ${pv ? "" : "disabled"}>${pv ? "← " + esc(pv.title) : ""}</button><button id="next" class="primary" ${nx ? "" : "disabled"}>${nx ? esc(nx.title) + " →" : ""}</button></div>
-    <p class="lead" style="margin-top:20px;font-size:12.5px">Conteúdo de <em>Tex's French Grammar</em> © University of Texas at Austin (COERLL).</p>`;
+    <p class="credit">Conteúdo de <em>Tex's French Grammar</em> © University of Texas at Austin (COERLL).</p>`;
   const el = $("lesson");
   el.querySelectorAll("table").forEach(t => { if (!t.parentElement.closest(".tbl")) { const w = document.createElement("div"); w.className = "tbl"; t.replaceWith(w); w.appendChild(t); } });
   if (pv) $("prev").onclick = () => go(pv.id);
@@ -554,9 +578,8 @@ let lastQ = "", lastWhole = true;
 views.busca = () => {
   $("crumb").textContent = "Buscar";
   $("view").innerHTML = `
-    <div class="eyebrow">Busca no conteúdo</div>
     <h2 class="title">Onde isso aparece?</h2>
-    <p class="lead">Digite uma palavra ou expressão em francês ou inglês. Você vê em quais lições ela aparece, quantas vezes e o trecho de cada ocorrência. Clique num trecho para abrir a lição já nesse ponto.</p>
+    <p class="lead">Digite uma palavra ou expressão em francês ou inglês para ver em quais lições ela aparece e o trecho de cada ocorrência. Clique num trecho para abrir a lição naquele ponto.</p>
     <form class="searchbox" id="sform"><input id="sq" type="search" placeholder="ex.: depuis, subjunctive, en, ne … que" value="${esc(lastQ)}" aria-label="Buscar"><label><input type="checkbox" id="whole" ${lastWhole ? "checked" : ""}> palavra exata</label><button class="primary">Buscar</button></form>
     <div class="row" style="margin-top:10px" id="sugg"></div>
     <div id="sres"></div>`;
@@ -624,9 +647,8 @@ views.cartoes = () => {
   const dueL = shuffle(pool.filter(due)), newL = pool.filter(isNew).slice(0, 20);
   let queue = [...dueL, ...newL], i = 0, flipped = false, stats = { ok: 0, n: 0 };
   $("view").innerHTML = `
-    <div class="eyebrow">Repetição espaçada</div>
-    <h2 class="title">Flashcards</h2>
-    <p class="lead">Cartões tirados dos exemplos das lições. Diga a tradução em voz alta, vire o cartão e seja honesto na nota: o que você erra volta logo, o que você sabe volta daqui a dias.</p>
+    <h2 class="title">Fiches de révision</h2>
+    <p class="lead">Frases de exemplo das lições. Tente lembrar a tradução antes de virar a ficha. As que você erra voltam na mesma sessão, e as que você acerta voltam dias depois.</p>
     <div class="deckbar">
       <select id="deck" aria-label="Baralho">${deckOptions().map(([v, l]) => `<option value="${esc(v)}" ${v === deckSel ? "selected" : ""}>${esc(l)}</option>`).join("")}</select>
       <select id="dir" aria-label="Direção"><option value="fr" ${dir === "fr" ? "selected" : ""}>Francês → inglês</option><option value="en" ${dir === "en" ? "selected" : ""}>Inglês → francês</option></select>
@@ -649,7 +671,7 @@ views.cartoes = () => {
     const front = dir === "fr" ? c.fr : c.en, back = dir === "fr" ? c.en : c.fr;
     const s = S.srs[c.id];
     box.innerHTML = `
-      <div class="card"><div class="meta"><span>${i + 1} de ${queue.length}</span>·<a href="#${slug(c.l)}" class="chip muted">${esc(byCode[c.l].title)}</a>${c.cram ? "· treino" : s ? `· revisão (intervalo ${s.i}d)` : "· novo"}</div>
+      <div class="card"><div class="meta"><a href="#${slug(c.l)}" class="chip muted">${esc(byCode[c.l].title)}</a><span>${c.cram ? "treino" : s ? `revisão · intervalo de ${s.i} d` : "nova"} · ${i + 1}/${queue.length}</span></div>
         <div class="face">${front}</div>
         <div class="back" id="back" hidden>${back}</div>
         <div class="row" style="justify-content:center">${c.a ? `<button class="aud" data-aud="${esc(c.a)}" aria-label="Ouvir o exemplo">▶</button>` : ""}<button class="primary" id="flip">Mostrar resposta</button></div>
@@ -688,9 +710,8 @@ views.completar = () => {
     .concat(INDEX.sections.filter(s => CLOZE.some(c => byCode[c.l].cat === s.category)).map(s => ["cat:" + s.category, "Tema: " + catPt(s.category)]))
     .concat(pages.filter(p => CLOZE.some(c => c.l === p.code)).map(p => [p.code, "Lição: " + p.title]));
   $("view").innerHTML = `
-    <div class="eyebrow">Exercício</div>
-    <h2 class="title">Complete a frase</h2>
-    <p class="lead">A palavra em destaque na lição foi removida. Leia a tradução e escreva o que falta. Erros só de acento contam como “quase”.</p>
+    <h2 class="title">Complète la phrase</h2>
+    <p class="lead">Falta a palavra que a lição destaca. Leia a tradução e escreva o que falta. Se errar só o acento, conta como quase certo.</p>
     <div class="deckbar"><select id="czdeck" aria-label="Conteúdo">${opts.map(([v, l]) => `<option value="${esc(v)}" ${v === czSel ? "selected" : ""}>${esc(l)}</option>`).join("")}</select><span class="saved">${pool.length} frases disponíveis · 15 por rodada</span></div>
     <div id="czbox"></div>`;
   $("czdeck").onchange = e => { czSel = e.target.value; views.completar(); };
@@ -714,12 +735,12 @@ views.completar = () => {
     target.outerHTML = `<input type="text" id="czin" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(4, answer.length + 2)}ch" aria-label="Palavra que falta">`;
     box.innerHTML = `
       <div class="card" style="text-align:left">
-        <div class="meta" style="justify-content:flex-start"><span>${i + 1} de ${queue.length}</span>·<a href="#${slug(c.l)}" class="chip muted">${esc(byCode[c.l].title)}</a></div>
+        <div class="meta"><a href="#${slug(c.l)}" class="chip muted">${esc(byCode[c.l].title)}</a><span>${i + 1}/${queue.length}</span></div>
         <div class="cz">${d.innerHTML}</div>
-        <div style="color:var(--muted)">${c.en}</div>
-        <div class="row">${accentKeys.map(k => `<button class="ghost" data-k="${k}" style="padding:4px 8px;border:1px solid var(--line)">${k}</button>`).join("")}</div>
+        <div class="trans">${c.en}</div>
+        <div class="keys">${accentKeys.map(k => `<button data-k="${k}" aria-label="Inserir ${k}">${k}</button>`).join("")}</div>
         <div class="feedback" id="fb"></div>
-        <div class="row">${c.a ? `<button class="aud" data-aud="${esc(c.a)}" aria-label="Ouvir">▶</button>` : ""}<button class="primary" id="check">Conferir</button></div>
+        <div class="row" style="justify-content:flex-start">${c.a ? `<button class="aud" data-aud="${esc(c.a)}" aria-label="Ouvir">▶</button>` : ""}<button class="primary" id="check">Conferir</button></div>
       </div><div class="kbd">Enter: conferir / próxima</div>`;
     const inp = $("czin"); inp.focus();
     box.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { const p = inp.selectionStart ?? inp.value.length; inp.value = inp.value.slice(0, p) + b.dataset.k + inp.value.slice(inp.selectionEnd ?? p); inp.focus(); inp.setSelectionRange(p + 1, p + 1); });
@@ -732,7 +753,7 @@ views.completar = () => {
       let cls, msg;
       if (v === norm(answer)) { cls = "right"; msg = "Certo!"; stats.ok++; r.ok++; }
       else if (fold(v) === fold(norm(answer))) { cls = "near"; msg = `Quase: atenção aos acentos. O certo é “${answer}”.`; }
-      else { cls = "wrong"; msg = `A resposta é “${answer}”.`; }
+      else { cls = "wrong"; msg = `Correção: ${answer}`; }
       logAnswer(cls === "right"); save();
       inp.classList.add(cls); inp.readOnly = true;
       $("fb").className = "feedback " + cls; $("fb").textContent = msg;
@@ -750,8 +771,7 @@ views.indice = () => {
   const terms = Object.entries(STUDY.terms).map(([t, ls]) => [t, Object.entries(ls).filter(([l]) => byCode[l]).sort((a, b) => b[1] - a[1])]).filter(([, ls]) => ls.length).sort((a, b) => fold(a[0]).localeCompare(fold(b[0])));
   const letters = [...new Set(terms.map(([t]) => fold(t)[0]).filter(ch => /[a-z]/.test(ch)))];
   $("view").innerHTML = `
-    <div class="eyebrow">Índice remissivo</div>
-    <h2 class="title">Palavras-chave da gramática</h2>
+    <h2 class="title">Index</h2>
     <p class="lead">${terms.length} termos destacados nas lições, com as lições onde aparecem (o número é quantas vezes). Clique no termo para ver todas as ocorrências.</p>
     <input type="search" id="tq" placeholder="Filtrar termos…" style="width:100%;box-sizing:border-box" aria-label="Filtrar termos">
     <div class="letters">${letters.map(l => `<a href="#indice" data-l="${l}">${l.toUpperCase()}</a>`).join("")}</div>
@@ -775,9 +795,8 @@ views.notas = () => {
   const notes = pages.filter(p => S.notes[p.code]);
   const favs = pages.filter(p => S.fav[p.code]);
   $("view").innerHTML = `
-    <div class="eyebrow">Seu caderno</div>
-    <h2 class="title">Anotações e favoritas</h2>
-    <p class="lead">Tudo o que você escreveu nas lições, num lugar só.</p>
+    <h2 class="title">Mon cahier</h2>
+    <p class="lead">Suas anotações e lições favoritas.</p>
     <h3 class="sec">Favoritas</h3>
     <div class="row">${favs.length ? favs.map(p => `<a class="chip" href="#${p.id}">★ ${esc(p.title)}</a>`).join("") : `<span class="saved">Nenhuma ainda. Use “☆ Favoritar” dentro de uma lição.</span>`}</div>
     <h3 class="sec">Anotações</h3>
