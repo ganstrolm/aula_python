@@ -91,7 +91,7 @@ mark{background:var(--surligneur);color:inherit;padding:0 1px}
 mark.cur{box-shadow:0 0 0 2px var(--orange)}
 .empty{color:var(--muted);padding:20px 0}
 /* lesson */
-.lesson{overflow-wrap:anywhere}
+.lesson{overflow-wrap:break-word}
 .lesson table{border-collapse:collapse;margin:6px 0;max-width:100%}
 .lesson td{padding:3px 12px 3px 0;vertical-align:top}
 .lesson td:empty{display:none}
@@ -198,6 +198,15 @@ button.aud.err{border-color:var(--rule);color:var(--muted)}
   #menu{display:inline-flex}
   .view{padding-left:max(20px,env(safe-area-inset-left,0px));border-left-width:1.5px;margin-left:8px}
   .rate{grid-template-columns:repeat(2,1fr)}
+  /* phone: lesson tables become lists, one cell per line, a rule between rows */
+  .lesson table,.lesson tbody,.lesson tr,.lesson td{display:block;width:auto!important}
+  .lesson tr{padding:6px 0;border-bottom:1px dashed var(--seyes-bold)}
+  .lesson tr:last-child{border-bottom:0}
+  .lesson tr:has(> td > table){padding:0;border:0}
+  .lesson td{padding:1px 0}
+  .lesson td:has(> button.aud){float:right;margin-left:8px}
+  .lesson .tbl{padding:8px 12px}
+  .top .crumb{display:none}
   .term{grid-template-columns:minmax(0,1fr)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -611,7 +620,7 @@ function setupTranslation(p) {
   const bar = $("trbar");
   if (TR[p.code]) {
     const b = document.createElement("button"); b.className = "ghost";
-    b.textContent = usePt() ? "Ver original em inglês" : "Ver em português";
+    b.textContent = usePt() ? "Original" : "Português"; b.title = usePt() ? "Ver o texto original em inglês" : "Ver a tradução em português";
     b.onclick = () => { S.lang = usePt() ? "en" : "pt"; CORPUS = null; save(); viewLesson(p); };
     $("topActions").prepend(b);
     return;
