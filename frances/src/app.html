@@ -1,0 +1,999 @@
+<title>Grammaire Tex</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playwrite+FR+Moderne:wght@300;400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout: a French school notebook (cahier Seyès) — ruled paper, ink-blue text, red margin, teacher's red pen; dark theme is the classroom slate (ardoise) */
+:root{
+  --paper:#fbfcff; --sheet:#ffffff; --ink:#1c2140; --muted:#5d6584; --rule:#e1e6f4; --seyes:#dfe5f7; --seyes-bold:#c3cdec;
+  --encre:#2e3a9e; --encre-soft:#e8ebfa; --marge:#d2475b; --rouge:#c42f3f; --rouge-soft:#fbe6e8; --vert:#1e7d52; --vert-soft:#e0f2e8; --orange:#a55a0a; --orange-soft:#fbefdc;
+  --surligneur:#fff0a0; --on-encre:#ffffff;
+  --hand:"Playwrite FR Moderne","Segoe Script","Brush Script MT",cursive;
+  --text:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#1d2422; --sheet:#242c2a; --ink:#e8ebe4; --muted:#9aa59f; --rule:#344039; --seyes:#27302d; --seyes-bold:#2f3a36;
+  --encre:#a9c4ff; --encre-soft:#2b3646; --marge:#e07a84; --rouge:#ff8d93; --rouge-soft:#3c2628; --vert:#8ad6a8; --vert-soft:#20372b; --orange:#f0b764; --orange-soft:#3b3020;
+  --surligneur:#5e5622; --on-encre:#1d2422; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#1d2422; --sheet:#242c2a; --ink:#e8ebe4; --muted:#9aa59f; --rule:#344039; --seyes:#27302d; --seyes-bold:#2f3a36;
+  --encre:#a9c4ff; --encre-soft:#2b3646; --marge:#e07a84; --rouge:#ff8d93; --rouge-soft:#3c2628; --vert:#8ad6a8; --vert-soft:#20372b; --orange:#f0b764; --orange-soft:#3b3020;
+  --surligneur:#5e5622; --on-encre:#1d2422; color-scheme:dark}
+html,body{height:100%}
+html{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:14.5px;line-height:1.5}
+select{max-width:100%;min-width:0}
+.app{display:grid;grid-template-columns:280px minmax(0,1fr);height:100%}
+/* sidebar = the notebook's table of contents */
+aside{background:var(--sheet);border-right:1px solid var(--rule);display:flex;flex-direction:column;min-height:0;padding-left:env(safe-area-inset-left,0px)}
+.brand{padding:18px 18px 6px}
+.brand h1{font-family:var(--hand);font-weight:400;font-size:21px;margin:0;color:var(--encre);line-height:1.5}
+.sync{font-size:12px;color:var(--muted)}
+.tools{display:flex;flex-direction:column;padding:8px 10px 12px;border-bottom:1px solid var(--rule)}
+.tools a{display:flex;align-items:center;gap:8px;padding:3px 8px;color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:500;border-radius:3px}
+.tools a:hover{background:var(--encre-soft)}
+.tools a.cur{color:var(--encre);font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.tools .n{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--rouge);font-variant-numeric:tabular-nums}
+.filter{padding:12px 14px 4px}
+.filter input{width:100%;box-sizing:border-box;font:inherit;font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:6px 9px}
+nav{overflow-y:auto;flex:1;padding:0 10px 24px}
+nav h3{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 6px 4px;display:flex;justify-content:space-between;font-weight:600}
+nav h3 span{font-variant-numeric:tabular-nums;letter-spacing:0}
+nav a{display:flex;align-items:baseline;gap:8px;padding:2px 6px;color:var(--ink);text-decoration:none;font-size:13.5px;line-height:1.4;border-radius:3px}
+nav a:hover{background:var(--encre-soft)}
+nav a.cur{background:var(--encre-soft);color:var(--encre);font-weight:600}
+nav .dot{width:12px;flex:none;font-size:12px;color:var(--vert);text-align:center}
+nav a.done .dot::before{content:"✓"}
+nav .star{margin-left:auto;color:var(--orange);font-size:12px}
+/* main = a page of the notebook */
+main{overflow-y:auto;min-width:0;position:relative;
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--seyes-bold) 1px,transparent 1px),linear-gradient(90deg,var(--seyes) 1px,transparent 1px),linear-gradient(var(--seyes) 1px,transparent 1px);
+  background-size:100% 32px,32px 32px,100% 8px}
+.top{position:sticky;top:0;z-index:5;background:var(--paper);display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-block:9px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--rule)}
+.top .crumb{flex:1;min-width:0;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.view{max-width:780px;margin:0 auto;padding-block:16px 56px;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-left:2px solid var(--marge);min-height:calc(100% - 60px);box-sizing:border-box;background:color-mix(in srgb,var(--paper) 55%,transparent)}
+.date{font-family:var(--hand);color:var(--encre);font-size:15px;margin:0 0 4px}
+h2.title{font-family:var(--hand);font-weight:400;font-size:clamp(20px,3vw,26px);line-height:1.4;margin:0 0 6px;color:var(--encre);text-wrap:balance}
+.code{font-size:12px;color:var(--muted);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.lead{color:var(--muted);margin:0 0 12px;max-width:62ch}
+h3.sec{font-weight:700;font-size:15px;margin:20px 0 6px;color:var(--ink);border-bottom:1px solid var(--seyes-bold);padding-bottom:4px}
+button,.btn{font:inherit;font-size:13.5px;font-weight:600;border:1px solid var(--encre);border-radius:3px;padding:4px 10px;cursor:pointer;background:var(--sheet);color:var(--encre);white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+button:hover,.btn:hover{background:var(--encre-soft)}
+button.primary,.btn.primary{background:var(--encre);color:var(--on-encre)}
+button.ok{background:var(--vert);border-color:var(--vert);color:var(--on-encre)}
+button.ghost{background:transparent;border-color:transparent;color:var(--muted);padding-inline:8px}
+button:disabled{opacity:.4;cursor:default}
+#menu{display:none}
+:focus-visible{outline:2px solid var(--encre);outline-offset:2px}
+input[type=text],input[type=search],textarea,select{font:inherit;color:var(--ink);background:var(--sheet);border:1px solid var(--seyes-bold);border-radius:3px;padding:7px 10px}
+textarea{width:100%;box-sizing:border-box;min-height:120px;resize:vertical;font-family:var(--hand);font-size:14px;line-height:32px;padding-block:0;color:var(--encre);
+  background-color:var(--sheet);background-image:linear-gradient(transparent 31px,var(--seyes-bold) 31px);background-size:100% 32px;background-attachment:local}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:2px;padding:14px 16px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.summary-line{font-size:17px;max-width:60ch;margin:0 0 16px}
+.summary-line b{color:var(--encre);font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--rule);overflow:hidden;flex:1}
+.bar>div{height:100%;background:var(--encre)}
+/* bulletin (school report card) */
+.bulletin{width:100%;border-collapse:collapse;background:var(--sheet);font-size:14px}
+.bulletin th{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;text-align:left;padding:8px 10px;border-bottom:2px solid var(--ink)}
+.bulletin td{padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:middle}
+.bulletin td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.bulletin td.note{font-family:var(--hand);color:var(--rouge);font-size:15px;white-space:nowrap}
+.bulletin td.appr{font-family:var(--hand);color:var(--rouge);font-size:13px}
+.bulletin .mini{display:flex;align-items:center;gap:8px;min-width:120px}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule)}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:13px;padding:1px 7px;border-radius:2px;background:var(--encre-soft);color:var(--encre);text-decoration:none;font-weight:500;white-space:nowrap}
+.chip.muted{background:transparent;color:var(--muted);border:1px solid var(--rule)}
+.chip.red{background:var(--rouge-soft);color:var(--rouge)}
+mark{background:var(--surligneur);color:inherit;padding:0 1px}
+mark.cur{box-shadow:0 0 0 2px var(--orange)}
+.empty{color:var(--muted);padding:20px 0}
+/* lesson */
+.lesson{overflow-wrap:break-word}
+.lesson table{border-collapse:collapse;margin:6px 0;max-width:100%}
+.lesson td{padding:1px 12px 1px 0;vertical-align:top}
+.lesson td:empty{display:none}
+.lesson .tbl{overflow-x:auto;margin:8px 0;padding:7px 12px;background:var(--sheet);border:1px solid var(--rule);border-left:3px double var(--seyes-bold)}
+.lesson .tbl .tbl{border:0;padding:0;margin:0;background:none}
+.lesson .pbr{display:block;height:.5em}
+.lesson .ex{font-size:12.5px;line-height:1.4;color:var(--muted);margin:1px 0 3px 10px;display:flex;gap:6px;align-items:flex-start}
+.lesson .ex .fr{color:var(--ink);font-style:italic}
+.lesson .ex button.aud{width:20px;height:20px;font-size:8px;margin:0}
+.lesson .ex.gen .fr::after{content:" ✎";color:var(--muted);font-style:normal}
+.exbar{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0 0}
+.lesson table.vgrid,.lesson .vgrid tbody,.lesson .vgrid tr,.lesson .vgrid td{display:block;width:auto!important}
+.lesson .vgrid tbody{columns:2 220px;column-gap:32px}
+.lesson .vgrid tr{break-inside:avoid;padding:3px 0;border-bottom:1px dashed var(--seyes-bold)}
+.lesson .vgrid td{padding:1px 0}
+.lesson .tb_blue,.lesson .tt_blue{color:var(--encre);font-weight:600}
+.lesson .tb_org,.lesson .tt_org,.lesson .red{color:var(--rouge);font-weight:600}
+.lesson .tb_blk,.lesson .tbs_blk{display:inline-block;font-weight:700;font-size:15.5px;margin-top:8px;border-bottom:2px solid var(--marge);line-height:1.3}
+.lesson .tt_grey{color:var(--muted);font-weight:600}
+.lesson img{display:block;max-width:min(100%,260px);height:auto;margin:8px auto;background:#fff;padding:6px;border:1px solid var(--rule);transform:rotate(-.6deg)}
+.lesson a{color:var(--encre)}
+button.aud{width:28px;height:28px;padding:0;border-radius:50%;font-size:10px;justify-content:center;vertical-align:middle;margin:2px 4px;flex:none}
+button.aud.playing{background:var(--encre);color:var(--on-encre)}
+button.aud.err{border-color:var(--rule);color:var(--muted)}
+.findbar{position:sticky;top:56px;z-index:4;display:flex;gap:8px;align-items:center;background:var(--surligneur);padding:5px 10px;margin-bottom:12px;font-size:14px}
+.findbar span{flex:1}
+.trbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border:1px dashed var(--encre);background:var(--encre-soft);padding:8px 12px;margin:0 0 16px;font-size:14px}
+.trbar span{flex:1 1 200px}
+.trbar label{font-size:13px;color:var(--muted);display:flex;gap:5px;align-items:center}
+.findbar button{background:var(--sheet)}
+.lessontools{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 12px}
+.pager{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:36px;padding-top:16px;border-top:1px solid var(--seyes-bold)}
+.pager button{max-width:48%;overflow:hidden;text-overflow:ellipsis}
+.saved{font-size:12.5px;color:var(--muted)}
+.credit{font-size:12.5px;color:var(--muted);margin-top:20px}
+/* tutor */
+.tutor{margin-top:30px;border:1px solid var(--rule);background:var(--sheet)}
+.tutor header{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.tutor header strong{flex:1;font-family:var(--hand);font-weight:400;color:var(--encre);font-size:16px}
+.tutor .log{padding:14px;display:flex;flex-direction:column;gap:12px;max-height:520px;overflow-y:auto}
+.msg{max-width:92%;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.me{align-self:flex-end;font-family:var(--hand);color:var(--encre);font-size:14px;text-align:right}
+.msg.ai{align-self:flex-start;border-left:2px solid var(--marge);padding:2px 0 2px 12px}
+.msg.ai.err{color:var(--rouge)}
+.tutor form{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--rule)}
+.tutor form input{flex:1;min-width:0}
+.quiz{display:flex;flex-direction:column;gap:16px}
+.q p{margin:0 0 6px;font-weight:600}
+.q .opts{display:flex;flex-direction:column;gap:4px}
+.q .opts button{justify-content:flex-start;white-space:normal;text-align:left;border-color:var(--rule);color:var(--ink);font-weight:500}
+.q .opts button.right{background:var(--vert-soft);border-color:var(--vert)}
+.q .opts button.wrong{background:var(--rouge-soft);border-color:var(--rouge);text-decoration:line-through}
+.q .why{font-family:var(--hand);font-size:13px;color:var(--rouge);margin-top:6px}
+/* search */
+.searchbox{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.searchbox input[type=search]{flex:1 1 260px;font-size:17px;padding:9px 12px;min-width:0}
+.searchbox label{font-size:13.5px;color:var(--muted);display:flex;gap:5px;align-items:center}
+.summary{margin:16px 0 8px;font-size:15px}
+.summary b{color:var(--encre)}
+.hitgroup{margin-bottom:18px}
+.hitgroup>header{display:flex;gap:10px;align-items:baseline;padding:4px 0;border-bottom:2px solid var(--ink)}
+.hitgroup>header a{font-weight:700;color:var(--ink);text-decoration:none;flex:1;min-width:0}
+.hitgroup>header a:hover{color:var(--encre)}
+.hitgroup>header .count{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hit{display:block;padding:6px 0 6px 10px;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+.hit:hover{background:var(--encre-soft)}
+.more{padding:4px 0}
+.distrib{display:flex;gap:3px;align-items:flex-end;height:44px;margin:4px 0 2px;border-bottom:1px solid var(--ink)}
+.distrib div{flex:1;background:var(--encre);min-height:0}
+/* flashcards = fiches bristol */
+.deckbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.card{position:relative;background-color:var(--sheet);border:1px solid var(--rule);box-shadow:0 1px 0 var(--rule),0 6px 18px -12px rgba(20,30,70,.35);
+  background-image:linear-gradient(transparent 46px,var(--marge) 46px,var(--marge) 48px,transparent 48px),repeating-linear-gradient(transparent 0 27px,var(--seyes) 27px 28px);background-position:0 0,0 20px;
+  padding:14px 22px 22px;min-height:230px;display:flex;flex-direction:column;gap:14px;justify-content:flex-start;text-align:center}
+.card .face{font-size:19px;line-height:1.45;margin-top:22px}
+.card .face .tb_blue,.card .face .tt_blue,.cz .tb_blue{color:var(--encre);font-weight:600}
+.card .back{padding-top:6px;font-family:var(--hand);font-size:15px;line-height:1.8;color:var(--rouge)}
+.card .back .tb_blue{color:inherit}
+.card .meta{font-size:12.5px;color:var(--muted);display:flex;gap:6px;justify-content:space-between;flex-wrap:wrap;align-items:center;height:26px}
+.rate{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:14px}
+.rate button{flex-direction:column;gap:0;padding:8px 4px;white-space:normal}
+.rate button small{font-weight:400;font-size:11.5px;opacity:.85}
+.rate .r0{border-color:var(--rouge);color:var(--rouge)}
+.rate .r1{border-color:var(--orange);color:var(--orange)}
+.rate .r2{border-color:var(--vert);color:var(--vert)}
+.rate .r3{border-color:var(--encre);color:var(--encre)}
+.kbd{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+/* cloze */
+.cz{font-size:18px;line-height:1.7;margin-top:22px;text-align:left}
+.cz input{font:inherit;font-size:18px;padding:0 6px;border:0;border-bottom:2px solid var(--encre);border-radius:0;background:transparent;text-align:center;color:var(--encre)}
+.cz input:focus-visible{outline:none;border-bottom-width:3px}
+.cz input.right{border-color:var(--vert);color:var(--vert)}
+.cz input.near{border-color:var(--orange);color:var(--orange)}
+.cz input.wrong{border-color:var(--rouge);color:var(--rouge);text-decoration:line-through}
+.trans{color:var(--muted);text-align:left}
+.feedback{font-family:var(--hand);font-size:15px;min-height:28px;text-align:left}
+.feedback.right{color:var(--vert)} .feedback.near{color:var(--orange)} .feedback.wrong{color:var(--rouge)}
+.keys{display:flex;gap:4px;flex-wrap:wrap}
+.keys button{padding:2px 8px;border-color:var(--rule);color:var(--ink);font-weight:500}
+/* index */
+.letters{display:flex;flex-wrap:wrap;gap:2px;margin:12px 0 16px}
+.letters a{font-weight:700;font-size:13.5px;padding:2px 7px;color:var(--encre);text-decoration:none;border-radius:2px}
+.letters a:hover{background:var(--encre-soft)}
+.term{display:grid;grid-template-columns:minmax(110px,190px) minmax(0,1fr);gap:10px;padding:6px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.term a.t{font-weight:700;color:var(--encre);text-decoration:none}
+.term .chips{display:flex;gap:4px;flex-wrap:wrap}
+.notecard{padding:10px 0 12px;border-bottom:1px solid var(--rule)}
+.notecard a{font-weight:700;color:var(--ink);text-decoration:none}
+.notecard p{margin:4px 0 0;white-space:pre-wrap;font-family:var(--hand);color:var(--encre);font-size:14px;line-height:1.9}
+@media (max-width:860px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  aside{position:fixed;inset:0 auto 0 0;width:min(320px,88vw);z-index:20;transform:translateX(-100%);transition:transform .2s;padding-top:env(safe-area-inset-top,0px)}
+  aside.open{transform:none;box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
+  #menu{display:inline-flex}
+  .view{padding-left:max(20px,env(safe-area-inset-left,0px));border-left-width:1.5px;margin-left:8px}
+  .rate{grid-template-columns:repeat(2,1fr)}
+  /* phone: lesson tables become lists, one cell per line, a rule between rows */
+  .lesson table,.lesson tbody,.lesson tr,.lesson td{display:block;width:auto!important}
+  .lesson tr{padding:3px 0;border-bottom:1px dashed var(--seyes-bold)}
+  .lesson tr:last-child{border-bottom:0}
+  .lesson tr:has(> td > table){padding:0;border:0}
+  .lesson td{padding:1px 0}
+  .lesson td:has(> button.aud){float:right;margin-left:8px}
+  .lesson table.toc tr{display:flex;gap:6px;border:0;padding:1px 0}
+  .lesson .tbl{padding:8px 12px}
+  .top .crumb{display:none}
+  .term{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<div class="app">
+<aside id="side">
+  <div class="brand"><h1>Grammaire Tex</h1><div class="sync" id="sync">Progresso salvo neste navegador</div></div>
+  <div class="tools" id="tools">
+    <a href="#inicio" data-v="inicio">Início</a>
+    <a href="#busca" data-v="busca">Buscar</a>
+    <a href="#cartoes" data-v="cartoes">Flashcards <span class="n" id="dueN" hidden></span></a>
+    <a href="#completar" data-v="completar">Completar</a>
+    <a href="#indice" data-v="indice">Índice remissivo</a>
+    <a href="#notas" data-v="notas">Anotações</a>
+  </div>
+  <div class="filter"><input id="navq" type="search" placeholder="Filtrar lições…" aria-label="Filtrar lições"></div>
+  <nav id="nav"></nav>
+</aside>
+<main id="main">
+  <div class="top">
+    <button id="menu" aria-label="Abrir menu">☰ Menu</button>
+    <span class="crumb" id="crumb"></span>
+    <span id="topActions" class="row"></span>
+  </div>
+  <div class="view" id="view"></div>
+</main>
+</div>
+<script>
+const INDEX = __INDEX__;
+const LESSONS = __LESSONS__;
+const STUDY = __STUDY__;
+const TITLES_PT = __TITLES__;
+const TR_BAKED = __TR__;
+</script>
+<script>
+"use strict";
+/* ---------- basics ---------- */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fold = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+// per-char fold keeps string length (DOM text uses precomposed accents), so offsets map 1:1
+const foldKeep = s => Array.from(s, c => { const f = c.normalize("NFD")[0].toLowerCase(); return f.length === 1 ? f : c; }).join("");
+const slug = c => c.replace(/\//g, "-");
+const today = () => Math.floor((Date.now() - new Date().getTimezoneOffset() * 6e4) / 864e5);
+const dayKey = d => new Date(d * 864e5).toISOString().slice(0, 10);
+const stripTags = h => { const d = document.createElement("div"); d.innerHTML = h; return d.textContent; };
+const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+const pages = INDEX.sections.flatMap(s => s.pages.filter(p => LESSONS[p.code]).map(p => ({ ...p, en: p.title, title: TITLES_PT[p.code] || p.title, cat: s.category, id: slug(p.code) })));
+const byId = Object.fromEntries(pages.map(p => [p.id, p]));
+const byCode = Object.fromEntries(pages.map(p => [p.code, p]));
+const catShort = c => c.replace(/ \(.+\)$/, "");
+const catPt = c => (c.match(/\((.+)\)$/) || [, c])[1];
+const CARDS = STUDY.cards.filter(c => byCode[c.l]);
+const cardById = Object.fromEntries(CARDS.map(c => [c.id, c]));
+const CLOZE = CARDS.filter(c => c.cz.length);
+
+/* ---------- state: localStorage always, plus the viewer's private db doc when available ---------- */
+const KEY = "tex-study-v2";
+const blank = () => ({ done: {}, fav: {}, notes: {}, srs: {}, log: {}, cz: {}, last: null, lang: "pt", autoTr: null, updatedAt: 0 });
+let S = blank();
+try {
+  const raw = JSON.parse(localStorage.getItem(KEY) || "null");
+  if (raw) S = { ...blank(), ...raw };
+  else { const old = JSON.parse(localStorage.getItem("tex-progress") || "null"); if (old) S.done = old; }
+} catch (e) {}
+let remote = null, pushTimer = null, pushing = false, pushAgain = false;
+function save() {
+  S.updatedAt = Date.now();
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+  if (remote) { clearTimeout(pushTimer); pushTimer = setTimeout(push, 1500); }
+}
+async function push() {
+  if (pushing) { pushAgain = true; return; }
+  pushing = true;
+  try {
+    const body = JSON.stringify(S);
+    if (body.length > 250000) { setSync("Muito conteúdo para a conta; salvo só neste navegador"); return; }
+    await remote.set(JSON.parse(body));
+    setSync("Salvo na sua conta");
+  } catch (e) { setSync("Não consegui salvar na conta; salvo neste navegador"); }
+  finally { pushing = false; if (pushAgain) { pushAgain = false; push(); } }
+}
+const setSync = t => $("sync").textContent = t;
+(async () => {
+  if (!window.claude?.use) return;
+  try {
+    const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+    if (!db || !user) return;
+    const id = await user.id(); if (!id) return;
+    DB = db;
+    db.collection("exemplos").get().then(q => {
+      let n = 0;
+      q.docs.forEach(d => { const p = byId[d.id], v = d.data()?.items; if (p && v) { EX[p.code] = { ...v, ...(EX[p.code] || {}) }; n++; } });
+      if (n && cur.view === "lesson") route();
+    }).catch(() => {});
+    db.collection("traducoes").get().then(q => {
+      let n = 0;
+      q.docs.forEach(d => { const v = d.data(); const p = byId[d.id]; if (p && v?.html && !TR[p.code]) { TR[p.code] = v; n++; } });
+      if (n) { CORPUS = null; cacheTR(); if (cur.view === "lesson") route(); }
+    }).catch(() => {});
+    const ref = db.collection("data/users/" + id).doc("study");
+    const snap = await ref.get();
+    remote = ref;
+    if (snap.exists && (snap.data().updatedAt || 0) > S.updatedAt) {
+      S = { ...blank(), ...snap.data() };
+      try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+      route();
+    } else if (S.updatedAt) push();
+    setSync("Salvo na sua conta");
+  } catch (e) { /* stays local */ }
+})();
+
+/* ---------- Portuguese translations: made by Claude on demand, shared in the db, cached locally ---------- */
+const TR = { ...TR_BAKED };
+try { Object.assign(TR, JSON.parse(localStorage.getItem("tex-tr") || "{}")); } catch (e) {}
+let DB = null;
+const NO_TR = new Set(["gr/index"]); // the site index is a list of links; its titles are already translated
+const usePt = () => S.lang === "pt";
+const lessonHTML = code => ((usePt() && TR[code]?.html) || LESSONS[code]).replace(/(<br\s*\/?>\s*){2,}/g, '<span class="pbr"></span>');
+const cardEn = c => (usePt() && TR[c.l]?.cards?.[c.id]) || c.en;
+function cacheTR() { try { localStorage.setItem("tex-tr", JSON.stringify(Object.fromEntries(Object.entries(TR).filter(([k]) => !TR_BAKED[k])))); } catch (e) {} }
+const trJobs = {};
+async function translateLesson(p, onProgress) {
+  if (trJobs[p.code]) return trJobs[p.code];
+  return trJobs[p.code] = (async () => {
+    const sample = await getSample();
+    if (!sample) throw { code: "unavailable" };
+    const imgs = [];
+    const src = LESSONS[p.code].replace(/<img[^>]*>/g, m => { imgs.push(m); return `<img data-i="${imgs.length - 1}">`; }).replace(/\s+/g, " ");
+    const cards = CARDS.filter(c => c.l === p.code);
+    const prompt = `Você vai traduzir para o português do Brasil uma lição de gramática francesa escrita em inglês (Tex's French Grammar, lição "${p.en}").
+Regras:
+1. Traduza para o português todo o texto que está em inglês: explicações, títulos de seção, rótulos de tabelas e as traduções dos exemplos.
+2. Não altere nada que está em francês: frases de exemplo, palavras e trechos em francês (inclusive dentro de <span class="tb_blue">), conjugações. Copie exatamente, com os acentos.
+3. Quando a explicação comparar com o inglês (por exemplo "translated into English by 'for'"), adapte para o português e explique como fica em português.
+4. Preserve o HTML: mantenha todas as tags, atributos, classes, ids e atributos data-*. Não acrescente nem remova tags <img>, <button>, <a> ou <table>. Não use Markdown.
+5. Responda exatamente neste formato, sem nada antes ou depois:
+<<<HTML>>>
+(o HTML traduzido)
+<<<FIM>>>
+<<<CARTOES>>>
+(um array JSON com a tradução para o português de cada item da lista no fim, na mesma ordem e com o mesmo número de itens; mantenha tags como <b> e <span>)
+<<<FIM>>>
+
+HTML da lição:
+${src}
+
+Itens para traduzir (traduções em inglês de exemplos em francês da lição):
+${JSON.stringify(cards.map(c => c.en))}`;
+    const { text } = await sample(prompt, { modelTier: "default", cache: false, onText: ({ text }) => onProgress?.(Math.min(99, Math.round(text.length / (src.length * 1.15 + 200) * 100))) });
+    const m = text.match(/<<<HTML>>>([\s\S]*?)<<<FIM>>>/);
+    if (!m) throw { code: "bad_output" };
+    let html = m[1].trim();
+    // reject output that lost structure the page depends on
+    const count = (h, re) => (h.match(re) || []).length;
+    const auds = h => (h.match(/data-aud="[^"]+"/g) || []).sort().join();
+    if (count(html, /<img[^>]*data-i=/g) !== imgs.length || auds(html) !== auds(src) || count(html, /data-anchor=/g) !== count(src, /data-anchor=/g) || count(html, /id="a-/g) !== count(src, /id="a-/g)) throw { code: "bad_output" };
+    html = html.replace(/<img[^>]*data-i="?(\d+)"?[^>]*>/g, (_, i) => imgs[+i] || "");
+    const trCards = {};
+    try {
+      const cm = text.match(/<<<CARTOES>>>([\s\S]*?)<<<FIM>>>/);
+      const arr = JSON.parse(cm[1].trim().replace(/^```(json)?|```$/g, ""));
+      if (arr.length === cards.length) cards.forEach((c, i) => { if (typeof arr[i] === "string" && arr[i].trim()) trCards[c.id] = arr[i]; });
+    } catch (e) {}
+    TR[p.code] = { html, cards: trCards, at: Date.now() };
+    CORPUS = null;
+    cacheTR();
+    if (DB) DB.doc("traducoes/" + slug(p.code)).set(TR[p.code]).catch(() => {});
+    return TR[p.code];
+  })().finally(() => delete trJobs[p.code]);
+}
+
+/* ---------- examples for vocabulary lists: real lesson sentences first, Claude-made ones for the rest ---------- */
+const EX = {}; // lesson code -> { word: {fr, pt} } generated by Claude, shared in the db
+try { Object.assign(EX, JSON.parse(localStorage.getItem("tex-ex") || "{}")); } catch (e) {}
+let CARD_F = null;
+// accents matter here (là ≠ la), so match on lowercase text without folding; keep only short sentences
+const sentenceCards = () => CARD_F ||= CARDS.map(c => ({ c, f: stripTags(c.fr).replace(/\s+/g, " ").trim().toLowerCase() })).filter(x => x.f.split(" ").length >= 3 && x.f.length <= 120 && /[.!?][»"'’)]?$/.test(x.f) && !x.f.includes("...")).sort((a, b) => a.f.length - b.f.length);
+const variants = w => [...new Set(w.split(/[•()\/,;]| ou /).map(x => x.trim().toLowerCase()).filter(x => x.length > 1))];
+function findExample(word, lesson) {
+  const res = variants(word).map(v => new RegExp(`(?<![\\p{L}\\p{N}'’])${v.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}\\p{N}])`, "u"));
+  const pool = sentenceCards();
+  return (pool.find(x => x.c.l === lesson && res.some(r => r.test(x.f))) || pool.find(x => res.some(r => r.test(x.f))))?.c;
+}
+function addExamples(root, p) {
+  const missing = [];
+  root.querySelectorAll("table.vgrid td").forEach(td => {
+    const sp = td.querySelector("span.tb_blue"); if (!sp) return;
+    const word = sp.textContent.trim(); if (word.replace(/[^\p{L}]/gu, "").length < 2) return;
+    const meaning = td.textContent.slice(td.textContent.indexOf(word) + word.length).replace(/^[\s,:]+/, "").trim();
+    const c = findExample(word, p.code), g = EX[p.code]?.[word];
+    const d = document.createElement("div");
+    if (c) { d.className = "ex"; d.innerHTML = `${c.a ? `<button class="aud" data-aud="${esc(c.a)}" aria-label="Ouvir o exemplo">▶</button>` : ""}<span><span class="fr">${stripTags(c.fr)}</span> · ${esc(stripTags(cardEn(c)))}</span>`; }
+    else if (g) { d.className = "ex gen"; d.title = "Exemplo criado pelo Claude"; d.innerHTML = `<span><span class="fr">${esc(g.fr)}</span> · ${esc(g.pt)}</span>`; }
+    else { missing.push({ w: word, m: meaning }); return; }
+    td.appendChild(d);
+  });
+  return missing;
+}
+async function genExamples(p, missing) {
+  const sample = await getSample(); if (!sample) throw { code: "unavailable" };
+  const out = await sample.json(`Para cada palavra francesa da lista abaixo (da lição "${p.en}" de gramática francesa), escreva uma frase de exemplo curta e natural em francês, nível A2, usando a palavra exatamente nessa forma, e a tradução para o português do Brasil. Se quiser, use os personagens Tex (um tatu poeta do Texas), Tammy, Edouard, Joe-Bob, Bette e Fiona. Responda só com JSON: [{"w":"palavra","fr":"frase em francês","pt":"tradução"}].\n\n${JSON.stringify(missing)}`, { modelTier: "default", cache: false });
+  if (!Array.isArray(out)) throw { code: "bad_output" };
+  const got = EX[p.code] || (EX[p.code] = {});
+  out.forEach(x => { if (x && typeof x.w === "string" && x.fr && x.pt) got[x.w.trim()] = { fr: String(x.fr), pt: String(x.pt) }; });
+  try { localStorage.setItem("tex-ex", JSON.stringify(EX)); } catch (e) {}
+  if (DB) DB.doc("exemplos/" + slug(p.code)).set({ items: got }).catch(() => {});
+}
+
+/* ---------- spaced repetition (SM-2 style) ---------- */
+function due(c) { const s = S.srs[c.id]; return s && s.d <= today(); }
+const isNew = c => !S.srs[c.id];
+function grade(c, r) {
+  const s = S.srs[c.id] || { i: 0, e: 2.5, d: today(), n: 0, x: 0 };
+  if (r === 0) { s.i = 0; s.e = Math.max(1.3, s.e - .2); s.x++; }
+  else if (r === 1) { s.i = Math.max(1, Math.round(s.i * 1.2)); s.e = Math.max(1.3, s.e - .15); }
+  else if (r === 2) { s.i = s.i === 0 ? 1 : s.i === 1 ? 3 : Math.round(s.i * s.e); }
+  else { s.i = s.i === 0 ? 4 : Math.round(s.i * s.e * 1.3); s.e += .15; }
+  s.n++; s.d = today() + s.i; S.srs[c.id] = s;
+  logAnswer(r > 0);
+  save();
+}
+const preview = (c, r) => { const s = S.srs[c.id] || { i: 0, e: 2.5 }; const i = r === 0 ? 0 : r === 1 ? Math.max(1, Math.round(s.i * 1.2)) : r === 2 ? (s.i === 0 ? 1 : s.i === 1 ? 3 : Math.round(s.i * s.e)) : (s.i === 0 ? 4 : Math.round(s.i * s.e * 1.3)); return i === 0 ? "agora" : i === 1 ? "1 dia" : i + " dias"; };
+function logAnswer(ok) { const k = dayKey(today()); const l = S.log[k] || (S.log[k] = { n: 0, ok: 0 }); l.n++; if (ok) l.ok++; }
+function streak() { let n = 0, d = today(); if (!S.log[dayKey(d)]) d--; while (S.log[dayKey(d)]) { n++; d--; } return n; }
+const dueCount = () => CARDS.filter(due).length;
+function updDue() { const n = dueCount(); $("dueN").hidden = !n; $("dueN").textContent = n; }
+
+/* ---------- audio: per-lesson packs loaded on demand ---------- */
+const player = new Audio(); let playingBtn = null; const packs = {};
+window.AUD = window.AUD || {};
+const loadPack = les => packs[les] ||= new Promise((ok, fail) => { const s = document.createElement("script"); s.src = "audiopack/" + les + ".js"; s.onload = ok; s.onerror = () => { delete packs[les]; fail(); }; document.head.appendChild(s); });
+const audFail = b => { if (!b) return; b.classList.remove("playing"); b.classList.add("err"); b.title = "Áudio indisponível (a pasta audiopack/ precisa estar ao lado do arquivo)"; };
+player.onended = player.onpause = () => playingBtn?.classList.remove("playing");
+player.onerror = () => audFail(playingBtn);
+async function play(id, b) {
+  if (b && playingBtn === b && !player.paused) { player.pause(); return; }
+  playingBtn?.classList.remove("playing"); playingBtn = b; b?.classList.add("playing");
+  try { await loadPack(id.replace(/_[^_]+$/, "")); } catch { return audFail(b); }
+  if (b && playingBtn !== b) return;
+  if (!AUD[id]) return audFail(b);
+  player.src = AUD[id]; player.play().catch(() => {});
+}
+document.addEventListener("click", e => { const b = e.target.closest("button.aud"); if (b) { e.preventDefault(); play(b.dataset.aud, b); } });
+
+/* ---------- plain text corpus for search (built lazily) ---------- */
+let CORPUS = null;
+function corpus() {
+  if (CORPUS) return CORPUS;
+  const d = document.createElement("div");
+  CORPUS = pages.map(p => { d.innerHTML = lessonHTML(p.code).replace(/<img[^>]*>/g, ""); const t = d.textContent; return { p, t, f: foldKeep(t) }; });
+  return CORPUS;
+}
+function makeRe(q, whole) {
+  const e = foldKeep(q.trim()).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+  return new RegExp(whole ? `(?<![\\p{L}\\p{N}])${e}(?![\\p{L}\\p{N}])` : e, "gu");
+}
+function findAll(f, re) { const out = []; re.lastIndex = 0; let m; while ((m = re.exec(f))) { out.push([m.index, m.index + m[0].length]); if (m[0].length === 0) re.lastIndex++; } return out; }
+function snippet(t, [a, b]) {
+  const L = Math.max(0, a - 70), R = Math.min(t.length, b + 70);
+  const clean = s => esc(s.replace(/\s+/g, " ").replace(/▶/g, ""));
+  return (L > 0 ? "…" : "") + clean(t.slice(L, a)) + "<mark>" + clean(t.slice(a, b)) + "</mark>" + clean(t.slice(b, R)) + (R < t.length ? "…" : "");
+}
+
+/* ---------- nav ---------- */
+function renderNav() {
+  const q = fold($("navq").value.trim());
+  let html = "";
+  for (const s of INDEX.sections) {
+    const list = pages.filter(p => p.cat === s.category);
+    const shown = list.filter(p => !q || fold(p.title + " " + p.en + " " + p.code).includes(q));
+    if (!shown.length) continue;
+    const n = list.filter(p => S.done[p.code]).length;
+    html += `<h3>${esc(catShort(s.category))}<span>${n}/${list.length}</span></h3>` + shown.map(p =>
+      `<a href="#${p.id}" class="${cur.lesson === p ? "cur" : ""} ${S.done[p.code] ? "done" : ""}"><span class="dot"></span><span>${esc(p.title)}</span>${S.fav[p.code] ? '<span class="star" aria-label="Favorita">★</span>' : ""}</a>`).join("");
+  }
+  $("nav").innerHTML = html || `<p class="empty">Nenhuma lição.</p>`;
+  document.querySelectorAll("#tools a").forEach(a => a.classList.toggle("cur", a.dataset.v === cur.view));
+  updDue();
+}
+$("navq").addEventListener("input", renderNav);
+$("menu").onclick = e => { e.stopPropagation(); $("side").classList.toggle("open"); };
+$("main").addEventListener("click", () => $("side").classList.remove("open"));
+
+/* ---------- router ---------- */
+const cur = { view: null, lesson: null };
+const views = {};
+let pendingFind = null;
+function route() {
+  const h = decodeURIComponent(location.hash.slice(1)) || "inicio";
+  $("topActions").innerHTML = "";
+  player.pause();
+  if (byId[h]) { cur.view = "lesson"; cur.lesson = byId[h]; viewLesson(byId[h]); }
+  else { cur.view = views[h] ? h : "inicio"; cur.lesson = null; views[cur.view](); }
+  renderNav();
+  $("side").classList.remove("open");
+  if (!pendingFind?.keepScroll) $("main").scrollTop = 0;
+  $("nav").querySelector("a.cur")?.scrollIntoView({ block: "nearest" });
+}
+window.addEventListener("hashchange", route);
+const go = h => { if (location.hash.slice(1) === h) route(); else location.hash = h; };
+
+/* ---------- Início ---------- */
+views.inicio = () => {
+  $("crumb").textContent = "Início";
+  const done = pages.filter(p => S.done[p.code]).length;
+  const nd = dueCount(), seen = Object.keys(S.srs).length;
+  const last7 = Array.from({ length: 7 }, (_, i) => S.log[dayKey(today() - i)] || { n: 0, ok: 0 });
+  const n7 = last7.reduce((a, l) => a + l.n, 0), ok7 = last7.reduce((a, l) => a + l.ok, 0);
+  const next = (S.last && byId[S.last] && !S.done[byId[S.last].code] && byId[S.last]) || pages.find(p => !S.done[p.code] && !p.cat.startsWith("Geral"));
+  // weakest lessons = most lapses in flashcards + cloze misses
+  const weak = {};
+  for (const [id, s] of Object.entries(S.srs)) { const c = cardById[id]; if (c && s.x) weak[c.l] = (weak[c.l] || 0) + s.x; }
+  for (const [l, r] of Object.entries(S.cz)) if (r.n - r.ok > 0) weak[l] = (weak[l] || 0) + (r.n - r.ok);
+  const weakList = Object.entries(weak).filter(([l]) => byCode[l]).sort((a, b) => b[1] - a[1]).slice(0, 6);
+  // per-theme score on the French 0–20 scale, from flashcard reviews and cloze answers
+  const score = {};
+  const add = (l, ok, n) => { const c = byCode[l]?.cat; if (!c) return; const r = score[c] || (score[c] = { ok: 0, n: 0 }); r.ok += ok; r.n += n; };
+  for (const [id, s] of Object.entries(S.srs)) { const c = cardById[id]; if (c) add(c.l, s.n - s.x, s.n); }
+  for (const [l, r] of Object.entries(S.cz)) add(l, r.ok, r.n);
+  const appr = n => n >= 16 ? "Très bien" : n >= 14 ? "Bien" : n >= 12 ? "Assez bien" : n >= 10 ? "Passable" : "Peut mieux faire";
+  const dateFr = new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+  $("view").innerHTML = `
+    <p class="date">${esc(dateFr)}</p>
+    <h2 class="title">Grammaire française</h2>
+    <p class="summary-line">Você estudou <b>${done}</b> de <b>${pages.length}</b> lições. ${nd ? `Hoje há <b>${nd}</b> ${nd > 1 ? "cartões" : "cartão"} para revisar.` : "Nenhum cartão para revisar hoje."} ${streak() ? `Você estuda há <b>${streak()}</b> ${streak() > 1 ? "dias seguidos" : "dia"}.` : ""} ${n7 ? `Acertou <b>${Math.round(ok7 / n7 * 100)}%</b> ${n7 > 1 ? `das ${n7} respostas` : "da única resposta"} desta semana.` : ""}</p>
+    <div class="row">
+      ${next ? `<a class="btn primary" href="#${next.id}">Continuar: ${esc(next.title)}</a>` : ""}
+      ${nd ? `<a class="btn" href="#cartoes">Revisar ${nd} cartões</a>` : `<a class="btn" href="#cartoes">Flashcards</a>`}
+      <a class="btn" href="#completar">Completar frases</a>
+    </div>
+    ${weakList.length ? `<h3 class="sec">Para revisar com atenção</h3><div class="row">${weakList.map(([l, n]) => `<a class="chip red" href="#${slug(l)}">${esc(byCode[l].title)} · ${n} erro${n > 1 ? "s" : ""}</a>`).join("")}</div>` : ""}
+    <h3 class="sec">Bulletin</h3>
+    <p class="saved" style="margin:0 0 8px">Nota sobre 20, como na escola francesa, calculada com seus acertos nos flashcards e no completar.</p>
+    <div class="tablewrap"><table class="bulletin"><thead><tr><th>Matéria</th><th>Lições</th><th>Nota</th><th>Appréciation</th></tr></thead><tbody>${INDEX.sections.map(s => {
+      const list = pages.filter(p => p.cat === s.category); if (!list.length) return "";
+      const n = list.filter(p => S.done[p.code]).length, sc = score[s.category];
+      const note = sc && sc.n >= 5 ? Math.round(sc.ok / sc.n * 20) : null;
+      return `<tr><td>${esc(catPt(s.category))}</td><td class="num"><div class="mini"><div class="bar"><div style="width:${n / list.length * 100}%"></div></div>${n}/${list.length}</div></td><td class="note">${note === null ? "" : note + "/20"}</td><td class="appr">${note === null ? "" : appr(note)}</td></tr>`;
+    }).join("")}</tbody></table></div>
+    <h3 class="sec">Respostas por dia</h3>
+    <div class="distrib" aria-label="Respostas por dia nos últimos 30 dias">${Array.from({ length: 30 }, (_, i) => { const l = S.log[dayKey(today() - 29 + i)]; return `<div title="${dayKey(today() - 29 + i)}: ${l ? l.n : 0} respostas" style="height:${l ? Math.min(100, 6 + l.n * 3) : 0}%"></div>`; }).join("")}</div>
+    <div class="row" style="justify-content:space-between;font-size:12px;color:var(--muted)"><span>30 dias atrás</span><span>hoje</span></div>
+    <p class="saved" style="margin-top:26px">Atalhos: nos flashcards, espaço vira o cartão e as teclas 1 a 4 dão a nota. No completar, Enter confere e passa para a próxima.</p>`;
+};
+
+/* ---------- Lesson ---------- */
+function viewLesson(p) {
+  S.last = p.id; try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {}
+  $("crumb").textContent = catPt(p.cat);
+  const i = pages.indexOf(p), pv = pages[i - 1], nx = pages[i + 1];
+  const nCards = CARDS.filter(c => c.l === p.code).length;
+  $("topActions").innerHTML = `<button id="markBtn"></button>`;
+  const upd = () => { const d = !!S.done[p.code]; $("markBtn").textContent = d ? "✓ Estudada" : "Marcar como estudada"; $("markBtn").className = d ? "ok" : "primary"; };
+  $("markBtn").onclick = () => { S.done[p.code] ? delete S.done[p.code] : S.done[p.code] = 1; save(); upd(); renderNav(); };
+  upd();
+  $("view").innerHTML = `
+    <div id="findbar"></div>
+    <div class="code">${esc(p.code)}</div>
+    <h2 class="title">${esc(p.title)}</h2>
+    <div class="lessontools">
+      <button id="favBtn"></button>
+      ${nCards ? `<a class="btn" href="#cartoes" data-deck="${esc(p.code)}">Flashcards da lição (${nCards})</a>` : ""}
+      ${CLOZE.some(c => c.l === p.code) ? `<a class="btn" href="#completar" data-deck="${esc(p.code)}">Completar</a>` : ""}
+      <button id="noteJump">Minhas anotações${S.notes[p.code] ? " ●" : ""}</button>
+      <button id="tutorJump" hidden>Tutor em português</button>
+    </div>
+    <div id="trbar"></div>
+    <div class="lesson" id="lesson">${lessonHTML(p.code)}</div>
+    <section class="side-note" id="notesec">
+      <h3 class="sec">Minhas anotações</h3>
+      <textarea id="note" placeholder="Escreva aqui suas regras, dúvidas e exemplos próprios…">${esc(S.notes[p.code] || "")}</textarea>
+      <div class="saved" id="noteSaved"></div>
+    </section>
+    <section class="tutor" id="tutor" hidden></section>
+    <div class="pager"><button id="prev" ${pv ? "" : "disabled"}>${pv ? "← " + esc(pv.title) : ""}</button><button id="next" class="primary" ${nx ? "" : "disabled"}>${nx ? esc(nx.title) + " →" : ""}</button></div>
+    <p class="credit">Conteúdo de <em>Tex's French Grammar</em> © University of Texas at Austin (COERLL).</p>`;
+  const el = $("lesson");
+  // vocabulary grids (3+ words per row) read better as a list at every width
+  el.querySelectorAll("table").forEach(t => { if (!t.querySelector("table") && [...t.rows].every(r => r.querySelector("a[data-anchor]"))) t.classList.add("toc"); });
+  el.querySelectorAll("table").forEach(t => { if (!t.querySelector("table") && !t.classList.contains("toc") && [...t.rows].some(r => [...r.cells].filter(c => c.textContent.trim() && !c.querySelector("button.aud")).length >= 3)) { t.classList.add("vgrid"); [...t.rows].forEach(r => { if (!r.textContent.replace(/\u00a0/g, "").trim()) r.remove(); }); } });
+  el.querySelectorAll("table").forEach(t => { if (!t.parentElement.closest(".tbl")) { const w = document.createElement("div"); w.className = "tbl"; t.replaceWith(w); w.appendChild(t); } });
+  if (pv) $("prev").onclick = () => go(pv.id);
+  if (nx) $("next").onclick = () => go(nx.id);
+  const fav = () => { $("favBtn").textContent = S.fav[p.code] ? "★ Favorita" : "☆ Favoritar"; };
+  $("favBtn").onclick = () => { S.fav[p.code] ? delete S.fav[p.code] : S.fav[p.code] = 1; save(); fav(); renderNav(); };
+  fav();
+  $("noteJump").onclick = () => { $("notesec").scrollIntoView({ behavior: "smooth" }); $("note").focus({ preventScroll: true }); };
+  let nt;
+  $("note").oninput = () => { clearTimeout(nt); $("noteSaved").textContent = "…"; nt = setTimeout(() => { const v = $("note").value.trim(); v ? S.notes[p.code] = v : delete S.notes[p.code]; save(); $("noteSaved").textContent = "Salvo"; }, 700); };
+  document.querySelectorAll("[data-deck]").forEach(a => a.onclick = () => { deckSel = a.dataset.deck; czSel = a.dataset.deck; });
+  // in-lesson links
+  el.addEventListener("click", e => {
+    const a = e.target.closest("a[data-anchor]"); if (!a) return;
+    e.preventDefault();
+    const id = slug(a.getAttribute("href").slice(1)), anc = a.dataset.anchor;
+    const jump = () => { const t = anc && document.getElementById("a-" + anc); if (t) t.scrollIntoView({ block: "start" }); };
+    if (id === p.id) jump(); else { pendingFind = { anchor: anc }; go(id); }
+  });
+  setupTutor(p);
+  setupTranslation(p);
+  setupExamples(p, el);
+  // arriving from search: highlight every hit and jump to the chosen one
+  if (pendingFind?.q) highlight(el, pendingFind);
+  else if (pendingFind?.anchor) setTimeout(() => document.getElementById("a-" + pendingFind.anchor)?.scrollIntoView({ block: "start" }), 0);
+  pendingFind = null;
+}
+
+function highlight(root, { q, whole, k }) {
+  const nodes = []; const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n, pos = 0;
+  while ((n = w.nextNode())) { nodes.push([n, pos]); pos += n.data.length; }
+  const full = foldKeep(nodes.map(([n]) => n.data).join(""));
+  const hits = findAll(full, makeRe(q, whole));
+  const marks = [];
+  for (let h = hits.length - 1; h >= 0; h--) {
+    const [a, b] = hits[h]; const group = [];
+    for (let j = nodes.length - 1; j >= 0; j--) {
+      const [node, st] = nodes[j], en = st + node.data.length;
+      if (en <= a || st >= b) continue;
+      const r = document.createRange(); r.setStart(node, Math.max(0, a - st)); r.setEnd(node, Math.min(node.data.length, b - st));
+      const m = document.createElement("mark"); r.surroundContents(m); group.unshift(m);
+    }
+    marks.unshift(group);
+  }
+  if (!marks.length) return;
+  let i = Math.min(k || 0, marks.length - 1);
+  $("findbar").innerHTML = `<div class="findbar"><span><b>“${esc(q)}”</b>: <span id="fpos"></span></span><button id="fprev" aria-label="Anterior">↑</button><button id="fnext" aria-label="Próxima">↓</button><button class="ghost" id="fclose" aria-label="Fechar">✕</button></div>`;
+  const show = () => { document.querySelectorAll("mark.cur").forEach(m => m.classList.remove("cur")); marks[i].forEach(m => m.classList.add("cur")); $("fpos").textContent = `${i + 1} de ${marks.length}`; marks[i][0].scrollIntoView({ block: "center" }); };
+  $("fprev").onclick = () => { i = (i - 1 + marks.length) % marks.length; show(); };
+  $("fnext").onclick = () => { i = (i + 1) % marks.length; show(); };
+  $("fclose").onclick = () => { root.querySelectorAll("mark").forEach(m => m.replaceWith(...m.childNodes)); $("findbar").innerHTML = ""; };
+  setTimeout(show, 0);
+}
+
+function setupExamples(p, el) {
+  const missing = addExamples(el, p);
+  if (!missing.length) return;
+  const grid = el.querySelector("table.vgrid"); if (!grid) return;
+  const bar = document.createElement("div"); bar.className = "exbar";
+  bar.innerHTML = `<span id="exmsg">${missing.length} ${missing.length > 1 ? "palavras" : "palavra"} desta lista ainda sem exemplo.</span><button id="exgo" hidden>Criar exemplos com o Claude</button>`;
+  grid.closest(".tbl")?.after(bar);
+  const run = async () => {
+    $("exgo").disabled = true; $("exmsg").textContent = "Criando exemplos…";
+    try { await genExamples(p, missing); if (cur.lesson === p) viewLesson(p); }
+    catch (e) { if (cur.lesson === p && $("exmsg")) { $("exmsg").textContent = e?.code === "bad_output" ? "Não consegui criar os exemplos. Tente de novo." : errCopy(e); $("exgo").disabled = false; } }
+  };
+  getSample().then(sample => {
+    if (cur.lesson !== p || !$("exgo")) return;
+    if (!sample) { $("exmsg").textContent += " O Claude cria os que faltam quando o app está aberto no claude.ai."; return; }
+    $("exgo").hidden = false; $("exgo").onclick = run;
+    if (S.autoTr === true) run();
+  });
+}
+
+function setupTranslation(p) {
+  if (NO_TR.has(p.code)) return;
+  const bar = $("trbar");
+  if (TR[p.code]) {
+    const b = document.createElement("button"); b.className = "ghost";
+    b.textContent = usePt() ? "Original" : "Português"; b.title = usePt() ? "Ver o texto original em inglês" : "Ver a tradução em português";
+    b.onclick = () => { S.lang = usePt() ? "en" : "pt"; CORPUS = null; save(); viewLesson(p); };
+    $("topActions").prepend(b);
+    return;
+  }
+  if (!usePt()) return;
+  bar.innerHTML = `<div class="trbar"><span id="trmsg">Esta lição ainda está em inglês.</span><button class="primary" id="trgo" hidden>Traduzir para o português</button><label id="trauto" hidden><input type="checkbox" id="trautoCb" ${S.autoTr !== false ? "checked" : ""}> traduzir sozinho ao abrir as próximas</label></div>`;
+  const run = async () => {
+    $("trgo").disabled = true; $("trmsg").textContent = "Traduzindo com o Claude… 0%";
+    try {
+      await translateLesson(p, pct => { if (cur.lesson === p && $("trmsg")) $("trmsg").textContent = `Traduzindo com o Claude… ${pct}%`; });
+      if (cur.lesson === p) viewLesson(p);
+    } catch (e) {
+      if (cur.lesson !== p || !$("trmsg")) return;
+      $("trmsg").textContent = e?.code === "bad_output" ? "A tradução saiu incompleta. Tente de novo." : errCopy(e);
+      $("trgo").disabled = false;
+    }
+  };
+  getSample().then(sample => {
+    if (cur.lesson !== p || !$("trgo")) return;
+    if (!sample) { $("trmsg").textContent = "Esta lição ainda está em inglês. A tradução é feita pelo Claude e só funciona com o app aberto no claude.ai."; return; }
+    $("trgo").hidden = false; $("trauto").hidden = false;
+    $("trautoCb").onchange = e => { S.autoTr = e.target.checked; save(); };
+    $("trgo").onclick = () => { S.autoTr = $("trautoCb").checked; save(); run(); };
+    if (S.autoTr === true || trJobs[p.code]) run();
+  });
+}
+
+/* ---------- Tutor (asks Claude, only inside the claude.ai viewer) ---------- */
+let samplePromise = null;
+const getSample = () => samplePromise ||= (window.claude?.use ? claude.use("sample").catch(() => null) : Promise.resolve(null));
+const errCopy = e => ({ not_granted: "Você não permitiu o uso do Claude nesta página.", rate_limited: "Muitas perguntas seguidas. Espere um pouco e tente de novo.", cancelled: "Cancelado." }[e?.code] || "Não consegui uma resposta agora. Tente de novo.");
+async function setupTutor(p) {
+  const sample = await getSample();
+  if (!sample || cur.lesson !== p) return;
+  const box = $("tutor"); box.hidden = false; $("tutorJump").hidden = false;
+  $("tutorJump").onclick = () => box.scrollIntoView({ behavior: "smooth" });
+  const lessonText = corpus().find(c => c.p === p).t.replace(/\s+/g, " ").replace(/▶/g, "").slice(0, 14000);
+  const ctx = `Você é um professor de francês que explica em português do Brasil para um aluno brasileiro. Base-se na lição abaixo (em inglês) do Tex's French Grammar, "${p.title}". Seja claro e direto, use exemplos em francês com tradução em português, e use listas curtas quando ajudar. Não use tabelas Markdown.\n\n=== LIÇÃO ===\n${lessonText}\n=== FIM ===\n\n`;
+  box.innerHTML = `<header><strong>Tutor em português</strong>
+      <button id="tExplain">Explicar a lição</button><button id="tSel">Explicar trecho selecionado</button><button id="tQuiz">Gerar quiz</button></header>
+    <div class="log" id="tlog"><div class="msg ai">Posso explicar esta lição em português, tirar dúvidas ou montar um quiz. Selecione um trecho da lição e clique em “Explicar trecho selecionado” para algo específico.</div></div>
+    <form id="tform"><input id="tq" type="text" placeholder="Pergunte algo sobre esta lição…" aria-label="Pergunta para o tutor"><button class="primary">Perguntar</button></form>`;
+  const log = $("tlog"); const hist = [];
+  let ctl = null;
+  const add = (cls, text) => { const d = document.createElement("div"); d.className = "msg " + cls; d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; };
+  async function ask(userText, shown) {
+    ctl?.abort(); ctl = new AbortController();
+    add("me", shown || userText);
+    const out = add("ai", "Pensando…");
+    hist.push({ role: "user", content: (hist.length ? "" : ctx) + userText });
+    try {
+      const { text } = await sample(hist, { signal: ctl.signal, cache: false, onText: ({ text }) => { out.textContent = text; log.scrollTop = log.scrollHeight; } });
+      out.textContent = text; hist.push({ role: "assistant", content: text });
+    } catch (e) { hist.pop(); out.classList.add("err"); out.textContent = e?.text || errCopy(e); }
+    if (hist.length > 12) hist.splice(1, 2); // keep the first turn (it carries the lesson) and recent ones
+  }
+  $("tExplain").onclick = () => ask("Explique esta lição em português: a regra principal, quando usar, armadilhas comuns para quem fala português, e 4 exemplos com tradução.", "Explique a lição em português.");
+  $("tSel").onclick = () => {
+    const s = String(getSelection()).trim();
+    if (!s) { add("ai", "Selecione um trecho do texto da lição primeiro."); return; }
+    ask(`Explique em português este trecho da lição, palavra por palavra quando for francês: "${s.slice(0, 1500)}"`, `Explique: “${s.slice(0, 160)}${s.length > 160 ? "…" : ""}”`);
+  };
+  $("tform").onsubmit = e => { e.preventDefault(); const q = $("tq").value.trim(); if (!q) return; $("tq").value = ""; ask(q); };
+  $("tQuiz").onclick = async () => {
+    add("me", "Gerar quiz desta lição.");
+    const out = add("ai", "Montando o quiz…");
+    try {
+      const qs = await sample.json(ctx + `Crie 5 perguntas de múltipla escolha que testem o uso prático desta lição (frases em francês para completar ou escolher a forma certa). Responda só com JSON: [{"q":"pergunta em português, com a frase em francês","opts":["a","b","c","d"],"ans":0,"why":"explicação curta em português"}]`, { cache: false });
+      if (!Array.isArray(qs) || !qs.length) throw {};
+      out.className = "msg ai"; out.style.whiteSpace = "normal"; out.style.maxWidth = "100%";
+      out.innerHTML = `<div class="quiz">${qs.map((q, i) => `<div class="q" data-i="${i}"><p>${i + 1}. ${esc(q.q)}</p><div class="opts">${(q.opts || []).map((o, j) => `<button data-j="${j}">${esc(o)}</button>`).join("")}</div><div class="why" hidden>${esc(q.why || "")}</div></div>`).join("")}</div>`;
+      out.querySelectorAll(".q").forEach(qe => {
+        const q = qs[qe.dataset.i];
+        qe.querySelectorAll(".opts button").forEach(b => b.onclick = () => {
+          if (qe.dataset.answered) return; qe.dataset.answered = 1;
+          const j = +b.dataset.j, ok = j === q.ans;
+          b.classList.add(ok ? "right" : "wrong");
+          qe.querySelector(`[data-j="${q.ans}"]`)?.classList.add("right");
+          qe.querySelector(".why").hidden = false;
+          logAnswer(ok); save();
+        });
+      });
+    } catch (e) { out.classList.add("err"); out.textContent = e?.code ? errCopy(e) : "Não consegui montar o quiz. Tente de novo."; }
+  };
+}
+
+/* ---------- Busca (concordância) ---------- */
+let lastQ = "", lastWhole = true;
+views.busca = () => {
+  $("crumb").textContent = "Buscar";
+  $("view").innerHTML = `
+    <h2 class="title">Onde isso aparece?</h2>
+    <p class="lead">Digite uma palavra ou expressão em francês ou inglês para ver em quais lições ela aparece e o trecho de cada ocorrência. Clique num trecho para abrir a lição naquele ponto.</p>
+    <form class="searchbox" id="sform"><input id="sq" type="search" placeholder="ex.: depuis, subjunctive, en, ne … que" value="${esc(lastQ)}" aria-label="Buscar"><label><input type="checkbox" id="whole" ${lastWhole ? "checked" : ""}> palavra exata</label><button class="primary">Buscar</button></form>
+    <div class="row" style="margin-top:10px" id="sugg"></div>
+    <div id="sres"></div>`;
+  const sugg = ["depuis", "subjonctif", "subjunctive", "y", "en", "dont", "ne … que", "passé composé", "imparfait", "c'est", "il y a", "lequel"];
+  $("sugg").innerHTML = `<span class="saved">Experimente:</span>` + sugg.map(s => `<a class="chip muted" href="#busca" data-s="${esc(s)}">${esc(s)}</a>`).join("");
+  $("sugg").onclick = e => { const a = e.target.closest("[data-s]"); if (!a) return; e.preventDefault(); $("sq").value = a.dataset.s.replace(" … ", " "); run(); };
+  const run = () => {
+    const q = $("sq").value.trim(); lastQ = q; lastWhole = $("whole").checked;
+    if (!q) { $("sres").innerHTML = ""; return; }
+    $("sres").innerHTML = `<p class="summary">Procurando…</p>`;
+    setTimeout(() => renderResults(q, lastWhole), 10);
+  };
+  $("sform").onsubmit = e => { e.preventDefault(); run(); };
+  $("whole").onchange = run;
+  let t; $("sq").oninput = () => { clearTimeout(t); t = setTimeout(run, 350); };
+  if (lastQ) run();
+  $("sq").focus();
+};
+function renderResults(q, whole) {
+  const re = makeRe(q, whole);
+  const groups = corpus().map(c => ({ c, hits: findAll(c.f, re) })).filter(g => g.hits.length).sort((a, b) => b.hits.length - a.hits.length);
+  const total = groups.reduce((a, g) => a + g.hits.length, 0);
+  const fq = fold(q);
+  const term = STUDY.terms[fq];
+  const cards = CARDS.filter(c => findAll(foldKeep(stripTags(c.fr + " " + cardEn(c))), re).length);
+  if (!groups.length) { $("sres").innerHTML = `<p class="empty">Nada encontrado para “${esc(q)}”. ${whole ? "Tente desmarcar “palavra exata”." : ""}</p>`; return; }
+  const cats = {};
+  groups.forEach(g => cats[catPt(g.c.p.cat)] = (cats[catPt(g.c.p.cat)] || 0) + g.hits.length);
+  $("sres").innerHTML = `
+    <p class="summary"><b>${total}</b> ocorrência${total > 1 ? "s" : ""} em <b>${groups.length}</b> ${groups.length > 1 ? "lições" : "lição"}${term ? " · termo-chave em " + Object.keys(term).length + " lições" : ""}.</p>
+    <div class="row" style="margin-bottom:14px">${Object.entries(cats).sort((a, b) => b[1] - a[1]).map(([c, n]) => `<span class="chip muted">${esc(c)} · ${n}</span>`).join("")}
+      ${cards.length ? `<a class="chip" href="#cartoes" id="qDeck">Estudar ${cards.length} flashcards com “${esc(q)}”</a>` : ""}</div>
+    ${groups.map((g, gi) => `
+      <section class="hitgroup"><header><a href="#${g.c.p.id}" data-k="0" data-id="${g.c.p.id}">${esc(g.c.p.title)}</a><span class="count">${g.hits.length}× · ${esc(catPt(g.c.p.cat))}</span></header>
+      ${g.hits.map((h, k) => `<a class="hit" href="#${g.c.p.id}" data-id="${g.c.p.id}" data-k="${k}" ${k >= 4 ? "hidden" : ""}>${snippet(g.c.t, h)}</a>`).join("")}
+      ${g.hits.length > 4 ? `<div class="more"><button class="ghost" data-more="${gi}">Ver mais ${g.hits.length - 4}</button></div>` : ""}</section>`).join("")}`;
+  $("sres").onclick = e => {
+    const m = e.target.closest("[data-more]");
+    if (m) { m.closest(".hitgroup").querySelectorAll(".hit[hidden]").forEach(h => h.hidden = false); m.parentElement.remove(); return; }
+    const a = e.target.closest("a[data-id]");
+    if (a) { e.preventDefault(); pendingFind = { q, whole, k: +a.dataset.k }; go(a.dataset.id); return; }
+    if (e.target.closest("#qDeck")) { deckSel = "q:" + q; deckCards = cards.map(c => c.id); }
+  };
+}
+
+/* ---------- Flashcards ---------- */
+let deckSel = "studied", deckCards = null, dir = "fr";
+function deckOptions() {
+  return [["studied", "Lições que estudei"], ["all", "Todas as lições"], ["fav", "Lições favoritas"]]
+    .concat(deckSel.startsWith("q:") ? [[deckSel, "Busca: " + deckSel.slice(2)]] : [])
+    .concat(INDEX.sections.filter(s => pages.some(p => p.cat === s.category && CARDS.some(c => c.l === p.code))).map(s => ["cat:" + s.category, "Tema: " + catPt(s.category)]))
+    .concat(pages.filter(p => CARDS.some(c => c.l === p.code)).map(p => [p.code, "Lição: " + p.title]));
+}
+function deckPool(sel) {
+  if (sel === "all") return CARDS;
+  if (sel === "studied") return CARDS.filter(c => S.done[c.l]);
+  if (sel === "fav") return CARDS.filter(c => S.fav[c.l]);
+  if (sel.startsWith("q:")) return (deckCards || []).map(id => cardById[id]).filter(Boolean);
+  if (sel.startsWith("cat:")) return CARDS.filter(c => byCode[c.l].cat === sel.slice(4));
+  return CARDS.filter(c => c.l === sel);
+}
+views.cartoes = () => {
+  $("crumb").textContent = "Flashcards";
+  const pool = deckPool(deckSel);
+  const dueL = shuffle(pool.filter(due)), newL = pool.filter(isNew).slice(0, 20);
+  let queue = [...dueL, ...newL], i = 0, flipped = false, stats = { ok: 0, n: 0 };
+  $("view").innerHTML = `
+    <h2 class="title">Fiches de révision</h2>
+    <p class="lead">Frases de exemplo das lições. Tente lembrar a tradução antes de virar a ficha. As que você erra voltam na mesma sessão, e as que você acerta voltam dias depois.</p>
+    <div class="deckbar">
+      <select id="deck" aria-label="Baralho">${deckOptions().map(([v, l]) => `<option value="${esc(v)}" ${v === deckSel ? "selected" : ""}>${esc(l)}</option>`).join("")}</select>
+      <select id="dir" aria-label="Direção"><option value="fr" ${dir === "fr" ? "selected" : ""}>Francês → tradução</option><option value="en" ${dir === "en" ? "selected" : ""}>Tradução → francês</option></select>
+      <span class="saved">${pool.filter(due).length} para revisar · ${pool.filter(isNew).length} novos · ${pool.length} no baralho</span>
+    </div>
+    <div id="cardbox"></div>`;
+  $("deck").onchange = e => { deckSel = e.target.value; views.cartoes(); };
+  $("dir").onchange = e => { dir = e.target.value; views.cartoes(); };
+  const box = $("cardbox");
+  function draw() {
+    if (!pool.length) { box.innerHTML = `<div class="panel empty">${deckSel === "studied" ? "Você ainda não marcou nenhuma lição como estudada. Abra uma lição e clique em “Marcar como estudada”, ou escolha outro baralho acima." : "Nenhum cartão neste baralho."}</div>`; return; }
+    if (i >= queue.length) {
+      box.innerHTML = `<div class="panel" style="text-align:center"><h3 class="sec" style="margin-top:0">Sessão concluída</h3><p>${stats.n ? `Você acertou <b>${stats.ok}</b> de <b>${stats.n}</b>.` : "Nada para revisar agora neste baralho."}</p>
+        <div class="row" style="justify-content:center">${pool.some(isNew) ? `<button class="primary" id="moreNew">Mais 20 novos</button>` : ""}<button id="cram">Treinar 20 aleatórios (sem afetar a agenda)</button></div></div>`;
+      $("moreNew") && ($("moreNew").onclick = () => { queue = pool.filter(isNew).slice(0, 20); i = 0; draw(); });
+      $("cram").onclick = () => { queue = shuffle([...pool]).slice(0, 20).map(c => ({ ...c, cram: 1 })); i = 0; draw(); };
+      updDue(); return;
+    }
+    const c = queue[i]; flipped = false;
+    const front = dir === "fr" ? c.fr : cardEn(c), back = dir === "fr" ? cardEn(c) : c.fr;
+    const s = S.srs[c.id];
+    box.innerHTML = `
+      <div class="card"><div class="meta"><a href="#${slug(c.l)}" class="chip muted">${esc(byCode[c.l].title)}</a><span>${c.cram ? "treino" : s ? `revisão · intervalo de ${s.i} d` : "nova"} · ${i + 1}/${queue.length}</span></div>
+        <div class="face">${front}</div>
+        <div class="back" id="back" hidden>${back}</div>
+        <div class="row" style="justify-content:center">${c.a ? `<button class="aud" data-aud="${esc(c.a)}" aria-label="Ouvir o exemplo">▶</button>` : ""}<button class="primary" id="flip">Mostrar resposta</button></div>
+      </div>
+      <div class="rate" id="rate" hidden>
+        <button class="r0" data-r="0">Errei<small>${preview(c, 0)}</small></button><button class="r1" data-r="1">Difícil<small>${preview(c, 1)}</small></button>
+        <button class="r2" data-r="2">Bom<small>${preview(c, 2)}</small></button><button class="r3" data-r="3">Fácil<small>${preview(c, 3)}</small></button></div>
+      <div class="kbd">Espaço: virar · 1 a 4: nota</div>`;
+    $("flip").onclick = flip;
+    $("rate").onclick = e => { const b = e.target.closest("[data-r]"); if (b) rate(+b.dataset.r); };
+  }
+  function flip() { if (flipped || !$("back")) return; flipped = true; $("back").hidden = false; $("rate").hidden = false; $("flip").hidden = true; const c = queue[i]; if (c.a && dir === "en") play(c.a, box.querySelector("button.aud")); }
+  function rate(r) {
+    const c = queue[i]; stats.n++; if (r > 0) stats.ok++;
+    if (c.cram) logAnswer(r > 0), save(); else grade(c, r);
+    if (r === 0 && !c.cram) queue.splice(Math.min(queue.length, i + 6), 0, c); // see it again in this session
+    i++; draw();
+  }
+  keyHandler = e => {
+    if (e.target.matches("input,textarea,select")) return;
+    if (e.key === " ") { e.preventDefault(); flip(); }
+    else if (flipped && /^[1-4]$/.test(e.key)) rate(+e.key - 1);
+  };
+  draw();
+};
+let keyHandler = null;
+document.addEventListener("keydown", e => { if (cur.view === "cartoes" || cur.view === "completar") keyHandler?.(e); });
+
+/* ---------- Completar (cloze) ---------- */
+let czSel = "studied";
+views.completar = () => {
+  $("crumb").textContent = "Completar";
+  const pool = (czSel === "studied" ? CLOZE.filter(c => S.done[c.l]) : czSel === "all" ? CLOZE : czSel.startsWith("cat:") ? CLOZE.filter(c => byCode[c.l].cat === czSel.slice(4)) : CLOZE.filter(c => c.l === czSel));
+  let queue = shuffle([...pool]).slice(0, 15), i = 0, stats = { ok: 0, n: 0 }, answered = false;
+  const opts = [["studied", "Lições que estudei"], ["all", "Todas as lições"]]
+    .concat(INDEX.sections.filter(s => CLOZE.some(c => byCode[c.l].cat === s.category)).map(s => ["cat:" + s.category, "Tema: " + catPt(s.category)]))
+    .concat(pages.filter(p => CLOZE.some(c => c.l === p.code)).map(p => [p.code, "Lição: " + p.title]));
+  $("view").innerHTML = `
+    <h2 class="title">Complète la phrase</h2>
+    <p class="lead">Falta a palavra que a lição destaca. Leia a tradução e escreva o que falta. Se errar só o acento, conta como quase certo.</p>
+    <div class="deckbar"><select id="czdeck" aria-label="Conteúdo">${opts.map(([v, l]) => `<option value="${esc(v)}" ${v === czSel ? "selected" : ""}>${esc(l)}</option>`).join("")}</select><span class="saved">${pool.length} frases disponíveis · 15 por rodada</span></div>
+    <div id="czbox"></div>`;
+  $("czdeck").onchange = e => { czSel = e.target.value; views.completar(); };
+  const box = $("czbox");
+  const accentKeys = ["à", "â", "é", "è", "ê", "ë", "î", "ï", "ô", "ù", "û", "ç", "œ"];
+  function draw() {
+    if (!pool.length) { box.innerHTML = `<div class="panel empty">${czSel === "studied" ? "Marque lições como estudadas para praticar com elas, ou escolha “Todas as lições”." : "Sem frases aqui."}</div>`; return; }
+    if (i >= queue.length) {
+      box.innerHTML = `<div class="panel" style="text-align:center"><h3 class="sec" style="margin-top:0">Rodada concluída</h3><p>Você acertou <b>${stats.ok}</b> de <b>${stats.n}</b>.</p><button class="primary" id="again">Nova rodada</button></div>`;
+      $("again").onclick = () => views.completar(); return;
+    }
+    answered = false;
+    const c = queue[i];
+    const d = document.createElement("div"); d.innerHTML = c.fr;
+    const all = [...d.querySelectorAll("span.tb_blue")].filter(s => s.textContent.trim());
+    const short = all.filter(s => s.textContent.trim().split(/\s+/).length <= 3);
+    const spans = short.length ? short : all;
+    const target = spans[Math.floor(Math.random() * spans.length)];
+    const answer = target.textContent.trim();
+    all.forEach(s => s !== target && s.classList.remove("tb_blue")); // no colour hints on the other keywords
+    target.outerHTML = `<input type="text" id="czin" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(4, answer.length + 2)}ch" aria-label="Palavra que falta">`;
+    box.innerHTML = `
+      <div class="card" style="text-align:left">
+        <div class="meta"><a href="#${slug(c.l)}" class="chip muted">${esc(byCode[c.l].title)}</a><span>${i + 1}/${queue.length}</span></div>
+        <div class="cz">${d.innerHTML}</div>
+        <div class="trans">${cardEn(c)}</div>
+        <div class="keys">${accentKeys.map(k => `<button data-k="${k}" aria-label="Inserir ${k}">${k}</button>`).join("")}</div>
+        <div class="feedback" id="fb"></div>
+        <div class="row" style="justify-content:flex-start">${c.a ? `<button class="aud" data-aud="${esc(c.a)}" aria-label="Ouvir">▶</button>` : ""}<button class="primary" id="check">Conferir</button></div>
+      </div><div class="kbd">Enter: conferir / próxima</div>`;
+    const inp = $("czin"); inp.focus();
+    box.querySelectorAll("[data-k]").forEach(b => b.onclick = () => { const p = inp.selectionStart ?? inp.value.length; inp.value = inp.value.slice(0, p) + b.dataset.k + inp.value.slice(inp.selectionEnd ?? p); inp.focus(); inp.setSelectionRange(p + 1, p + 1); });
+    const norm = s => s.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, " ").trim();
+    $("check").onclick = () => {
+      if (answered) { i++; draw(); return; }
+      const v = norm(inp.value); if (!v) { inp.focus(); return; }
+      answered = true; stats.n++;
+      const r = S.cz[c.l] || (S.cz[c.l] = { n: 0, ok: 0 }); r.n++;
+      let cls, msg;
+      if (v === norm(answer)) { cls = "right"; msg = "Certo!"; stats.ok++; r.ok++; }
+      else if (fold(v) === fold(norm(answer))) { cls = "near"; msg = `Quase: atenção aos acentos. O certo é “${answer}”.`; }
+      else { cls = "wrong"; msg = `Correção: ${answer}`; }
+      logAnswer(cls === "right"); save();
+      inp.classList.add(cls); inp.readOnly = true;
+      $("fb").className = "feedback " + cls; $("fb").textContent = msg;
+      $("check").textContent = "Próxima →";
+      if (c.a) play(c.a, box.querySelector("button.aud"));
+    };
+  }
+  keyHandler = e => { if (e.key === "Enter" && $("check")) { e.preventDefault(); $("check").click(); } };
+  draw();
+};
+
+/* ---------- Índice remissivo ---------- */
+views.indice = () => {
+  $("crumb").textContent = "Índice remissivo";
+  const terms = Object.entries(STUDY.terms).map(([t, ls]) => [t, Object.entries(ls).filter(([l]) => byCode[l]).sort((a, b) => b[1] - a[1])]).filter(([, ls]) => ls.length).sort((a, b) => fold(a[0]).localeCompare(fold(b[0])));
+  const letters = [...new Set(terms.map(([t]) => fold(t)[0]).filter(ch => /[a-z]/.test(ch)))];
+  $("view").innerHTML = `
+    <h2 class="title">Index</h2>
+    <p class="lead">${terms.length} termos destacados nas lições, com as lições onde aparecem (o número é quantas vezes). Clique no termo para ver todas as ocorrências.</p>
+    <input type="search" id="tq" placeholder="Filtrar termos…" style="width:100%;box-sizing:border-box" aria-label="Filtrar termos">
+    <div class="letters">${letters.map(l => `<a href="#indice" data-l="${l}">${l.toUpperCase()}</a>`).join("")}</div>
+    <div id="tlist"></div>`;
+  const draw = () => {
+    const q = fold($("tq").value.trim());
+    const shown = terms.filter(([t]) => !q || fold(t).includes(q));
+    $("tlist").innerHTML = shown.map(([t, ls]) => `<div class="term" data-first="${fold(t)[0]}"><a class="t" href="#busca" data-t="${esc(t)}">${esc(t)}</a><div class="chips">${ls.slice(0, 10).map(([l, n]) => `<a class="chip ${n > 2 ? "" : "muted"}" href="#${slug(l)}">${esc(byCode[l].title)}${n > 1 ? " · " + n : ""}</a>`).join("")}${ls.length > 10 ? `<span class="chip muted">+${ls.length - 10}</span>` : ""}</div></div>`).join("") || `<p class="empty">Nenhum termo.</p>`;
+  };
+  $("tq").oninput = draw;
+  $("view").onclick = e => {
+    const t = e.target.closest("[data-t]"); if (t) { lastQ = t.dataset.t; lastWhole = true; return; }
+    const l = e.target.closest("[data-l]"); if (l) { e.preventDefault(); $("tq").value = ""; draw(); document.querySelector(`.term[data-first="${l.dataset.l}"]`)?.scrollIntoView({ block: "start" }); }
+  };
+  draw();
+};
+
+/* ---------- Anotações & favoritas ---------- */
+views.notas = () => {
+  $("crumb").textContent = "Anotações";
+  const notes = pages.filter(p => S.notes[p.code]);
+  const favs = pages.filter(p => S.fav[p.code]);
+  $("view").innerHTML = `
+    <h2 class="title">Mon cahier</h2>
+    <p class="lead">Suas anotações e lições favoritas.</p>
+    <h3 class="sec">Favoritas</h3>
+    <div class="row">${favs.length ? favs.map(p => `<a class="chip" href="#${p.id}">★ ${esc(p.title)}</a>`).join("") : `<span class="saved">Nenhuma ainda. Use “☆ Favoritar” dentro de uma lição.</span>`}</div>
+    <h3 class="sec">Anotações</h3>
+    ${notes.length ? notes.map(p => `<div class="notecard"><a href="#${p.id}">${esc(p.title)}</a> <span class="saved">· ${esc(catPt(p.cat))}</span><p>${esc(S.notes[p.code])}</p></div>`).join("") : `<p class="saved">Nenhuma anotação ainda. Elas ficam no fim de cada lição.</p>`}`;
+};
+
+route();
+</script>

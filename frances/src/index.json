@@ -1,0 +1,746 @@
+{
+  "site": "Tex's French Grammar",
+  "base_url": "https://www.laits.utexas.edu/tex/",
+  "sections": [
+    {
+      "category": "Geral, Ferramentas e Apêndices",
+      "pages": [
+        {
+          "code": "index",
+          "title": "Home",
+          "url": "https://www.laits.utexas.edu/tex/index.html"
+        },
+        {
+          "code": "gr/index",
+          "title": "Site Index",
+          "url": "https://www.laits.utexas.edu/tex/gr/index.html"
+        },
+        {
+          "code": "overview",
+          "title": "Overview",
+          "url": "https://www.laits.utexas.edu/tex/gr/overview.html"
+        },
+        {
+          "code": "characters",
+          "title": "Characters",
+          "url": "https://www.laits.utexas.edu/tex/gr/characters.html"
+        },
+        {
+          "code": "credits",
+          "title": "Credits",
+          "url": "https://www.laits.utexas.edu/tex/gr/credits.html"
+        },
+        {
+          "code": "help",
+          "title": "Help",
+          "url": "https://www.laits.utexas.edu/tex/gr/help.html"
+        }
+      ]
+    },
+    {
+      "category": "Nouns (Substantivos)",
+      "pages": [
+        {
+          "code": "no1",
+          "title": "Introduction to nouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/no1.html"
+        },
+        {
+          "code": "no2",
+          "title": "Number: singular, plural",
+          "url": "https://www.laits.utexas.edu/tex/gr/no2.html"
+        },
+        {
+          "code": "no3",
+          "title": "Gender: masculine, feminine",
+          "url": "https://www.laits.utexas.edu/tex/gr/no3.html"
+        },
+        {
+          "code": "no4",
+          "title": "Voilà vs. il y a",
+          "url": "https://www.laits.utexas.edu/tex/gr/no4.html"
+        },
+        {
+          "code": "no5",
+          "title": "Temps, heure, fois",
+          "url": "https://www.laits.utexas.edu/tex/gr/no5.html"
+        }
+      ]
+    },
+    {
+      "category": "Determiners (Determinantes)",
+      "pages": [
+        {
+          "code": "det1",
+          "title": "Introduction to determiners",
+          "url": "https://www.laits.utexas.edu/tex/gr/det1.html"
+        },
+        {
+          "code": "det2",
+          "title": "Definite articles",
+          "url": "https://www.laits.utexas.edu/tex/gr/det2.html"
+        },
+        {
+          "code": "det3",
+          "title": "Definite articles with physical characteristics",
+          "url": "https://www.laits.utexas.edu/tex/gr/det3.html"
+        },
+        {
+          "code": "det4",
+          "title": "Indefinite articles",
+          "url": "https://www.laits.utexas.edu/tex/gr/det4.html"
+        },
+        {
+          "code": "det5",
+          "title": "Partitive articles",
+          "url": "https://www.laits.utexas.edu/tex/gr/det5.html"
+        },
+        {
+          "code": "det6",
+          "title": "Possessive determiners",
+          "url": "https://www.laits.utexas.edu/tex/gr/det6.html"
+        },
+        {
+          "code": "det7",
+          "title": "Demonstrative determiners",
+          "url": "https://www.laits.utexas.edu/tex/gr/det7.html"
+        },
+        {
+          "code": "det8",
+          "title": "Expressions of quantity",
+          "url": "https://www.laits.utexas.edu/tex/gr/det8.html"
+        },
+        {
+          "code": "det9",
+          "title": "Tout",
+          "url": "https://www.laits.utexas.edu/tex/gr/det9.html"
+        },
+        {
+          "code": "det10",
+          "title": "Indefinite determiners",
+          "url": "https://www.laits.utexas.edu/tex/gr/det10.html"
+        }
+      ]
+    },
+    {
+      "category": "Adverbs (Advérbios)",
+      "pages": [
+        {
+          "code": "adv1",
+          "title": "Introduction to adverbs",
+          "url": "https://www.laits.utexas.edu/tex/gr/adv1.html"
+        },
+        {
+          "code": "adv2",
+          "title": "Formation and placement",
+          "url": "https://www.laits.utexas.edu/tex/gr/adv2.html"
+        },
+        {
+          "code": "adv3",
+          "title": "Placement of adverbs with passé composé",
+          "url": "https://www.laits.utexas.edu/tex/gr/adv3.html"
+        },
+        {
+          "code": "adv4",
+          "title": "Comparative and superlative of adverbs",
+          "url": "https://www.laits.utexas.edu/tex/gr/adv4.html"
+        },
+        {
+          "code": "adv5",
+          "title": "Il y a 'ago'",
+          "url": "https://www.laits.utexas.edu/tex/gr/adv5.html"
+        },
+        {
+          "code": "adv6",
+          "title": "Tôt, tard, en avance, en retard, à l'heure",
+          "url": "https://www.laits.utexas.edu/tex/gr/adv6.html"
+        }
+      ]
+    },
+    {
+      "category": "Adjectives (Adjetivos)",
+      "pages": [
+        {
+          "code": "adj1",
+          "title": "Introduction to adjectives",
+          "url": "https://www.laits.utexas.edu/tex/gr/adj1.html"
+        },
+        {
+          "code": "adj2",
+          "title": "Formation and placement",
+          "url": "https://www.laits.utexas.edu/tex/gr/adj2.html"
+        },
+        {
+          "code": "adj3",
+          "title": "Adjectives that precede the noun",
+          "url": "https://www.laits.utexas.edu/tex/gr/adj3.html"
+        },
+        {
+          "code": "adj4",
+          "title": "Irregular adjectives",
+          "url": "https://www.laits.utexas.edu/tex/gr/adj4.html"
+        },
+        {
+          "code": "adj5",
+          "title": "Adjectives whose meaning varies with placement",
+          "url": "https://www.laits.utexas.edu/tex/gr/adj5.html"
+        },
+        {
+          "code": "adj6",
+          "title": "Comparisons with adjectives",
+          "url": "https://www.laits.utexas.edu/tex/gr/adj6.html"
+        },
+        {
+          "code": "adj7",
+          "title": "Superlative of adjectives",
+          "url": "https://www.laits.utexas.edu/tex/gr/adj7.html"
+        },
+        {
+          "code": "adj8",
+          "title": "Bon/meilleur vs. bien/mieux",
+          "url": "https://www.laits.utexas.edu/tex/gr/adj8.html"
+        },
+        {
+          "code": "adj9",
+          "title": "Participles as adjectives",
+          "url": "https://www.laits.utexas.edu/tex/gr/adj9.html"
+        }
+      ]
+    },
+    {
+      "category": "Verbs (Verbos)",
+      "pages": [
+        {
+          "code": "v1",
+          "title": "Introduction to verbs",
+          "url": "https://www.laits.utexas.edu/tex/gr/v1.html"
+        },
+        {
+          "code": "ver1",
+          "title": "-er verbs (regular)",
+          "url": "https://www.laits.utexas.edu/tex/gr/ver1.html"
+        },
+        {
+          "code": "ver2",
+          "title": "-er verbs (stem changing)",
+          "url": "https://www.laits.utexas.edu/tex/gr/ver2.html"
+        },
+        {
+          "code": "vir1",
+          "title": "-ir verbs (regular)",
+          "url": "https://www.laits.utexas.edu/tex/gr/vir1.html"
+        },
+        {
+          "code": "vir2",
+          "title": "-ir verbs (irregular) like ouvrir",
+          "url": "https://www.laits.utexas.edu/tex/gr/vir2.html"
+        },
+        {
+          "code": "vir3",
+          "title": "-ir verbs (irregular) partir, sortir, dormir",
+          "url": "https://www.laits.utexas.edu/tex/gr/vir3.html"
+        },
+        {
+          "code": "vre1",
+          "title": "-re verbs (regular)",
+          "url": "https://www.laits.utexas.edu/tex/gr/vre1.html"
+        },
+        {
+          "code": "vre2",
+          "title": "-re verbs (irregular) like prendre",
+          "url": "https://www.laits.utexas.edu/tex/gr/vre2.html"
+        },
+        {
+          "code": "vre3",
+          "title": "-re verbs (irregular) like mettre",
+          "url": "https://www.laits.utexas.edu/tex/gr/vre3.html"
+        },
+        {
+          "code": "vre4",
+          "title": "-re verbs (irregular) like suivre, vivre",
+          "url": "https://www.laits.utexas.edu/tex/gr/vre4.html"
+        },
+        {
+          "code": "virr1",
+          "title": "Être 'to be'",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr1.html"
+        },
+        {
+          "code": "virr2",
+          "title": "Avoir 'to have'",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr2.html"
+        },
+        {
+          "code": "virr3",
+          "title": "Avoir expressions",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr3.html"
+        },
+        {
+          "code": "virr4",
+          "title": "Aller 'to go'",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr4.html"
+        },
+        {
+          "code": "virr5",
+          "title": "Faire 'to do, to make'",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr5.html"
+        },
+        {
+          "code": "virr6",
+          "title": "Faire expressions",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr6.html"
+        },
+        {
+          "code": "virr7",
+          "title": "Causative faire",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr7.html"
+        },
+        {
+          "code": "virr8",
+          "title": "Venir 'to come'",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr8.html"
+        },
+        {
+          "code": "virr9",
+          "title": "Boire, croire, voir",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr9.html"
+        },
+        {
+          "code": "virr10",
+          "title": "Savoir vs. connaître",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr10.html"
+        },
+        {
+          "code": "virr11",
+          "title": "Dire, lire, écrire",
+          "url": "https://www.laits.utexas.edu/tex/gr/virr11.html"
+        },
+        {
+          "code": "vpr1",
+          "title": "Pronominal verbs",
+          "url": "https://www.laits.utexas.edu/tex/gr/vpr1.html"
+        },
+        {
+          "code": "vm1",
+          "title": "Modal verbs: vouloir, pouvoir, devoir",
+          "url": "https://www.laits.utexas.edu/tex/gr/vm1.html"
+        },
+        {
+          "code": "vim1",
+          "title": "Impersonal verbs & expressions",
+          "url": "https://www.laits.utexas.edu/tex/gr/vim1.html"
+        },
+        {
+          "code": "vl1",
+          "title": "Partir, sortir, quitter, laisser",
+          "url": "https://www.laits.utexas.edu/tex/gr/vl1.html"
+        },
+        {
+          "code": "vinf1",
+          "title": "Infinitive constructions",
+          "url": "https://www.laits.utexas.edu/tex/gr/vinf1.html"
+        },
+        {
+          "code": "vti1",
+          "title": "Transitive vs. intransitive",
+          "url": "https://www.laits.utexas.edu/tex/gr/vti1.html"
+        },
+        {
+          "code": "vpp1",
+          "title": "Present participle",
+          "url": "https://www.laits.utexas.edu/tex/gr/vpp1.html"
+        }
+      ]
+    },
+    {
+      "category": "Negation (Negação)",
+      "pages": [
+        {
+          "code": "neg1",
+          "title": "Introduction to negation",
+          "url": "https://www.laits.utexas.edu/tex/gr/neg1.html"
+        },
+        {
+          "code": "neg2",
+          "title": "Basic negation: ne ... pas",
+          "url": "https://www.laits.utexas.edu/tex/gr/neg2.html"
+        },
+        {
+          "code": "neg3",
+          "title": "Alternate forms (1): ne ... jamais, rien, personne, etc.",
+          "url": "https://www.laits.utexas.edu/tex/gr/neg3.html"
+        },
+        {
+          "code": "neg4",
+          "title": "Alternate forms (2): ne ... aucun, ni ... ni, que",
+          "url": "https://www.laits.utexas.edu/tex/gr/neg4.html"
+        },
+        {
+          "code": "neg5",
+          "title": "One-word negative responses",
+          "url": "https://www.laits.utexas.edu/tex/gr/neg5.html"
+        }
+      ]
+    },
+    {
+      "category": "Prepositions (Preposições)",
+      "pages": [
+        {
+          "code": "pre1",
+          "title": "Introduction to prepositions",
+          "url": "https://www.laits.utexas.edu/tex/gr/pre1.html"
+        },
+        {
+          "code": "pre1a",
+          "title": "Common prepositions",
+          "url": "https://www.laits.utexas.edu/tex/gr/pre1a.html"
+        },
+        {
+          "code": "pre2",
+          "title": "Contractions of à and de with definite article",
+          "url": "https://www.laits.utexas.edu/tex/gr/pre2.html"
+        },
+        {
+          "code": "pre3",
+          "title": "Prepositions with place names",
+          "url": "https://www.laits.utexas.edu/tex/gr/pre3.html"
+        },
+        {
+          "code": "pre4",
+          "title": "Prepositions with infinitives",
+          "url": "https://www.laits.utexas.edu/tex/gr/pre4.html"
+        },
+        {
+          "code": "pred1",
+          "title": "Depuis vs. il y a ... que, ça fait ... que, voilà ... que",
+          "url": "https://www.laits.utexas.edu/tex/gr/pred1.html"
+        },
+        {
+          "code": "pred2",
+          "title": "Depuis with imperfect",
+          "url": "https://www.laits.utexas.edu/tex/gr/pred2.html"
+        },
+        {
+          "code": "prep1",
+          "title": "Depuis, pendant, pour",
+          "url": "https://www.laits.utexas.edu/tex/gr/prep1.html"
+        }
+      ]
+    },
+    {
+      "category": "Pronouns (Pronomes)",
+      "pages": [
+        {
+          "code": "pro1",
+          "title": "Introduction to pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro1.html"
+        },
+        {
+          "code": "pro2",
+          "title": "Subject pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro2.html"
+        },
+        {
+          "code": "pro3",
+          "title": "C'est vs. il/elle est",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro3.html"
+        },
+        {
+          "code": "pro4",
+          "title": "Disjunctive pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro4.html"
+        },
+        {
+          "code": "pro5",
+          "title": "Direct object pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro5.html"
+        },
+        {
+          "code": "pro6",
+          "title": "Pronoun y",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro6.html"
+        },
+        {
+          "code": "pro7",
+          "title": "Pronoun en",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro7.html"
+        },
+        {
+          "code": "pro8",
+          "title": "Indirect object pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro8.html"
+        },
+        {
+          "code": "pro9",
+          "title": "Order of object pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro9.html"
+        },
+        {
+          "code": "pro10",
+          "title": "Indefinite pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro10.html"
+        },
+        {
+          "code": "pro11",
+          "title": "Demonstrative pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro11.html"
+        },
+        {
+          "code": "pro12",
+          "title": "Possessive pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/pro12.html"
+        },
+        {
+          "code": "pror1",
+          "title": "Relative pronouns: qui and que",
+          "url": "https://www.laits.utexas.edu/tex/gr/pror1.html"
+        },
+        {
+          "code": "pror2",
+          "title": "Relative pronouns: ce qui, ce que",
+          "url": "https://www.laits.utexas.edu/tex/gr/pror2.html"
+        },
+        {
+          "code": "pror3",
+          "title": "Relative pronouns: dont, où, lequel",
+          "url": "https://www.laits.utexas.edu/tex/gr/pror3.html"
+        }
+      ]
+    },
+    {
+      "category": "Conjunctions (Conjunções)",
+      "pages": [
+        {
+          "code": "con1",
+          "title": "Introduction to conjunctions",
+          "url": "https://www.laits.utexas.edu/tex/gr/con1.html"
+        },
+        {
+          "code": "con2",
+          "title": "Coordinating conjunctions",
+          "url": "https://www.laits.utexas.edu/tex/gr/con2.html"
+        },
+        {
+          "code": "con3",
+          "title": "Subordinating conjunctions",
+          "url": "https://www.laits.utexas.edu/tex/gr/con3.html"
+        }
+      ]
+    },
+    {
+      "category": "Tense, Aspect, Mood, Voice (Tempos e Modos Verbais)",
+      "pages": [
+        {
+          "code": "ta1",
+          "title": "Intro to tense, aspect, mood, voice",
+          "url": "https://www.laits.utexas.edu/tex/gr/ta1.html"
+        },
+        {
+          "code": "tapr1",
+          "title": "Present tense",
+          "url": "https://www.laits.utexas.edu/tex/gr/tapr1.html"
+        },
+        {
+          "code": "tap1",
+          "title": "Recent past (venir de + infinitive)",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap1.html"
+        },
+        {
+          "code": "tap2",
+          "title": "Passé composé with avoir",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap2.html"
+        },
+        {
+          "code": "tap3",
+          "title": "Passé composé with être",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap3.html"
+        },
+        {
+          "code": "tap4",
+          "title": "Passé composé of pronominal verbs",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap4.html"
+        },
+        {
+          "code": "tap5",
+          "title": "Imparfait: formation",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap5.html"
+        },
+        {
+          "code": "tap6",
+          "title": "Imparfait: states of being, habitual actions",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap6.html"
+        },
+        {
+          "code": "tap7",
+          "title": "Imparfait: idiomatic uses",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap7.html"
+        },
+        {
+          "code": "tap8",
+          "title": "Narration: passé composé vs. imparfait",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap8.html"
+        },
+        {
+          "code": "tap9",
+          "title": "Plus-que-parfait",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap9.html"
+        },
+        {
+          "code": "tap10",
+          "title": "Passé simple",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap10.html"
+        },
+        {
+          "code": "tap11",
+          "title": "Passé antérieur",
+          "url": "https://www.laits.utexas.edu/tex/gr/tap11.html"
+        },
+        {
+          "code": "taf1",
+          "title": "Futur proche",
+          "url": "https://www.laits.utexas.edu/tex/gr/taf1.html"
+        },
+        {
+          "code": "taf2",
+          "title": "Simple future: regular",
+          "url": "https://www.laits.utexas.edu/tex/gr/taf2.html"
+        },
+        {
+          "code": "taf3",
+          "title": "Simple future: irregular",
+          "url": "https://www.laits.utexas.edu/tex/gr/taf3.html"
+        },
+        {
+          "code": "taf4",
+          "title": "Future: usage",
+          "url": "https://www.laits.utexas.edu/tex/gr/taf4.html"
+        },
+        {
+          "code": "taf5",
+          "title": "Futur antérieur",
+          "url": "https://www.laits.utexas.edu/tex/gr/taf5.html"
+        },
+        {
+          "code": "tai1",
+          "title": "Imperative mood",
+          "url": "https://www.laits.utexas.edu/tex/gr/tai1.html"
+        },
+        {
+          "code": "tas1",
+          "title": "Regular subjunctive",
+          "url": "https://www.laits.utexas.edu/tex/gr/tas1.html"
+        },
+        {
+          "code": "tas2",
+          "title": "Irregular subjunctive",
+          "url": "https://www.laits.utexas.edu/tex/gr/tas2.html"
+        },
+        {
+          "code": "tas3a",
+          "title": "Subjunctive usage: obligation",
+          "url": "https://www.laits.utexas.edu/tex/gr/tas3a.html"
+        },
+        {
+          "code": "tas3b",
+          "title": "Subjunctive usage: doubt",
+          "url": "https://www.laits.utexas.edu/tex/gr/tas3b.html"
+        },
+        {
+          "code": "tas4",
+          "title": "Subjunctive usage: will, emotion, desire",
+          "url": "https://www.laits.utexas.edu/tex/gr/tas4.html"
+        },
+        {
+          "code": "tas5",
+          "title": "Conjunctions that take the subjunctive",
+          "url": "https://www.laits.utexas.edu/tex/gr/tas5.html"
+        },
+        {
+          "code": "tas6",
+          "title": "Past subjunctive",
+          "url": "https://www.laits.utexas.edu/tex/gr/tas6.html"
+        },
+        {
+          "code": "tas7",
+          "title": "Subjunctive summary",
+          "url": "https://www.laits.utexas.edu/tex/gr/tas7.html"
+        },
+        {
+          "code": "tas8",
+          "title": "Ways to avoid the subjunctive",
+          "url": "https://www.laits.utexas.edu/tex/gr/tas8.html"
+        },
+        {
+          "code": "tac1",
+          "title": "Conditional",
+          "url": "https://www.laits.utexas.edu/tex/gr/tac1.html"
+        },
+        {
+          "code": "tac2",
+          "title": "Past conditional",
+          "url": "https://www.laits.utexas.edu/tex/gr/tac2.html"
+        },
+        {
+          "code": "tac3",
+          "title": "Si clauses",
+          "url": "https://www.laits.utexas.edu/tex/gr/tac3.html"
+        },
+        {
+          "code": "tad1",
+          "title": "Reported speech in the present",
+          "url": "https://www.laits.utexas.edu/tex/gr/tad1.html"
+        },
+        {
+          "code": "tad2",
+          "title": "Reported speech in the past",
+          "url": "https://www.laits.utexas.edu/tex/gr/tad2.html"
+        },
+        {
+          "code": "tav1",
+          "title": "Active vs. passive voice",
+          "url": "https://www.laits.utexas.edu/tex/gr/tav1.html"
+        }
+      ]
+    },
+    {
+      "category": "Interrogative Constructions (Interrogativas)",
+      "pages": [
+        {
+          "code": "int1",
+          "title": "Introduction to interrogatives",
+          "url": "https://www.laits.utexas.edu/tex/gr/int1.html"
+        },
+        {
+          "code": "int2",
+          "title": "Yes/no questions: est-ce que, n'est-ce pas",
+          "url": "https://www.laits.utexas.edu/tex/gr/int2.html"
+        },
+        {
+          "code": "int3",
+          "title": "Questions with subject/verb inversion",
+          "url": "https://www.laits.utexas.edu/tex/gr/int3.html"
+        },
+        {
+          "code": "int4",
+          "title": "Interrogative and exclamative quel",
+          "url": "https://www.laits.utexas.edu/tex/gr/int4.html"
+        },
+        {
+          "code": "int5",
+          "title": "Interrogative pronouns",
+          "url": "https://www.laits.utexas.edu/tex/gr/int5.html"
+        },
+        {
+          "code": "int6",
+          "title": "Interrogative pronoun lequel",
+          "url": "https://www.laits.utexas.edu/tex/gr/int6.html"
+        },
+        {
+          "code": "int7",
+          "title": "Interrogative words: où, quand, comment...",
+          "url": "https://www.laits.utexas.edu/tex/gr/int7.html"
+        }
+      ]
+    }
+  ]
+}
