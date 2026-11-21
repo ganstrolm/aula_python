@@ -19,6 +19,7 @@
   --accent:#8aa6ff; --accent-soft:#222c4a; --done:#4cc08a; --done-soft:#173628; --warn:#ff9a5c; --warn-soft:#3a2617; --bad:#ff6b76; --bad-soft:#3d1c22;
   --on-accent:#0f1422; --mark:#7a6420; color-scheme:dark}
 html,body{height:100%}
+html{box-sizing:border-box}
 [hidden]{display:none!important}
 select{max-width:100%;min-width:0}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
@@ -172,7 +173,6 @@ button.aud.err{background:var(--line);color:var(--muted)}
   aside{position:fixed;inset:0 auto 0 0;width:min(320px,88vw);z-index:20;transform:translateX(-100%);transition:transform .2s;padding-top:env(safe-area-inset-top,0px)}
   aside.open{transform:none;box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
   #menu{display:inline-flex}
-  .top{top:env(safe-area-inset-top,0px)}
   .rate{grid-template-columns:repeat(2,1fr)}
   .term{grid-template-columns:minmax(0,1fr)}
 }
