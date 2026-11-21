@@ -21,7 +21,7 @@
 html,body{height:100%}
 html{box-sizing:border-box}
 [hidden]{display:none!important}
-body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:15.5px;line-height:1.6}
+body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:14.5px;line-height:1.5}
 select{max-width:100%;min-width:0}
 .app{display:grid;grid-template-columns:280px minmax(0,1fr);height:100%}
 /* sidebar = the notebook's table of contents */
@@ -30,7 +30,7 @@ aside{background:var(--sheet);border-right:1px solid var(--rule);display:flex;fl
 .brand h1{font-family:var(--hand);font-weight:400;font-size:21px;margin:0;color:var(--encre);line-height:1.5}
 .sync{font-size:12px;color:var(--muted)}
 .tools{display:flex;flex-direction:column;padding:8px 10px 12px;border-bottom:1px solid var(--rule)}
-.tools a{display:flex;align-items:center;gap:8px;padding:5px 8px;color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:500;border-radius:3px}
+.tools a{display:flex;align-items:center;gap:8px;padding:3px 8px;color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:500;border-radius:3px}
 .tools a:hover{background:var(--encre-soft)}
 .tools a.cur{color:var(--encre);font-weight:700;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
 .tools .n{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--rouge);font-variant-numeric:tabular-nums}
@@ -39,7 +39,7 @@ aside{background:var(--sheet);border-right:1px solid var(--rule);display:flex;fl
 nav{overflow-y:auto;flex:1;padding:0 10px 24px}
 nav h3{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 6px 4px;display:flex;justify-content:space-between;font-weight:600}
 nav h3 span{font-variant-numeric:tabular-nums;letter-spacing:0}
-nav a{display:flex;align-items:baseline;gap:8px;padding:3px 6px;color:var(--ink);text-decoration:none;font-size:14px;border-radius:3px}
+nav a{display:flex;align-items:baseline;gap:8px;padding:2px 6px;color:var(--ink);text-decoration:none;font-size:13.5px;line-height:1.4;border-radius:3px}
 nav a:hover{background:var(--encre-soft)}
 nav a.cur{background:var(--encre-soft);color:var(--encre);font-weight:600}
 nav .dot{width:12px;flex:none;font-size:12px;color:var(--vert);text-align:center}
@@ -52,13 +52,13 @@ main{overflow-y:auto;min-width:0;position:relative;
   background-size:100% 32px,32px 32px,100% 8px}
 .top{position:sticky;top:0;z-index:5;background:var(--paper);display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-block:9px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--rule)}
 .top .crumb{flex:1;min-width:0;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.view{max-width:780px;margin:0 auto;padding-block:26px 64px;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-left:2px solid var(--marge);min-height:calc(100% - 60px);box-sizing:border-box;background:color-mix(in srgb,var(--paper) 55%,transparent)}
+.view{max-width:780px;margin:0 auto;padding-block:16px 56px;padding-left:max(28px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-left:2px solid var(--marge);min-height:calc(100% - 60px);box-sizing:border-box;background:color-mix(in srgb,var(--paper) 55%,transparent)}
 .date{font-family:var(--hand);color:var(--encre);font-size:15px;margin:0 0 4px}
-h2.title{font-family:var(--hand);font-weight:400;font-size:clamp(23px,3.6vw,30px);line-height:1.5;margin:0 0 10px;color:var(--encre);text-wrap:balance}
+h2.title{font-family:var(--hand);font-weight:400;font-size:clamp(20px,3vw,26px);line-height:1.4;margin:0 0 6px;color:var(--encre);text-wrap:balance}
 .code{font-size:12px;color:var(--muted);letter-spacing:.06em;font-variant-numeric:tabular-nums}
-.lead{color:var(--muted);margin:0 0 18px;max-width:62ch}
-h3.sec{font-weight:700;font-size:16px;margin:30px 0 8px;color:var(--ink);border-bottom:1px solid var(--seyes-bold);padding-bottom:4px}
-button,.btn{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--encre);border-radius:3px;padding:6px 12px;cursor:pointer;background:var(--sheet);color:var(--encre);white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.lead{color:var(--muted);margin:0 0 12px;max-width:62ch}
+h3.sec{font-weight:700;font-size:15px;margin:20px 0 6px;color:var(--ink);border-bottom:1px solid var(--seyes-bold);padding-bottom:4px}
+button,.btn{font:inherit;font-size:13.5px;font-weight:600;border:1px solid var(--encre);border-radius:3px;padding:4px 10px;cursor:pointer;background:var(--sheet);color:var(--encre);white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 button:hover,.btn:hover{background:var(--encre-soft)}
 button.primary,.btn.primary{background:var(--encre);color:var(--on-encre)}
 button.ok{background:var(--vert);border-color:var(--vert);color:var(--on-encre)}
@@ -93,19 +93,25 @@ mark.cur{box-shadow:0 0 0 2px var(--orange)}
 /* lesson */
 .lesson{overflow-wrap:break-word}
 .lesson table{border-collapse:collapse;margin:6px 0;max-width:100%}
-.lesson td{padding:3px 12px 3px 0;vertical-align:top}
+.lesson td{padding:1px 12px 1px 0;vertical-align:top}
 .lesson td:empty{display:none}
-.lesson .tbl{overflow-x:auto;margin:12px 0;padding:10px 14px;background:var(--sheet);border:1px solid var(--rule);border-left:3px double var(--seyes-bold)}
+.lesson .tbl{overflow-x:auto;margin:8px 0;padding:7px 12px;background:var(--sheet);border:1px solid var(--rule);border-left:3px double var(--seyes-bold)}
 .lesson .tbl .tbl{border:0;padding:0;margin:0;background:none}
+.lesson .pbr{display:block;height:.5em}
+.lesson .ex{font-size:12.5px;line-height:1.4;color:var(--muted);margin:1px 0 3px 10px;display:flex;gap:6px;align-items:flex-start}
+.lesson .ex .fr{color:var(--ink);font-style:italic}
+.lesson .ex button.aud{width:20px;height:20px;font-size:8px;margin:0}
+.lesson .ex.gen .fr::after{content:" ✎";color:var(--muted);font-style:normal}
+.exbar{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0 0}
 .lesson table.vgrid,.lesson .vgrid tbody,.lesson .vgrid tr,.lesson .vgrid td{display:block;width:auto!important}
 .lesson .vgrid tbody{columns:2 220px;column-gap:32px}
-.lesson .vgrid tr{break-inside:avoid;padding:5px 0;border-bottom:1px dashed var(--seyes-bold)}
+.lesson .vgrid tr{break-inside:avoid;padding:3px 0;border-bottom:1px dashed var(--seyes-bold)}
 .lesson .vgrid td{padding:1px 0}
 .lesson .tb_blue,.lesson .tt_blue{color:var(--encre);font-weight:600}
 .lesson .tb_org,.lesson .tt_org,.lesson .red{color:var(--rouge);font-weight:600}
-.lesson .tb_blk,.lesson .tbs_blk{display:inline-block;font-weight:700;font-size:17px;margin-top:16px;border-bottom:2px solid var(--marge);line-height:1.3}
+.lesson .tb_blk,.lesson .tbs_blk{display:inline-block;font-weight:700;font-size:15.5px;margin-top:8px;border-bottom:2px solid var(--marge);line-height:1.3}
 .lesson .tt_grey{color:var(--muted);font-weight:600}
-.lesson img{display:block;max-width:min(100%,320px);height:auto;margin:12px auto;background:#fff;padding:6px;border:1px solid var(--rule);transform:rotate(-.6deg)}
+.lesson img{display:block;max-width:min(100%,260px);height:auto;margin:8px auto;background:#fff;padding:6px;border:1px solid var(--rule);transform:rotate(-.6deg)}
 .lesson a{color:var(--encre)}
 button.aud{width:28px;height:28px;padding:0;border-radius:50%;font-size:10px;justify-content:center;vertical-align:middle;margin:2px 4px;flex:none}
 button.aud.playing{background:var(--encre);color:var(--on-encre)}
@@ -116,7 +122,7 @@ button.aud.err{border-color:var(--rule);color:var(--muted)}
 .trbar span{flex:1 1 200px}
 .trbar label{font-size:13px;color:var(--muted);display:flex;gap:5px;align-items:center}
 .findbar button{background:var(--sheet)}
-.lessontools{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 20px}
+.lessontools{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 12px}
 .pager{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:36px;padding-top:16px;border-top:1px solid var(--seyes-bold)}
 .pager button{max-width:48%;overflow:hidden;text-overflow:ellipsis}
 .saved{font-size:12.5px;color:var(--muted)}
@@ -160,7 +166,7 @@ button.aud.err{border-color:var(--rule);color:var(--muted)}
 .card{position:relative;background-color:var(--sheet);border:1px solid var(--rule);box-shadow:0 1px 0 var(--rule),0 6px 18px -12px rgba(20,30,70,.35);
   background-image:linear-gradient(transparent 46px,var(--marge) 46px,var(--marge) 48px,transparent 48px),repeating-linear-gradient(transparent 0 27px,var(--seyes) 27px 28px);background-position:0 0,0 20px;
   padding:14px 22px 22px;min-height:230px;display:flex;flex-direction:column;gap:14px;justify-content:flex-start;text-align:center}
-.card .face{font-size:21px;line-height:1.5;margin-top:22px}
+.card .face{font-size:19px;line-height:1.45;margin-top:22px}
 .card .face .tb_blue,.card .face .tt_blue,.cz .tb_blue{color:var(--encre);font-weight:600}
 .card .back{padding-top:6px;font-family:var(--hand);font-size:15px;line-height:1.8;color:var(--rouge)}
 .card .back .tb_blue{color:inherit}
@@ -174,7 +180,7 @@ button.aud.err{border-color:var(--rule);color:var(--muted)}
 .rate .r3{border-color:var(--encre);color:var(--encre)}
 .kbd{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
 /* cloze */
-.cz{font-size:20px;line-height:1.8;margin-top:22px;text-align:left}
+.cz{font-size:18px;line-height:1.7;margin-top:22px;text-align:left}
 .cz input{font:inherit;font-size:18px;padding:0 6px;border:0;border-bottom:2px solid var(--encre);border-radius:0;background:transparent;text-align:center;color:var(--encre)}
 .cz input:focus-visible{outline:none;border-bottom-width:3px}
 .cz input.right{border-color:var(--vert);color:var(--vert)}
@@ -204,11 +210,12 @@ button.aud.err{border-color:var(--rule);color:var(--muted)}
   .rate{grid-template-columns:repeat(2,1fr)}
   /* phone: lesson tables become lists, one cell per line, a rule between rows */
   .lesson table,.lesson tbody,.lesson tr,.lesson td{display:block;width:auto!important}
-  .lesson tr{padding:6px 0;border-bottom:1px dashed var(--seyes-bold)}
+  .lesson tr{padding:3px 0;border-bottom:1px dashed var(--seyes-bold)}
   .lesson tr:last-child{border-bottom:0}
   .lesson tr:has(> td > table){padding:0;border:0}
   .lesson td{padding:1px 0}
   .lesson td:has(> button.aud){float:right;margin-left:8px}
+  .lesson table.toc tr{display:flex;gap:6px;border:0;padding:1px 0}
   .lesson .tbl{padding:8px 12px}
   .top .crumb{display:none}
   .term{grid-template-columns:minmax(0,1fr)}
@@ -321,6 +328,11 @@ const setSync = t => $("sync").textContent = t;
     if (!db || !user) return;
     const id = await user.id(); if (!id) return;
     DB = db;
+    db.collection("exemplos").get().then(q => {
+      let n = 0;
+      q.docs.forEach(d => { const p = byId[d.id], v = d.data()?.items; if (p && v) { EX[p.code] = { ...v, ...(EX[p.code] || {}) }; n++; } });
+      if (n && cur.view === "lesson") route();
+    }).catch(() => {});
     db.collection("traducoes").get().then(q => {
       let n = 0;
       q.docs.forEach(d => { const v = d.data(); const p = byId[d.id]; if (p && v?.html && !TR[p.code]) { TR[p.code] = v; n++; } });
@@ -344,7 +356,7 @@ try { Object.assign(TR, JSON.parse(localStorage.getItem("tex-tr") || "{}")); } c
 let DB = null;
 const NO_TR = new Set(["gr/index"]); // the site index is a list of links; its titles are already translated
 const usePt = () => S.lang === "pt";
-const lessonHTML = code => (usePt() && TR[code]?.html) || LESSONS[code];
+const lessonHTML = code => ((usePt() && TR[code]?.html) || LESSONS[code]).replace(/(<br\s*\/?>\s*){2,}/g, '<span class="pbr"></span>');
 const cardEn = c => (usePt() && TR[c.l]?.cards?.[c.id]) || c.en;
 function cacheTR() { try { localStorage.setItem("tex-tr", JSON.stringify(Object.fromEntries(Object.entries(TR).filter(([k]) => !TR_BAKED[k])))); } catch (e) {} }
 const trJobs = {};
@@ -396,6 +408,43 @@ ${JSON.stringify(cards.map(c => c.en))}`;
     if (DB) DB.doc("traducoes/" + slug(p.code)).set(TR[p.code]).catch(() => {});
     return TR[p.code];
   })().finally(() => delete trJobs[p.code]);
+}
+
+/* ---------- examples for vocabulary lists: real lesson sentences first, Claude-made ones for the rest ---------- */
+const EX = {}; // lesson code -> { word: {fr, pt} } generated by Claude, shared in the db
+try { Object.assign(EX, JSON.parse(localStorage.getItem("tex-ex") || "{}")); } catch (e) {}
+let CARD_F = null;
+// accents matter here (là ≠ la), so match on lowercase text without folding; keep only short sentences
+const sentenceCards = () => CARD_F ||= CARDS.map(c => ({ c, f: stripTags(c.fr).replace(/\s+/g, " ").trim().toLowerCase() })).filter(x => x.f.split(" ").length >= 3 && x.f.length <= 120 && /[.!?][»"'’)]?$/.test(x.f) && !x.f.includes("...")).sort((a, b) => a.f.length - b.f.length);
+const variants = w => [...new Set(w.split(/[•()\/,;]| ou /).map(x => x.trim().toLowerCase()).filter(x => x.length > 1))];
+function findExample(word, lesson) {
+  const res = variants(word).map(v => new RegExp(`(?<![\\p{L}\\p{N}'’])${v.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![\\p{L}\\p{N}])`, "u"));
+  const pool = sentenceCards();
+  return (pool.find(x => x.c.l === lesson && res.some(r => r.test(x.f))) || pool.find(x => res.some(r => r.test(x.f))))?.c;
+}
+function addExamples(root, p) {
+  const missing = [];
+  root.querySelectorAll("table.vgrid td").forEach(td => {
+    const sp = td.querySelector("span.tb_blue"); if (!sp) return;
+    const word = sp.textContent.trim(); if (word.replace(/[^\p{L}]/gu, "").length < 2) return;
+    const meaning = td.textContent.slice(td.textContent.indexOf(word) + word.length).replace(/^[\s,:]+/, "").trim();
+    const c = findExample(word, p.code), g = EX[p.code]?.[word];
+    const d = document.createElement("div");
+    if (c) { d.className = "ex"; d.innerHTML = `${c.a ? `<button class="aud" data-aud="${esc(c.a)}" aria-label="Ouvir o exemplo">▶</button>` : ""}<span><span class="fr">${stripTags(c.fr)}</span> · ${esc(stripTags(cardEn(c)))}</span>`; }
+    else if (g) { d.className = "ex gen"; d.title = "Exemplo criado pelo Claude"; d.innerHTML = `<span><span class="fr">${esc(g.fr)}</span> · ${esc(g.pt)}</span>`; }
+    else { missing.push({ w: word, m: meaning }); return; }
+    td.appendChild(d);
+  });
+  return missing;
+}
+async function genExamples(p, missing) {
+  const sample = await getSample(); if (!sample) throw { code: "unavailable" };
+  const out = await sample.json(`Para cada palavra francesa da lista abaixo (da lição "${p.en}" de gramática francesa), escreva uma frase de exemplo curta e natural em francês, nível A2, usando a palavra exatamente nessa forma, e a tradução para o português do Brasil. Se quiser, use os personagens Tex (um tatu poeta do Texas), Tammy, Edouard, Joe-Bob, Bette e Fiona. Responda só com JSON: [{"w":"palavra","fr":"frase em francês","pt":"tradução"}].\n\n${JSON.stringify(missing)}`, { modelTier: "default", cache: false });
+  if (!Array.isArray(out)) throw { code: "bad_output" };
+  const got = EX[p.code] || (EX[p.code] = {});
+  out.forEach(x => { if (x && typeof x.w === "string" && x.fr && x.pt) got[x.w.trim()] = { fr: String(x.fr), pt: String(x.pt) }; });
+  try { localStorage.setItem("tex-ex", JSON.stringify(EX)); } catch (e) {}
+  if (DB) DB.doc("exemplos/" + slug(p.code)).set({ items: got }).catch(() => {});
 }
 
 /* ---------- spaced repetition (SM-2 style) ---------- */
@@ -568,7 +617,8 @@ function viewLesson(p) {
     <p class="credit">Conteúdo de <em>Tex's French Grammar</em> © University of Texas at Austin (COERLL).</p>`;
   const el = $("lesson");
   // vocabulary grids (3+ words per row) read better as a list at every width
-  el.querySelectorAll("table").forEach(t => { if (!t.querySelector("table") && [...t.rows].some(r => [...r.cells].filter(c => c.textContent.trim() && !c.querySelector("button.aud")).length >= 3)) { t.classList.add("vgrid"); [...t.rows].forEach(r => { if (!r.textContent.replace(/\u00a0/g, "").trim()) r.remove(); }); } });
+  el.querySelectorAll("table").forEach(t => { if (!t.querySelector("table") && [...t.rows].every(r => r.querySelector("a[data-anchor]"))) t.classList.add("toc"); });
+  el.querySelectorAll("table").forEach(t => { if (!t.querySelector("table") && !t.classList.contains("toc") && [...t.rows].some(r => [...r.cells].filter(c => c.textContent.trim() && !c.querySelector("button.aud")).length >= 3)) { t.classList.add("vgrid"); [...t.rows].forEach(r => { if (!r.textContent.replace(/\u00a0/g, "").trim()) r.remove(); }); } });
   el.querySelectorAll("table").forEach(t => { if (!t.parentElement.closest(".tbl")) { const w = document.createElement("div"); w.className = "tbl"; t.replaceWith(w); w.appendChild(t); } });
   if (pv) $("prev").onclick = () => go(pv.id);
   if (nx) $("next").onclick = () => go(nx.id);
@@ -589,6 +639,7 @@ function viewLesson(p) {
   });
   setupTutor(p);
   setupTranslation(p);
+  setupExamples(p, el);
   // arriving from search: highlight every hit and jump to the chosen one
   if (pendingFind?.q) highlight(el, pendingFind);
   else if (pendingFind?.anchor) setTimeout(() => document.getElementById("a-" + pendingFind.anchor)?.scrollIntoView({ block: "start" }), 0);
@@ -619,6 +670,26 @@ function highlight(root, { q, whole, k }) {
   $("fnext").onclick = () => { i = (i + 1) % marks.length; show(); };
   $("fclose").onclick = () => { root.querySelectorAll("mark").forEach(m => m.replaceWith(...m.childNodes)); $("findbar").innerHTML = ""; };
   setTimeout(show, 0);
+}
+
+function setupExamples(p, el) {
+  const missing = addExamples(el, p);
+  if (!missing.length) return;
+  const grid = el.querySelector("table.vgrid"); if (!grid) return;
+  const bar = document.createElement("div"); bar.className = "exbar";
+  bar.innerHTML = `<span id="exmsg">${missing.length} ${missing.length > 1 ? "palavras" : "palavra"} desta lista ainda sem exemplo.</span><button id="exgo" hidden>Criar exemplos com o Claude</button>`;
+  grid.closest(".tbl")?.after(bar);
+  const run = async () => {
+    $("exgo").disabled = true; $("exmsg").textContent = "Criando exemplos…";
+    try { await genExamples(p, missing); if (cur.lesson === p) viewLesson(p); }
+    catch (e) { if (cur.lesson === p && $("exmsg")) { $("exmsg").textContent = e?.code === "bad_output" ? "Não consegui criar os exemplos. Tente de novo." : errCopy(e); $("exgo").disabled = false; } }
+  };
+  getSample().then(sample => {
+    if (cur.lesson !== p || !$("exgo")) return;
+    if (!sample) { $("exmsg").textContent += " O Claude cria os que faltam quando o app está aberto no claude.ai."; return; }
+    $("exgo").hidden = false; $("exgo").onclick = run;
+    if (S.autoTr === true) run();
+  });
 }
 
 function setupTranslation(p) {
