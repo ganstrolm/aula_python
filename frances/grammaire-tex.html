@@ -95,7 +95,7 @@ article h2{font-family:var(--display);font-weight:800;font-size:clamp(26px,4vw,3
     <h2 id="title"></h2>
     <div class="lesson" id="lesson"></div>
     <div class="pager"><button id="prev"></button><button id="next" class="primary"></button></div>
-    <p class="note">Conteúdo de <em>Tex's French Grammar</em> © University of Texas at Austin (COERLL), salvo para estudo offline. Áudios na pasta <code>audio/</code>, que precisa ficar ao lado deste arquivo quando usado offline.</p>
+    <p class="note">Conteúdo de <em>Tex's French Grammar</em> © University of Texas at Austin (COERLL), salvo para estudo offline. Áudios na pasta <code>audiopack/</code>, que precisa ficar ao lado deste arquivo quando usado offline.</p>
   </article>
 </main>
 </div>
@@ -171,16 +171,23 @@ $("mark").onclick = () => { done[cur.code] ? delete done[cur.code] : done[cur.co
 $("q").addEventListener("input", renderNav);
 $("menu").onclick = e => { e.stopPropagation(); $("side").classList.toggle("open"); };
 $("main").addEventListener("click", e => { if ($("side").classList.contains("open")) $("side").classList.remove("open"); });
-// one shared player: clicking another clip stops the current one
-const player = new Audio(); let playing = null;
+// one shared player; clips come from per-lesson packs (audiopack/<lesson>.js) loaded on demand
+const player = new Audio(); let playing = null; const packs = {};
+window.AUD = window.AUD || {};
+const loadPack = les => packs[les] ||= new Promise((ok, fail) => { const s = document.createElement("script"); s.src = "audiopack/" + les + ".js"; s.onload = ok; s.onerror = () => { delete packs[les]; fail(); }; document.head.appendChild(s); });
+const audFail = b => { b.classList.remove("playing"); b.classList.add("err"); b.title = "Áudio não encontrado: a pasta audiopack/ precisa estar ao lado do arquivo"; };
 player.onended = player.onpause = () => playing?.classList.remove("playing");
-player.onerror = () => { if (playing) { playing.classList.remove("playing"); playing.classList.add("err"); playing.title = "Áudio não encontrado: a pasta audio/ precisa estar ao lado do arquivo"; } };
-$("lesson").addEventListener("click", e => {
+player.onerror = () => playing && audFail(playing);
+$("lesson").addEventListener("click", async e => {
   const b = e.target.closest("button.aud"); if (!b) return;
   if (playing === b && !player.paused) { player.pause(); return; }
   playing?.classList.remove("playing");
   playing = b; b.classList.add("playing");
-  player.src = "audio/" + b.dataset.aud + ".mp3";
+  const id = b.dataset.aud;
+  try { await loadPack(id.replace(/_[^_]+$/, "")); } catch { return audFail(b); }
+  if (playing !== b) return;
+  if (!AUD[id]) return audFail(b);
+  player.src = AUD[id];
   player.play().catch(() => {});
 });
 // in-lesson links carry the target section in data-anchor; same-lesson jumps don't change the hash
