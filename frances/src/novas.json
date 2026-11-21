@@ -635,5 +635,714 @@
     "pt": "De vez em quando, Tex vai a Opelousas."
    }
   ]
+ },
+ "adv1": {
+  "ideia": "Advérbio modifica um verbo, um adjetivo ou outro advérbio. Muitos terminam em -ment, o nosso -mente.",
+  "resumo": "Ele responde a como, quanto, quando e onde. Boa notícia: o francês separa <b>bien</b> (bem, advérbio) de <b>bon</b> (bom, adjetivo) exatamente como o português separa bem e bom.",
+  "blocos": [
+   {
+    "t": "-ment = -mente",
+    "itens": [
+     {
+      "fr": "lentement",
+      "pt": "lentamente"
+     },
+     {
+      "fr": "attentivement",
+      "pt": "atentamente"
+     },
+     {
+      "fr": "souvent",
+      "pt": "frequentemente / muitas vezes",
+      "obs": "nem todo advérbio termina em -ment"
+     }
+    ]
+   },
+   {
+    "t": "O que ele pode modificar",
+    "itens": [
+     {
+      "fr": "Écoute attentivement.",
+      "pt": "Escuta com atenção.",
+      "obs": "um verbo"
+     },
+     {
+      "fr": "trop lentement",
+      "pt": "devagar demais",
+      "obs": "outro advérbio"
+     },
+     {
+      "fr": "extrêmement silencieux",
+      "pt": "extremamente silencioso",
+      "obs": "um adjetivo"
+     }
+    ]
+   },
+   {
+    "t": "Bien (bem) × bon (bom)",
+    "txt": "O advérbio fala da ação; o adjetivo, do substantivo.",
+    "itens": [
+     {
+      "fr": "Tex écrit bien.",
+      "pt": "Tex escreve bem."
+     },
+     {
+      "fr": "La poésie de Tex est bonne.",
+      "pt": "A poesia de Tex é boa.",
+      "obs": "bonne concorda com poésie; bien nunca muda"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "No português falado dizemos “ele fala rápido”, “ela canta bonito”. Em francês isso quase não existe: <i>il parle <b>vite</b></i>, <i>elle chante <b>bien</b></i>.",
+   "Algumas exceções fixas usam adjetivo como advérbio, e ele não concorda: <i>parler fort</i> (falar alto), <i>coûter cher</i> (custar caro), <i>travailler dur</i> (trabalhar duro), <i>sentir bon</i> (cheirar bem).",
+   "O advérbio não muda: não existe “biens” nem “vitement”."
+  ],
+  "treino": [
+   {
+    "q": "Edouard cuisine très ___ (bem).",
+    "r": "bien",
+    "pt": "Edouard cozinha muito bem."
+   },
+   {
+    "q": "Ce gâteau est ___ (bom).",
+    "r": "bon",
+    "pt": "Esse bolo é bom."
+   },
+   {
+    "q": "Ce sac coûte ___ (caro).",
+    "r": "cher",
+    "pt": "Essa bolsa custa caro."
+   }
+  ]
+ },
+ "adv2": {
+  "ideia": "Para formar: adjetivo no feminino + ment (lente → lentement). Para posicionar: logo depois do verbo, nunca entre o sujeito e o verbo.",
+  "resumo": "Primeiro, os advérbios mais comuns, que valem a pena decorar. Depois, como fabricar advérbios a partir de adjetivos. Por fim, onde colocá-los na frase, o ponto em que o português mais engana.",
+  "blocos": [
+   {
+    "t": "Modo",
+    "itens": [
+     {
+      "fr": "bien",
+      "pt": "bem",
+      "ex": "Edouard cuisine bien. · Edouard cozinha bem."
+     },
+     {
+      "fr": "mal",
+      "pt": "mal",
+      "ex": "Je dors mal. · Durmo mal."
+     },
+     {
+      "fr": "vite",
+      "pt": "rápido",
+      "ex": "Joe-Bob mange vite. · Joe-Bob come rápido."
+     }
+    ]
+   },
+   {
+    "t": "Tempo e frequência",
+    "itens": [
+     {
+      "fr": "souvent",
+      "pt": "com frequência",
+      "ex": "Tex va souvent à Opelousas. · Tex vai muito a Opelousas."
+     },
+     {
+      "fr": "quelquefois",
+      "pt": "às vezes",
+      "ex": "Je mange quelquefois au restaurant. · Às vezes como no restaurante."
+     },
+     {
+      "fr": "toujours",
+      "pt": "sempre",
+      "ex": "Bette est toujours à l'heure. · Bette chega sempre na hora."
+     },
+     {
+      "fr": "jamais",
+      "pt": "nunca",
+      "ex": "Il ne pleut jamais. · Nunca chove."
+     },
+     {
+      "fr": "tôt",
+      "pt": "cedo",
+      "ex": "Je me lève tôt. · Acordo cedo."
+     },
+     {
+      "fr": "tard",
+      "pt": "tarde",
+      "ex": "Il est tard. · É tarde."
+     },
+     {
+      "fr": "bientôt",
+      "pt": "logo, em breve",
+      "ex": "À bientôt ! · Até breve!"
+     },
+     {
+      "fr": "hier",
+      "pt": "ontem",
+      "ex": "Hier, j'ai travaillé. · Ontem eu trabalhei."
+     },
+     {
+      "fr": "aujourd'hui",
+      "pt": "hoje",
+      "ex": "Il fait beau aujourd'hui. · Hoje está bonito."
+     },
+     {
+      "fr": "demain",
+      "pt": "amanhã",
+      "ex": "Tex part demain. · Tex viaja amanhã."
+     },
+     {
+      "fr": "maintenant",
+      "pt": "agora",
+      "ex": "Je suis libre maintenant. · Estou livre agora."
+     },
+     {
+      "fr": "déjà",
+      "pt": "já",
+      "ex": "Tu as déjà mangé ? · Você já comeu?"
+     }
+    ]
+   },
+   {
+    "t": "Lugar",
+    "itens": [
+     {
+      "fr": "ici",
+      "pt": "aqui",
+      "ex": "Viens ici ! · Vem aqui!"
+     },
+     {
+      "fr": "là",
+      "pt": "ali, lá",
+      "ex": "Elle est toujours là ? · Ela ainda está aí?"
+     },
+     {
+      "fr": "partout",
+      "pt": "em todo lugar",
+      "ex": "Il y a du ketchup partout. · Tem ketchup em todo lugar."
+     },
+     {
+      "fr": "quelque part",
+      "pt": "em algum lugar",
+      "ex": "J'ai mis mes clés quelque part. · Deixei minhas chaves em algum lugar."
+     },
+     {
+      "fr": "dedans / dehors",
+      "pt": "dentro / fora",
+      "ex": "Le chat est dehors. · O gato está lá fora."
+     }
+    ]
+   },
+   {
+    "t": "Quantidade e intensidade",
+    "itens": [
+     {
+      "fr": "beaucoup",
+      "pt": "muito (com verbo)",
+      "ex": "Joe-Bob mange beaucoup. · Joe-Bob come muito."
+     },
+     {
+      "fr": "très",
+      "pt": "muito (com adjetivo ou advérbio)",
+      "ex": "C'est très bon. · É muito bom."
+     },
+     {
+      "fr": "trop",
+      "pt": "demais",
+      "ex": "J'ai trop mangé. · Comi demais."
+     },
+     {
+      "fr": "assez",
+      "pt": "bastante, o suficiente",
+      "ex": "Tu as assez dormi ? · Você dormiu o suficiente?"
+     },
+     {
+      "fr": "peu",
+      "pt": "pouco",
+      "ex": "Il parle peu. · Ele fala pouco."
+     },
+     {
+      "fr": "peut-être",
+      "pt": "talvez",
+      "ex": "Peut-être demain. · Talvez amanhã."
+     }
+    ]
+   },
+   {
+    "t": "Sequência",
+    "itens": [
+     {
+      "fr": "d'abord",
+      "pt": "primeiro",
+      "ex": "D'abord, on mange. · Primeiro a gente come."
+     },
+     {
+      "fr": "puis / ensuite",
+      "pt": "depois",
+      "ex": "Puis on danse. · Depois a gente dança."
+     },
+     {
+      "fr": "alors",
+      "pt": "então",
+      "ex": "Alors, on y va ? · Então, vamos?"
+     },
+     {
+      "fr": "donc",
+      "pt": "portanto, então",
+      "ex": "Je pense, donc je suis. · Penso, logo existo."
+     },
+     {
+      "fr": "enfin",
+      "pt": "enfim, finalmente",
+      "ex": "Enfin, le week-end ! · Enfim, o fim de semana!"
+     }
+    ]
+   },
+   {
+    "t": "Formação 1: feminino + ment",
+    "itens": [
+     {
+      "fr": "lent → lente → lentement",
+      "pt": "lento → lentamente"
+     },
+     {
+      "fr": "doux → douce → doucement",
+      "pt": "suave → suavemente, devagarinho"
+     },
+     {
+      "fr": "heureux → heureuse → heureusement",
+      "pt": "feliz → felizmente"
+     },
+     {
+      "fr": "franc → franche → franchement",
+      "pt": "franco → francamente"
+     }
+    ]
+   },
+   {
+    "t": "Formação 2: adjetivo terminado em vogal → masculino + ment",
+    "itens": [
+     {
+      "fr": "poli → poliment",
+      "pt": "educado → educadamente"
+     },
+     {
+      "fr": "vrai → vraiment",
+      "pt": "verdadeiro → realmente"
+     },
+     {
+      "fr": "absolu → absolument",
+      "pt": "absoluto → absolutamente"
+     }
+    ]
+   },
+   {
+    "t": "Formação 3: -ent → -emment, -ant → -amment",
+    "txt": "As duas se pronunciam igual: [amɑ̃].",
+    "itens": [
+     {
+      "fr": "récent → récemment",
+      "pt": "recente → recentemente"
+     },
+     {
+      "fr": "fréquent → fréquemment",
+      "pt": "frequente → frequentemente"
+     },
+     {
+      "fr": "suffisant → suffisamment",
+      "pt": "suficiente → suficientemente"
+     },
+     {
+      "fr": "méchant → méchamment",
+      "pt": "malvado → maldosamente"
+     }
+    ]
+   },
+   {
+    "t": "Formação 4: alguns ganham -ément",
+    "itens": [
+     {
+      "fr": "précis → précisément",
+      "pt": "preciso → precisamente"
+     },
+     {
+      "fr": "profond → profondément",
+      "pt": "profundo → profundamente"
+     },
+     {
+      "fr": "énorme → énormément",
+      "pt": "enorme → enormemente"
+     },
+     {
+      "fr": "gentil → gentiment",
+      "pt": "gentil → gentilmente",
+      "obs": "irregular"
+     }
+    ]
+   },
+   {
+    "t": "Onde colocar",
+    "itens": [
+     {
+      "fr": "Edouard comprend mal les habitudes américaines.",
+      "pt": "Edouard entende mal os hábitos americanos.",
+      "a": "adv2_ex8",
+      "obs": "logo depois do verbo"
+     },
+     {
+      "fr": "Edouard ne marche pas vite.",
+      "pt": "Edouard não anda rápido.",
+      "a": "adv2_ex8",
+      "obs": "depois da negação"
+     },
+     {
+      "fr": "J'aime beaucoup le ketchup !",
+      "pt": "Gosto muito de ketchup!",
+      "a": "adv2_ex9",
+      "obs": "antes do complemento"
+     },
+     {
+      "fr": "Le barbecue est vraiment dégueulasse !",
+      "pt": "O churrasco é realmente nojento!",
+      "a": "adv2_ex7",
+      "obs": "antes do adjetivo que modifica"
+     },
+     {
+      "fr": "Malheureusement, on n'a pas assez d'argent.",
+      "pt": "Infelizmente, não temos dinheiro suficiente.",
+      "a": "adv2_ex10",
+      "obs": "comenta a frase toda: vai no começo ou no fim"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "Em português dizemos “Eu <b>sempre</b> como”. Em francês o advérbio não entra entre sujeito e verbo: <i>Je mange <b>toujours</b></i>, nunca <i>je toujours mange</i>.",
+   "<b>Très</b> só vai antes de adjetivo ou advérbio (<i>très bien</i>). Com verbo, “muito” é <b>beaucoup</b>: <i>il travaille beaucoup</i>, nunca <i>il travaille très</i>.",
+   "<b>Beaucoup de</b> + substantivo, sem artigo: <i>beaucoup de ketchup</i>."
+  ],
+  "treino": [
+   {
+    "q": "heureux → ___",
+    "r": "heureusement",
+    "pt": "felizmente"
+   },
+   {
+    "q": "vrai → ___",
+    "r": "vraiment",
+    "pt": "realmente"
+   },
+   {
+    "q": "récent → ___",
+    "r": "récemment",
+    "pt": "recentemente"
+   },
+   {
+    "q": "Je mange ___ des fruits. (sempre)",
+    "r": "toujours",
+    "pt": "Eu sempre como frutas."
+   },
+   {
+    "q": "Il travaille ___. (muito)",
+    "r": "beaucoup",
+    "pt": "Ele trabalha muito."
+   }
+  ]
+ },
+ "adv3": {
+  "ideia": "No passé composé, o advérbio curto fica entre o auxiliar e o particípio: j'ai bien mangé. No futur proche, antes do infinitivo: je vais bien dormir.",
+  "resumo": "É a mesma regra da lição anterior (o advérbio vem logo depois do verbo conjugado). Nos tempos compostos o verbo conjugado é o auxiliar, então o advérbio cai no meio. Os advérbios longos em -ment podem ir para o fim.",
+  "blocos": [
+   {
+    "t": "Passé composé: auxiliar + advérbio + particípio",
+    "itens": [
+     {
+      "fr": "J'ai trop mangé.",
+      "pt": "Comi demais.",
+      "a": "adv3_ex1"
+     },
+     {
+      "fr": "Tu n'as pas beaucoup mangé !",
+      "pt": "Você não comeu muito!",
+      "a": "adv3_ex1",
+      "obs": "a negação vem antes do advérbio"
+     },
+     {
+      "fr": "Il a déjà fini.",
+      "pt": "Ele já terminou."
+     },
+     {
+      "fr": "Nous avons bien dormi.",
+      "pt": "Dormimos bem."
+     }
+    ]
+   },
+   {
+    "t": "Advérbios longos em -ment podem ir para o fim",
+    "itens": [
+     {
+      "fr": "Il a parlé lentement.",
+      "pt": "Ele falou devagar."
+     },
+     {
+      "fr": "Elle a répondu poliment.",
+      "pt": "Ela respondeu educadamente."
+     }
+    ]
+   },
+   {
+    "t": "Futur proche: antes do infinitivo",
+    "itens": [
+     {
+      "fr": "Je ne vais pas bien dormir.",
+      "pt": "Não vou dormir bem.",
+      "a": "adv3_ex1"
+     },
+     {
+      "fr": "Je vais immédiatement te préparer une infusion.",
+      "pt": "Vou te preparar um chá agora mesmo.",
+      "a": "adv3_ex1"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "Em português o advérbio vem depois do particípio (“comi bem”). Em francês ele entra no meio: <i>j'ai <b>bien</b> mangé</i>.",
+   "Advérbios de tempo e lugar como <i>hier, aujourd'hui, ici, partout</i> não entram no meio: <i>J'ai mangé ici hier</i>, nunca <i>j'ai hier mangé</i>."
+  ],
+  "treino": [
+   {
+    "q": "J'ai ___ mangé. (bem)",
+    "r": "bien",
+    "pt": "Comi bem."
+   },
+   {
+    "q": "Il n'a pas ___ travaillé. (muito)",
+    "r": "beaucoup",
+    "pt": "Ele não trabalhou muito."
+   },
+   {
+    "q": "Tu as ___ fini ? (já)",
+    "r": "déjà",
+    "pt": "Você já terminou?"
+   }
+  ]
+ },
+ "adv4": {
+  "ideia": "plus / moins / aussi + advérbio + que = mais / menos / tão … quanto. E bien vira mieux (melhor), igual a bem → melhor.",
+  "resumo": "O comparativo funciona como em português. No superlativo, o advérbio usa sempre <b>le</b>, porque advérbio não tem gênero: <i>elle court le plus vite</i>.",
+  "blocos": [
+   {
+    "t": "Comparativo",
+    "itens": [
+     {
+      "fr": "Joe-Bob court plus vite qu'Edouard.",
+      "pt": "Joe-Bob corre mais rápido que Edouard.",
+      "a": "adv4_ex1"
+     },
+     {
+      "fr": "Tex court moins vite que Joe-Bob.",
+      "pt": "Tex corre menos rápido que Joe-Bob.",
+      "a": "adv4_ex1"
+     },
+     {
+      "fr": "Qui court aussi lentement qu'Edouard ?",
+      "pt": "Quem corre tão devagar quanto Edouard?",
+      "a": "adv4_ex1"
+     }
+    ]
+   },
+   {
+    "t": "Bien → mieux",
+    "itens": [
+     {
+      "fr": "Je vais mieux qu'hier.",
+      "pt": "Estou melhor que ontem.",
+      "a": "adv4_ex2"
+     },
+     {
+      "fr": "Je vais moins bien qu'hier.",
+      "pt": "Estou pior que ontem.",
+      "a": "adv4_ex2",
+      "obs": "literalmente “menos bem”"
+     },
+     {
+      "fr": "Je vais aussi bien qu'hier.",
+      "pt": "Estou tão bem quanto ontem.",
+      "a": "adv4_ex2"
+     }
+    ]
+   },
+   {
+    "t": "Superlativo: le plus / le moins",
+    "itens": [
+     {
+      "fr": "Je cours le plus vite.",
+      "pt": "Eu corro mais rápido que todos.",
+      "a": "adv4_ex3"
+     },
+     {
+      "fr": "Il court le moins vite.",
+      "pt": "Ele é o que corre menos rápido.",
+      "a": "adv4_ex3"
+     },
+     {
+      "fr": "Je cours le plus élégamment !",
+      "pt": "Sou eu quem corre com mais elegância!",
+      "a": "adv4_ex3"
+     },
+     {
+      "fr": "C'est Tammy qui danse le mieux.",
+      "pt": "É a Tammy que dança melhor.",
+      "obs": "superlativo de bien: le mieux"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "Nunca <i>plus bien</i>: o certo é <b>mieux</b>. E também nunca <i>plus mieux</i>, assim como não dizemos “mais melhor”.",
+   "No superlativo de advérbio é sempre <b>le</b>, mesmo falando de uma mulher: <i>Tammy chante <b>le</b> mieux</i>.",
+   "<i>Que</i> vira <b>qu'</b> antes de vogal: <i>plus vite qu'Edouard</i>."
+  ],
+  "treino": [
+   {
+    "q": "Joe-Bob court ___ vite que Tex. (mais)",
+    "r": "plus",
+    "pt": "Joe-Bob corre mais rápido que Tex."
+   },
+   {
+    "q": "Je parle ___ qu'avant. (melhor)",
+    "r": "mieux",
+    "pt": "Falo melhor que antes."
+   },
+   {
+    "q": "Tammy danse ___ mieux. (superlativo)",
+    "r": "le",
+    "pt": "Tammy é quem dança melhor."
+   }
+  ]
+ },
+ "adv5": {
+  "ideia": "Il y a + tempo = há … (atrás). Il y a un an = há um ano.",
+  "resumo": "Aqui o português ajuda muito: o francês usa a mesma lógica do nosso “há”. Vem com um verbo no passado e indica quanto tempo atrás algo aconteceu.",
+  "blocos": [
+   {
+    "t": "Il y a + expressão de tempo",
+    "itens": [
+     {
+      "fr": "il y a une semaine",
+      "pt": "há uma semana / uma semana atrás"
+     },
+     {
+      "fr": "il y a deux jours",
+      "pt": "há dois dias"
+     },
+     {
+      "fr": "il y a longtemps",
+      "pt": "há muito tempo"
+     },
+     {
+      "fr": "Il y a un an, j'ai promis de lui envoyer quelque chose.",
+      "pt": "Há um ano prometi mandar alguma coisa para ela."
+     },
+     {
+      "fr": "J'ai dépensé mes derniers sous il y a 10 minutes.",
+      "pt": "Gastei meus últimos trocados há 10 minutos."
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "Não confunda com <b>depuis</b>: <i>il y a</i> marca um ponto no passado (ação terminada); <i>depuis</i> marca algo que continua (“desde”, “faz … que”). Veja a lição <i>Depuis vs. il y a … que</i>.",
+   "Não use <i>il y a</i> para o futuro: “daqui a dois dias” é <b>dans</b> deux jours."
+  ],
+  "treino": [
+   {
+    "q": "Tex est arrivé ___ deux jours.",
+    "r": "il y a",
+    "pt": "Tex chegou há dois dias."
+   },
+   {
+    "q": "Je pars ___ une semaine. (daqui a)",
+    "r": "dans",
+    "pt": "Viajo daqui a uma semana."
+   }
+  ]
+ },
+ "adv6": {
+  "ideia": "Tôt / tard = cedo / tarde (em geral). En avance / en retard / à l'heure = adiantado / atrasado / na hora (em relação a um horário marcado).",
+  "resumo": "O português faz a mesma distinção: “é tarde” não é o mesmo que “estou atrasado”. É só não misturar as duas famílias.",
+  "blocos": [
+   {
+    "t": "Tôt e tard: cedo e tarde no sentido geral",
+    "itens": [
+     {
+      "fr": "Il est tard.",
+      "pt": "É tarde.",
+      "a": "adv6_ex1"
+     },
+     {
+      "fr": "Il est beaucoup trop tôt.",
+      "pt": "É cedo demais.",
+      "a": "adv6_ex1"
+     },
+     {
+      "fr": "Tu crois qu'il est trop tôt pour parler mariage ?",
+      "pt": "Você acha que é cedo demais para falar de casamento?",
+      "a": "adv6_ex1"
+     },
+     {
+      "fr": "Je me lève tôt.",
+      "pt": "Acordo cedo."
+     }
+    ]
+   },
+   {
+    "t": "Em relação a um horário marcado",
+    "txt": "Vêm com <i>être</i> ou com verbos de movimento (<i>arriver, partir, rentrer</i>), em geral no fim da frase.",
+    "itens": [
+     {
+      "fr": "Il est en retard. Il n'est jamais à l'heure.",
+      "pt": "Ele está atrasado. Nunca chega na hora.",
+      "a": "adv6_ex1"
+     },
+     {
+      "fr": "Je suis toujours à l'heure.",
+      "pt": "Estou sempre na hora.",
+      "a": "adv6_ex1"
+     },
+     {
+      "fr": "J'arrive même en avance.",
+      "pt": "Chego até adiantada.",
+      "a": "adv6_ex1"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "“Estou atrasado” é <b>je suis en retard</b>, nunca <i>je suis tard</i>.",
+   "<b>Il est tard</b> fala da hora (é tarde). <b>Il est en retard</b> fala de uma pessoa (ele está atrasado).",
+   "<i>En retard</i>, <i>en avance</i> e <i>à l'heure</i> nunca mudam: <i>elles sont en retard</i>."
+  ],
+  "treino": [
+   {
+    "q": "Dépêche-toi, on est en ___ !",
+    "r": "retard",
+    "pt": "Anda logo, estamos atrasados!"
+   },
+   {
+    "q": "Il est déjà minuit, il est ___.",
+    "r": "tard",
+    "pt": "Já é meia-noite, é tarde."
+   },
+   {
+    "q": "Le train est parti à ___ (na hora).",
+    "r": "l'heure",
+    "pt": "O trem saiu na hora."
+   }
+  ]
  }
 }

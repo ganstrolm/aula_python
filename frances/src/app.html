@@ -111,8 +111,10 @@ mark.cur{box-shadow:0 0 0 2px var(--orange)}
 .nova ul.fl li>div{display:flex;flex-wrap:wrap;column-gap:12px;row-gap:0;min-width:0;flex:1}
 .nova .fr{font-weight:600;color:var(--encre)}
 .nova .pt{color:var(--muted)}
+.nova .ex2{flex-basis:100%;font-size:12.5px;font-style:italic;color:var(--ink)}
+.nova .ex2 span{font-style:normal;color:var(--muted)}
 .nova .obs{flex-basis:100%;font-family:var(--hand);font-size:12.5px;color:var(--rouge)}
-.nova .noaud{width:28px;flex:none}
+.nova .noaud{width:24px;flex:none}
 .nova ul.fl button.aud{width:24px;height:24px;margin:0;font-size:9px}
 .nova .cuidado{margin-top:18px;border:1.5px dashed var(--rouge);padding:4px 14px 8px;background:var(--rouge-soft)}
 .nova .cuidado h4{font-family:var(--hand);font-weight:400;color:var(--rouge);margin:6px 0 2px}
@@ -427,11 +429,11 @@ ${JSON.stringify(cards.map(c => c.en))}`;
 /* ---------- rewritten lessons (novas.json): my own Portuguese version of each lesson ---------- */
 function novaHTML(code) {
   const n = NOVAS[code];
-  const item = i => `<li>${i.a ? `<button class="aud" data-aud="${esc(i.a)}" aria-label="Ouvir">▶</button>` : `<span class="noaud"></span>`}<div><span class="fr">${i.fr}</span><span class="pt">${i.pt}</span>${i.obs ? `<span class="obs">${i.obs}</span>` : ""}</div></li>`;
+  const item = (i, hasA) => `<li>${i.a ? `<button class="aud" data-aud="${esc(i.a)}" aria-label="Ouvir">▶</button>` : hasA ? `<span class="noaud"></span>` : ""}<div><span class="fr">${i.fr}</span><span class="pt">${i.pt}</span>${i.ex ? `<span class="ex2">${esc(i.ex.split(" · ")[0])}<span> · ${esc(i.ex.split(" · ")[1] || "")}</span></span>` : ""}${i.obs ? `<span class="obs">${i.obs}</span>` : ""}</div></li>`;
   return `<div class="nova">
     <div class="retiens"><span class="tag">Je retiens</span><p>${n.ideia}</p></div>
     <p class="resumo">${n.resumo}</p>
-    ${n.blocos.map(b => `<section class="bloco"><h4>${b.t}</h4>${b.txt ? `<p>${b.txt}</p>` : ""}${b.itens?.length ? `<ul class="fl">${b.itens.map(item).join("")}</ul>` : ""}</section>`).join("")}
+    ${n.blocos.map(b => `<section class="bloco"><h4>${b.t}</h4>${b.txt ? `<p>${b.txt}</p>` : ""}${b.itens?.length ? `<ul class="fl">${b.itens.map(i => item(i, b.itens.some(x => x.a))).join("")}</ul>` : ""}</section>`).join("")}
     ${n.armadilhas?.length ? `<section class="cuidado"><h4>Cuidado, brasileiro!</h4><ul>${n.armadilhas.map(a => `<li>${a}</li>`).join("")}</ul></section>` : ""}
     ${n.treino?.length ? `<section class="treino"><h4>Exercices</h4><ol>${n.treino.map((t, i) => `<li>${esc(t.q).replace("___", `<input type="text" id="tr-${i}" data-i="${i}" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(4, t.r.length + 2)}ch" aria-label="Resposta ${i + 1}">`)}<span class="pt">${esc(t.pt)}</span><span class="fb" id="trfb-${i}"></span></li>`).join("")}</ol><button class="primary" id="trcheck">Corrigir</button> <span class="saved" id="trscore"></span></section>` : ""}
   </div>`;
