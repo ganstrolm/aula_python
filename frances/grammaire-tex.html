@@ -97,6 +97,10 @@ mark.cur{box-shadow:0 0 0 2px var(--orange)}
 .lesson td:empty{display:none}
 .lesson .tbl{overflow-x:auto;margin:12px 0;padding:10px 14px;background:var(--sheet);border:1px solid var(--rule);border-left:3px double var(--seyes-bold)}
 .lesson .tbl .tbl{border:0;padding:0;margin:0;background:none}
+.lesson table.vgrid,.lesson .vgrid tbody,.lesson .vgrid tr,.lesson .vgrid td{display:block;width:auto!important}
+.lesson .vgrid tbody{columns:2 220px;column-gap:32px}
+.lesson .vgrid tr{break-inside:avoid;padding:5px 0;border-bottom:1px dashed var(--seyes-bold)}
+.lesson .vgrid td{padding:1px 0}
 .lesson .tb_blue,.lesson .tt_blue{color:var(--encre);font-weight:600}
 .lesson .tb_org,.lesson .tt_org,.lesson .red{color:var(--rouge);font-weight:600}
 .lesson .tb_blk,.lesson .tbs_blk{display:inline-block;font-weight:700;font-size:17px;margin-top:16px;border-bottom:2px solid var(--marge);line-height:1.3}
@@ -563,6 +567,8 @@ function viewLesson(p) {
     <div class="pager"><button id="prev" ${pv ? "" : "disabled"}>${pv ? "← " + esc(pv.title) : ""}</button><button id="next" class="primary" ${nx ? "" : "disabled"}>${nx ? esc(nx.title) + " →" : ""}</button></div>
     <p class="credit">Conteúdo de <em>Tex's French Grammar</em> © University of Texas at Austin (COERLL).</p>`;
   const el = $("lesson");
+  // vocabulary grids (3+ words per row) read better as a list at every width
+  el.querySelectorAll("table").forEach(t => { if (!t.querySelector("table") && [...t.rows].some(r => [...r.cells].filter(c => c.textContent.trim() && !c.querySelector("button.aud")).length >= 3)) { t.classList.add("vgrid"); [...t.rows].forEach(r => { if (!r.textContent.replace(/\u00a0/g, "").trim()) r.remove(); }); } });
   el.querySelectorAll("table").forEach(t => { if (!t.parentElement.closest(".tbl")) { const w = document.createElement("div"); w.className = "tbl"; t.replaceWith(w); w.appendChild(t); } });
   if (pv) $("prev").onclick = () => go(pv.id);
   if (nx) $("next").onclick = () => go(nx.id);
