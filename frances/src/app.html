@@ -98,6 +98,36 @@ mark.cur{box-shadow:0 0 0 2px var(--orange)}
 .lesson .tbl{overflow-x:auto;margin:8px 0;padding:7px 12px;background:var(--sheet);border:1px solid var(--rule);border-left:3px double var(--seyes-bold)}
 .lesson .tbl .tbl{border:0;padding:0;margin:0;background:none}
 .lesson .pbr{display:block;height:.5em}
+/* rewritten lessons */
+.nova .retiens{border:2px solid var(--encre);padding:8px 14px 10px;margin:4px 0 12px;background:var(--sheet);position:relative}
+.nova .retiens .tag{font-family:var(--hand);color:var(--encre);font-size:13px;position:absolute;top:-12px;left:10px;background:var(--paper);padding:0 6px}
+.nova .retiens p{margin:4px 0 0;font-weight:600;font-size:15px}
+.nova .resumo{margin:0 0 6px;color:var(--ink)}
+.nova h4{font-size:15px;font-weight:700;margin:16px 0 4px;color:var(--encre)}
+.nova .bloco>p{margin:0 0 4px}
+.nova ul.fl{list-style:none;margin:0;padding:0;background:var(--sheet);border:1px solid var(--rule)}
+.nova ul.fl li{display:flex;gap:8px;align-items:flex-start;padding:5px 10px;border-bottom:1px dashed var(--seyes-bold)}
+.nova ul.fl li:last-child{border-bottom:0}
+.nova ul.fl li>div{display:flex;flex-wrap:wrap;column-gap:12px;row-gap:0;min-width:0;flex:1}
+.nova .fr{font-weight:600;color:var(--encre)}
+.nova .pt{color:var(--muted)}
+.nova .obs{flex-basis:100%;font-family:var(--hand);font-size:12.5px;color:var(--rouge)}
+.nova .noaud{width:28px;flex:none}
+.nova ul.fl button.aud{width:24px;height:24px;margin:0;font-size:9px}
+.nova .cuidado{margin-top:18px;border:1.5px dashed var(--rouge);padding:4px 14px 8px;background:var(--rouge-soft)}
+.nova .cuidado h4{font-family:var(--hand);font-weight:400;color:var(--rouge);margin:6px 0 2px}
+.nova .cuidado ul{margin:0;padding-left:18px}
+.nova .cuidado li{margin:3px 0}
+.nova .treino{margin-top:18px}
+.nova .treino h4{font-family:var(--hand);font-weight:400;font-size:17px}
+.nova .treino ol{margin:0 0 10px;padding-left:22px}
+.nova .treino li{margin:6px 0}
+.nova .treino li .pt{display:block;font-size:12.5px}
+.nova .treino input{font:inherit;padding:0 4px;border:0;border-bottom:2px solid var(--encre);border-radius:0;background:transparent;text-align:center;color:var(--encre)}
+.nova .treino input.right{border-color:var(--vert);color:var(--vert)}
+.nova .treino input.near{border-color:var(--orange);color:var(--orange)}
+.nova .treino input.wrong{border-color:var(--rouge);color:var(--rouge);text-decoration:line-through}
+.nova .treino .fb{font-family:var(--hand);color:var(--rouge);margin-left:8px;font-size:13px}
 .lesson .ex{font-size:12.5px;line-height:1.4;color:var(--muted);margin:1px 0 3px 10px;display:flex;gap:6px;align-items:flex-start}
 .lesson .ex .fr{color:var(--ink);font-style:italic}
 .lesson .ex button.aud{width:20px;height:20px;font-size:8px;margin:0}
@@ -251,6 +281,7 @@ const LESSONS = __LESSONS__;
 const STUDY = __STUDY__;
 const TITLES_PT = __TITLES__;
 const TR_BAKED = __TR__;
+const NOVAS = __NOVAS__;
 </script>
 <script>
 "use strict";
@@ -337,7 +368,9 @@ try { Object.assign(TR, JSON.parse(localStorage.getItem("tex-tr") || "{}")); } c
 let DB = null;
 const NO_TR = new Set(["gr/index"]); // the site index is a list of links; its titles are already translated
 const usePt = () => S.lang === "pt";
-const lessonHTML = code => ((usePt() && TR[code]?.html) || LESSONS[code]).replace(/(<br\s*\/?>\s*){2,}/g, '<span class="pbr"></span>');
+const showOrig = new Set(); // lessons the viewer switched back to the original course page
+const isNova = code => NOVAS[code] && !showOrig.has(code);
+const lessonHTML = code => isNova(code) ? novaHTML(code) : ((usePt() && TR[code]?.html) || LESSONS[code]).replace(/(<br\s*\/?>\s*){2,}/g, '<span class="pbr"></span>');
 const cardEn = c => (usePt() && TR[c.l]?.cards?.[c.id]) || c.en;
 function cacheTR() { try { localStorage.setItem("tex-tr", JSON.stringify(Object.fromEntries(Object.entries(TR).filter(([k]) => !TR_BAKED[k])))); } catch (e) {} }
 const trJobs = {};
@@ -389,6 +422,37 @@ ${JSON.stringify(cards.map(c => c.en))}`;
     if (DB) DB.doc("traducoes/" + slug(p.code)).set(TR[p.code]).catch(() => {});
     return TR[p.code];
   })().finally(() => delete trJobs[p.code]);
+}
+
+/* ---------- rewritten lessons (novas.json): my own Portuguese version of each lesson ---------- */
+function novaHTML(code) {
+  const n = NOVAS[code];
+  const item = i => `<li>${i.a ? `<button class="aud" data-aud="${esc(i.a)}" aria-label="Ouvir">▶</button>` : `<span class="noaud"></span>`}<div><span class="fr">${i.fr}</span><span class="pt">${i.pt}</span>${i.obs ? `<span class="obs">${i.obs}</span>` : ""}</div></li>`;
+  return `<div class="nova">
+    <div class="retiens"><span class="tag">Je retiens</span><p>${n.ideia}</p></div>
+    <p class="resumo">${n.resumo}</p>
+    ${n.blocos.map(b => `<section class="bloco"><h4>${b.t}</h4>${b.txt ? `<p>${b.txt}</p>` : ""}${b.itens?.length ? `<ul class="fl">${b.itens.map(item).join("")}</ul>` : ""}</section>`).join("")}
+    ${n.armadilhas?.length ? `<section class="cuidado"><h4>Cuidado, brasileiro!</h4><ul>${n.armadilhas.map(a => `<li>${a}</li>`).join("")}</ul></section>` : ""}
+    ${n.treino?.length ? `<section class="treino"><h4>Exercices</h4><ol>${n.treino.map((t, i) => `<li>${esc(t.q).replace("___", `<input type="text" id="tr-${i}" data-i="${i}" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(4, t.r.length + 2)}ch" aria-label="Resposta ${i + 1}">`)}<span class="pt">${esc(t.pt)}</span><span class="fb" id="trfb-${i}"></span></li>`).join("")}</ol><button class="primary" id="trcheck">Corrigir</button> <span class="saved" id="trscore"></span></section>` : ""}
+  </div>`;
+}
+function setupTreino(p, el) {
+  const n = NOVAS[p.code], btn = el.querySelector("#trcheck"); if (!btn) return;
+  const norm = s => s.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, " ").trim();
+  btn.onclick = () => {
+    let ok = 0;
+    n.treino.forEach((t, i) => {
+      const inp = $("tr-" + i), v = norm(inp.value), fb = $("trfb-" + i), goods = [t.r, ...(t.alt || [])].map(norm);
+      inp.classList.remove("right", "near", "wrong");
+      if (goods.includes(v)) { inp.classList.add("right"); fb.textContent = "✓"; ok++; }
+      else if (goods.some(g => fold(g) === fold(v)) && v) { inp.classList.add("near"); fb.textContent = `quase: ${t.r}`; }
+      else { inp.classList.add("wrong"); fb.textContent = t.r; }
+      logAnswer(goods.includes(v));
+    });
+    const r = S.cz[p.code] || (S.cz[p.code] = { n: 0, ok: 0 }); r.n += n.treino.length; r.ok += ok; save();
+    $("trscore").textContent = `${ok} de ${n.treino.length} certas` + (ok === n.treino.length ? " · Bravo !" : "");
+  };
+  el.querySelectorAll(".treino input").forEach(inp => inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); btn.click(); } });
 }
 
 /* ---------- examples for vocabulary lists: real lesson sentences first, Claude-made ones for the rest ---------- */
@@ -572,7 +636,7 @@ function viewLesson(p) {
   const i = pages.indexOf(p), pv = pages[i - 1], nx = pages[i + 1];
   const nCards = CARDS.filter(c => c.l === p.code).length;
   $("topActions").innerHTML = `<button id="markBtn"></button>`;
-  const upd = () => { const d = !!S.done[p.code]; $("markBtn").textContent = d ? "✓ Estudada" : "Marcar como estudada"; $("markBtn").className = d ? "ok" : "primary"; };
+  const upd = () => { const d = !!S.done[p.code]; $("markBtn").textContent = d ? "✓ Estudada" : "Marcar estudada"; $("markBtn").className = d ? "ok" : "primary"; };
   $("markBtn").onclick = () => { S.done[p.code] ? delete S.done[p.code] : S.done[p.code] = 1; save(); upd(); renderNav(); };
   upd();
   $("view").innerHTML = `
@@ -619,8 +683,14 @@ function viewLesson(p) {
     if (id === p.id) jump(); else { pendingFind = { anchor: anc }; go(id); }
   });
   setupTutor(p);
-  setupTranslation(p);
-  setupExamples(p, el);
+  if (NOVAS[p.code]) {
+    const b = document.createElement("button"); b.className = "ghost";
+    b.textContent = isNova(p.code) ? "Original" : "Minha versão"; b.title = isNova(p.code) ? "Ver a lição como no curso original" : "Voltar à versão reescrita";
+    b.onclick = () => { showOrig.has(p.code) ? showOrig.delete(p.code) : showOrig.add(p.code); CORPUS = null; viewLesson(p); };
+    $("topActions").prepend(b);
+  }
+  if (isNova(p.code)) setupTreino(p, el);
+  else { setupTranslation(p); setupExamples(p, el); }
   // arriving from search: highlight every hit and jump to the chosen one
   if (pendingFind?.q) highlight(el, pendingFind);
   else if (pendingFind?.anchor) setTimeout(() => document.getElementById("a-" + pendingFind.anchor)?.scrollIntoView({ block: "start" }), 0);

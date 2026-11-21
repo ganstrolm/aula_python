@@ -98,6 +98,36 @@ mark.cur{box-shadow:0 0 0 2px var(--orange)}
 .lesson .tbl{overflow-x:auto;margin:8px 0;padding:7px 12px;background:var(--sheet);border:1px solid var(--rule);border-left:3px double var(--seyes-bold)}
 .lesson .tbl .tbl{border:0;padding:0;margin:0;background:none}
 .lesson .pbr{display:block;height:.5em}
+/* rewritten lessons */
+.nova .retiens{border:2px solid var(--encre);padding:8px 14px 10px;margin:4px 0 12px;background:var(--sheet);position:relative}
+.nova .retiens .tag{font-family:var(--hand);color:var(--encre);font-size:13px;position:absolute;top:-12px;left:10px;background:var(--paper);padding:0 6px}
+.nova .retiens p{margin:4px 0 0;font-weight:600;font-size:15px}
+.nova .resumo{margin:0 0 6px;color:var(--ink)}
+.nova h4{font-size:15px;font-weight:700;margin:16px 0 4px;color:var(--encre)}
+.nova .bloco>p{margin:0 0 4px}
+.nova ul.fl{list-style:none;margin:0;padding:0;background:var(--sheet);border:1px solid var(--rule)}
+.nova ul.fl li{display:flex;gap:8px;align-items:flex-start;padding:5px 10px;border-bottom:1px dashed var(--seyes-bold)}
+.nova ul.fl li:last-child{border-bottom:0}
+.nova ul.fl li>div{display:flex;flex-wrap:wrap;column-gap:12px;row-gap:0;min-width:0;flex:1}
+.nova .fr{font-weight:600;color:var(--encre)}
+.nova .pt{color:var(--muted)}
+.nova .obs{flex-basis:100%;font-family:var(--hand);font-size:12.5px;color:var(--rouge)}
+.nova .noaud{width:28px;flex:none}
+.nova ul.fl button.aud{width:24px;height:24px;margin:0;font-size:9px}
+.nova .cuidado{margin-top:18px;border:1.5px dashed var(--rouge);padding:4px 14px 8px;background:var(--rouge-soft)}
+.nova .cuidado h4{font-family:var(--hand);font-weight:400;color:var(--rouge);margin:6px 0 2px}
+.nova .cuidado ul{margin:0;padding-left:18px}
+.nova .cuidado li{margin:3px 0}
+.nova .treino{margin-top:18px}
+.nova .treino h4{font-family:var(--hand);font-weight:400;font-size:17px}
+.nova .treino ol{margin:0 0 10px;padding-left:22px}
+.nova .treino li{margin:6px 0}
+.nova .treino li .pt{display:block;font-size:12.5px}
+.nova .treino input{font:inherit;padding:0 4px;border:0;border-bottom:2px solid var(--encre);border-radius:0;background:transparent;text-align:center;color:var(--encre)}
+.nova .treino input.right{border-color:var(--vert);color:var(--vert)}
+.nova .treino input.near{border-color:var(--orange);color:var(--orange)}
+.nova .treino input.wrong{border-color:var(--rouge);color:var(--rouge);text-decoration:line-through}
+.nova .treino .fb{font-family:var(--hand);color:var(--rouge);margin-left:8px;font-size:13px}
 .lesson .ex{font-size:12.5px;line-height:1.4;color:var(--muted);margin:1px 0 3px 10px;display:flex;gap:6px;align-items:flex-start}
 .lesson .ex .fr{color:var(--ink);font-style:italic}
 .lesson .ex button.aud{width:20px;height:20px;font-size:8px;margin:0}
@@ -270,6 +300,645 @@ const TITLES_PT = {
 }
 ;
 const TR_BAKED = {};
+const NOVAS = {
+ "no1": {
+  "ideia": "Todo substantivo francês tem gênero (masculino ou feminino) e número (singular ou plural), e quem mostra isso quase sempre é o artigo.",
+  "resumo": "Substantivo é o nome das coisas, pessoas, lugares e ideias. Até aqui, nada novo para quem fala português. A diferença é que, em francês, o artigo carrega quase toda a informação, porque o fim da palavra muitas vezes nem é pronunciado.",
+  "blocos": [
+   {
+    "t": "Comum ou próprio",
+    "txt": "Igual ao português: o nome comum vai em minúscula, o nome próprio em maiúscula.",
+    "itens": [
+     {
+      "fr": "un tatou",
+      "pt": "um tatu"
+     },
+     {
+      "fr": "Tex et Tammy",
+      "pt": "Tex e Tammy"
+     }
+    ]
+   },
+   {
+    "t": "Contável ou incontável",
+    "txt": "Dá para contar tatus, mas não “pão” no sentido de “um pouco de pão”. Para quantidades indefinidas, o francês usa <b>du / de la</b>, que o português simplesmente omite.",
+    "itens": [
+     {
+      "fr": "un tatou, deux tatous",
+      "pt": "um tatu, dois tatus"
+     },
+     {
+      "fr": "Tex mange du pain.",
+      "pt": "Tex come pão.",
+      "obs": "em português não aparece nada antes de “pão”"
+     },
+     {
+      "fr": "Il y a du tatou écrasé partout sur les autoroutes du Texas.",
+      "pt": "Tem tatu atropelado por todas as estradas do Texas.",
+      "obs": "aqui o tatu virou massa, e por isso vem com du"
+     }
+    ]
+   },
+   {
+    "t": "Singular e plural",
+    "txt": "Em geral, acrescenta-se <b>-s</b>, como em português. A diferença é que esse -s é mudo: no oral, <i>le tatou</i> e <i>les tatous</i> só se distinguem pelo artigo.",
+    "itens": [
+     {
+      "fr": "le tatou → les tatous",
+      "pt": "o tatu → os tatus"
+     }
+    ]
+   },
+   {
+    "t": "Masculino e feminino",
+    "txt": "Não existe neutro. Todo objeto é masculino ou feminino, e muitas vezes o gênero não coincide com o do português.",
+    "itens": [
+     {
+      "fr": "le garçon / la fille",
+      "pt": "o menino / a menina"
+     },
+     {
+      "fr": "la table",
+      "pt": "a mesa"
+     },
+     {
+      "fr": "le bureau",
+      "pt": "a escrivaninha",
+      "obs": "masculino em francês, feminino em português"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "Não confie no gênero do português: <b>la mer</b> (o mar), <b>le lait</b> (o leite, esse coincide), <b>la dent</b> (o dente), <b>le nez</b> (o nariz, coincide), <b>la fleur</b> (a flor, coincide), <b>la douleur</b> (a dor, coincide), <b>le lit</b> (a cama), <b>la voiture</b> (o carro).",
+   "Decore cada palavra já com o artigo: em vez de anotar “voiture = carro”, anote “<b>une voiture</b> = um carro”.",
+   "Quando o -s do plural não se pronuncia, ouça o artigo: <i>le</i> [lə] × <i>les</i> [le]."
+  ],
+  "treino": [
+   {
+    "q": "Tex mange ___ pain.",
+    "r": "du",
+    "pt": "Tex come pão."
+   },
+   {
+    "q": "un tatou, deux ___",
+    "r": "tatous",
+    "pt": "um tatu, dois tatus"
+   },
+   {
+    "q": "___ table (a mesa)",
+    "r": "la",
+    "pt": "a mesa"
+   },
+   {
+    "q": "___ bureau (a escrivaninha)",
+    "r": "le",
+    "pt": "a escrivaninha"
+   }
+  ]
+ },
+ "no2": {
+  "ideia": "O plural normal é + s (mudo). As exceções seguem a terminação da palavra: -al → -aux, -eau/-eu → +x, -ou → +s (com sete exceções em -oux).",
+  "resumo": "No oral, quase sempre é o artigo (<i>le/la → les</i>, <i>un/une → des</i>) que mostra o plural. Na escrita, a terminação decide a regra.",
+  "blocos": [
+   {
+    "t": "Regra geral: + s (que não se pronuncia)",
+    "itens": [
+     {
+      "fr": "Tex est un tatou. Tex et Tammy sont des tatous.",
+      "pt": "Tex é um tatu. Tex e Tammy são tatus.",
+      "a": "no2_ex1"
+     }
+    ]
+   },
+   {
+    "t": "Termina em -s, -x ou -z? Não muda",
+    "itens": [
+     {
+      "fr": "un nez → des nez",
+      "pt": "um nariz → narizes"
+     },
+     {
+      "fr": "une noix → des noix",
+      "pt": "uma noz → nozes"
+     },
+     {
+      "fr": "une souris → des souris",
+      "pt": "um rato → ratos"
+     },
+     {
+      "fr": "Tex a un long nez. Les tatous ont toujours de longs nez.",
+      "pt": "Tex tem um nariz comprido. Os tatus sempre têm narizes compridos.",
+      "a": "no2_ex2"
+     }
+    ]
+   },
+   {
+    "t": "-al / -ail / -au → -aux",
+    "txt": "É parecido com o português (animal → animais).",
+    "itens": [
+     {
+      "fr": "un animal → des animaux",
+      "pt": "um animal → animais",
+      "a": "no2_ex3"
+     },
+     {
+      "fr": "un journal → des journaux",
+      "pt": "um jornal → jornais"
+     },
+     {
+      "fr": "un bal, un carnaval, un festival, un récital → + s",
+      "pt": "exceções: bals, carnavals, festivals, récitals"
+     }
+    ]
+   },
+   {
+    "t": "-eu / -eau → + x",
+    "itens": [
+     {
+      "fr": "un cheveu → des cheveux",
+      "pt": "um fio de cabelo → os cabelos",
+      "a": "no2_ex4"
+     },
+     {
+      "fr": "un gâteau → des gâteaux",
+      "pt": "um bolo → bolos"
+     }
+    ]
+   },
+   {
+    "t": "-ou → + s, menos sete palavras que levam x",
+    "txt": "Os franceses decoram a lista: <b>bijou, caillou, chou, genou, hibou, joujou, pou</b>.",
+    "itens": [
+     {
+      "fr": "un trou → des trous",
+      "pt": "um buraco → buracos"
+     },
+     {
+      "fr": "un bijou → des bijoux",
+      "pt": "uma joia → joias"
+     },
+     {
+      "fr": "un genou → des genoux",
+      "pt": "um joelho → joelhos"
+     },
+     {
+      "fr": "un hibou → des hiboux",
+      "pt": "uma coruja → corujas"
+     }
+    ]
+   },
+   {
+    "t": "Os irregulares de verdade",
+    "itens": [
+     {
+      "fr": "un œil → des yeux",
+      "pt": "um olho → olhos"
+     },
+     {
+      "fr": "madame → mesdames, monsieur → messieurs",
+      "pt": "senhora → senhoras, senhor → senhores"
+     },
+     {
+      "fr": "un œuf → des œufs",
+      "pt": "um ovo → ovos",
+      "obs": "no plural o f e o s ficam mudos: [dezø]"
+     },
+     {
+      "fr": "un os → des os",
+      "pt": "um osso → ossos",
+      "obs": "singular [ɔs], plural [o]"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "Não pronuncie o -s nem o -x do plural. <i>Des tatous</i> soa igual a <i>un tatou</i>, só muda o artigo.",
+   "Mas faça a ligação (liaison) quando a palavra seguinte começa com vogal: <i>les‿animaux</i> [lezanimo].",
+   "<i>Les cheveux</i> = o cabelo da cabeça (sempre plural). <i>Un cheveu</i> é um fio só."
+  ],
+  "treino": [
+   {
+    "q": "un animal → des ___",
+    "r": "animaux",
+    "pt": "animais"
+   },
+   {
+    "q": "un gâteau → des ___",
+    "r": "gâteaux",
+    "pt": "bolos"
+   },
+   {
+    "q": "un trou → des ___",
+    "r": "trous",
+    "pt": "buracos"
+   },
+   {
+    "q": "un genou → des ___",
+    "r": "genoux",
+    "pt": "joelhos"
+   },
+   {
+    "q": "un œil → des ___",
+    "r": "yeux",
+    "pt": "olhos"
+   }
+  ]
+ },
+ "no3": {
+  "ideia": "Para pessoas, o gênero segue o sexo (étudiant → étudiante). Para coisas, ele é arbitrário, mas a terminação da palavra dá ótimas pistas.",
+  "resumo": "O feminino de pessoas costuma ser masculino + <b>e</b>, com algumas transformações típicas. Para objetos e ideias, aprenda as terminações: elas acertam o gênero na grande maioria das vezes.",
+  "blocos": [
+   {
+    "t": "Pessoas: + e",
+    "txt": "Às vezes o -e faz soar a consoante final: <i>étudiant</i> [t mudo] → <i>étudiante</i> [t pronunciado].",
+    "itens": [
+     {
+      "fr": "Joe-Bob est étudiant, Tammy est aussi étudiante.",
+      "pt": "Joe-Bob é estudante, Tammy também é estudante.",
+      "a": "no3_ex1"
+     },
+     {
+      "fr": "un ami → une amie",
+      "pt": "um amigo → uma amiga",
+      "a": "no3_ex1"
+     }
+    ]
+   },
+   {
+    "t": "Pessoas: terminações que mudam",
+    "itens": [
+     {
+      "fr": "serveur → serveuse",
+      "pt": "garçom → garçonete",
+      "a": "no3_ex2"
+     },
+     {
+      "fr": "musicien → musicienne",
+      "pt": "músico → musicista"
+     },
+     {
+      "fr": "séducteur → séductrice",
+      "pt": "sedutor → sedutora"
+     },
+     {
+      "fr": "champion → championne",
+      "pt": "campeão → campeã"
+     },
+     {
+      "fr": "copain → copine",
+      "pt": "amigo/namorado → amiga/namorada"
+     }
+    ]
+   },
+   {
+    "t": "Terminou em -e? Só o artigo muda",
+    "itens": [
+     {
+      "fr": "Tex est poète. Rita est secrétaire.",
+      "pt": "Tex é poeta. Rita é secretária.",
+      "a": "no3_ex3"
+     },
+     {
+      "fr": "un / une élève, un / une journaliste",
+      "pt": "aluno(a), jornalista"
+     }
+    ]
+   },
+   {
+    "t": "Animais",
+    "itens": [
+     {
+      "fr": "le chat / la chatte",
+      "pt": "o gato / a gata"
+     },
+     {
+      "fr": "le chien / la chienne",
+      "pt": "o cachorro / a cadela"
+     },
+     {
+      "fr": "le coq / la poule",
+      "pt": "o galo / a galinha"
+     },
+     {
+      "fr": "un escargot, une fourmi",
+      "pt": "um caracol, uma formiga",
+      "obs": "só têm um gênero"
+     }
+    ]
+   },
+   {
+    "t": "Coisas: terminações masculinas",
+    "txt": "<b>-age, -ment, -eau, -phone, -scope, -isme</b>",
+    "itens": [
+     {
+      "fr": "le fromage",
+      "pt": "o queijo"
+     },
+     {
+      "fr": "le sentiment",
+      "pt": "o sentimento"
+     },
+     {
+      "fr": "le couteau",
+      "pt": "a faca",
+      "obs": "masculino em francês!"
+     },
+     {
+      "fr": "le téléphone",
+      "pt": "o telefone"
+     },
+     {
+      "fr": "le romantisme",
+      "pt": "o romantismo"
+     }
+    ]
+   },
+   {
+    "t": "Coisas: terminações femininas",
+    "txt": "<b>-tion, -sion, -té, -ette, -ance, -ence, -ie, -ure, -ade, -ude</b>",
+    "itens": [
+     {
+      "fr": "la situation",
+      "pt": "a situação"
+     },
+     {
+      "fr": "la télévision",
+      "pt": "a televisão"
+     },
+     {
+      "fr": "la société",
+      "pt": "a sociedade"
+     },
+     {
+      "fr": "la fourchette",
+      "pt": "o garfo",
+      "obs": "feminino em francês!"
+     },
+     {
+      "fr": "la différence",
+      "pt": "a diferença"
+     },
+     {
+      "fr": "la culture",
+      "pt": "a cultura"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "Palavras em <b>-age</b> são masculinas, ao contrário do português: <i>le voyage</i> (a viagem), <i>le garage</i>, <i>le message</i> (a mensagem), <i>le fromage</i>. Exceções femininas: <i>la page, la plage, la cage, l'image</i>.",
+   "Palavras em <b>-eur</b> que são abstratas costumam ser femininas: <i>la couleur</i> (a cor), <i>la peur</i> (o medo), <i>la chaleur</i> (o calor).",
+   "As terminações em <b>-tion</b> e <b>-té</b> quase sempre coincidem com <b>-ção</b> e <b>-dade</b> do português, e são femininas nas duas línguas."
+  ],
+  "treino": [
+   {
+    "q": "Tammy est ___ (estudante).",
+    "r": "étudiante",
+    "pt": "Tammy é estudante."
+   },
+   {
+    "q": "Il est serveur, elle est ___.",
+    "r": "serveuse",
+    "pt": "Ele é garçom, ela é garçonete."
+   },
+   {
+    "q": "___ voyage (a viagem)",
+    "r": "le",
+    "pt": "a viagem"
+   },
+   {
+    "q": "___ fourchette (o garfo)",
+    "r": "la",
+    "pt": "o garfo"
+   },
+   {
+    "q": "___ couleur (a cor)",
+    "r": "la",
+    "pt": "a cor"
+   }
+  ]
+ },
+ "no4": {
+  "ideia": "Il y a = há / tem (algo existe ali). Voici / voilà = aqui está / eis (você aponta ou apresenta).",
+  "resumo": "Os dois apresentam um substantivo, mas com intenções diferentes. <b>Il y a</b> descreve o que existe num lugar. <b>Voici/voilà</b> mostra, aponta, apresenta alguém, como se você estendesse a mão.",
+  "blocos": [
+   {
+    "t": "Il y a: o “tem” do português falado",
+    "itens": [
+     {
+      "fr": "À Austin, il y a une grande université.",
+      "pt": "Em Austin tem uma universidade grande.",
+      "a": "no4_ex1"
+     },
+     {
+      "fr": "Il y a des tatous, un escargot, une chatte, un écureuil.",
+      "pt": "Tem tatus, um caracol, uma gata, um esquilo.",
+      "a": "no4_ex1"
+     }
+    ]
+   },
+   {
+    "t": "Negativo e outros tempos",
+    "txt": "Na negação, <i>un/une/des</i> viram <b>de</b>.",
+    "itens": [
+     {
+      "fr": "À Austin, il n'y a jamais de neige.",
+      "pt": "Em Austin nunca tem neve.",
+      "a": "no4_ex2"
+     },
+     {
+      "fr": "Il n'y a pas de pingouin !",
+      "pt": "Não tem pinguim!",
+      "a": "no4_ex2"
+     },
+     {
+      "fr": "il y avait / il y aura",
+      "pt": "tinha (havia) / vai ter (haverá)"
+     }
+    ]
+   },
+   {
+    "t": "Voici / voilà: apresentar e apontar",
+    "txt": "No dia a dia, <i>voilà</i> serve para tudo. <i>Voici</i> aparece quando se quer contrastar o que está perto com o que está longe.",
+    "itens": [
+     {
+      "fr": "Voici la bibliothèque et voilà la célèbre tour !",
+      "pt": "Aqui está a biblioteca e ali está a famosa torre!",
+      "a": "no4_ex3"
+     },
+     {
+      "fr": "Tex, voici Joe-Bob et Corey… et voilà Edouard qui arrive.",
+      "pt": "Tex, esses são o Joe-Bob e o Corey… e lá vem o Edouard.",
+      "a": "no4_ex3"
+     },
+     {
+      "fr": "Voilà !",
+      "pt": "Pronto! / Isso mesmo!",
+      "obs": "também é muito usado sozinho"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "Não traduza “tem” por <i>il a</i>. “Tem um gato no jardim” é <b>il y a</b> un chat dans le jardin.",
+   "Depois de negação, nada de <i>un/une/des</i>: <i>il n'y a pas <b>de</b> pain</i>, nunca <i>pas du pain</i>.",
+   "<b>Il y a</b> + tempo também significa “há/faz (tanto tempo)”: <i>il y a deux ans</i> = há dois anos. Isso fica para a lição de advérbios."
+  ],
+  "treino": [
+   {
+    "q": "À Paris, ___ beaucoup de musées.",
+    "r": "il y a",
+    "pt": "Em Paris tem muitos museus."
+   },
+   {
+    "q": "Il n'y a pas ___ neige.",
+    "r": "de",
+    "pt": "Não tem neve."
+   },
+   {
+    "q": "Tex, ___ mon amie Bette ! (apresentando)",
+    "r": "voici",
+    "pt": "Tex, essa é a minha amiga Bette!",
+    "alt": [
+     "voilà"
+    ]
+   }
+  ]
+ },
+ "no5": {
+  "ideia": "Temps = tempo (duração) ou clima, heure = hora do relógio, fois = vez. Exatamente como em português!",
+  "resumo": "Para quem fala inglês, essa lição é difícil, porque lá tudo é <i>time</i>. Para nós é quase de graça: o francês separa os três sentidos igual ao português.",
+  "blocos": [
+   {
+    "t": "Temps = tempo / clima",
+    "itens": [
+     {
+      "fr": "J'ai le temps !",
+      "pt": "Tenho tempo!",
+      "a": "no5_ex1"
+     },
+     {
+      "fr": "Quel temps fait-il à Opelousas ?",
+      "pt": "Como está o tempo em Opelousas?",
+      "a": "no5_ex1"
+     },
+     {
+      "fr": "Les temps changent…",
+      "pt": "Os tempos mudam…",
+      "a": "no5_ex2"
+     }
+    ]
+   },
+   {
+    "t": "Expressões com temps",
+    "itens": [
+     {
+      "fr": "de temps en temps",
+      "pt": "de vez em quando",
+      "a": "no5_ex3"
+     },
+     {
+      "fr": "tout le temps",
+      "pt": "o tempo todo"
+     },
+     {
+      "fr": "prendre son temps / perdre son temps",
+      "pt": "não ter pressa / perder tempo"
+     },
+     {
+      "fr": "le bon vieux temps / de mon temps",
+      "pt": "os bons tempos / no meu tempo"
+     },
+     {
+      "fr": "la plupart du temps",
+      "pt": "na maior parte do tempo"
+     },
+     {
+      "fr": "pendant ce temps",
+      "pt": "enquanto isso"
+     },
+     {
+      "fr": "juste à temps",
+      "pt": "bem na hora"
+     }
+    ]
+   },
+   {
+    "t": "Heure = hora (do relógio)",
+    "itens": [
+     {
+      "fr": "Tu as l'heure ?",
+      "pt": "Você tem horas?",
+      "a": "no5_ex4"
+     },
+     {
+      "fr": "Quelle heure est-il ? — Il est 4 heures.",
+      "pt": "Que horas são? — São 4 horas.",
+      "a": "no5_ex4"
+     },
+     {
+      "fr": "C'est l'heure de faire la sieste !",
+      "pt": "Está na hora da sesta!",
+      "a": "no5_ex4"
+     }
+    ]
+   },
+   {
+    "t": "Fois = vez",
+    "itens": [
+     {
+      "fr": "Il a appelé quatre fois aujourd'hui !",
+      "pt": "Ele ligou quatro vezes hoje!",
+      "a": "no5_ex5"
+     },
+     {
+      "fr": "Cette fois, il est déprimé.",
+      "pt": "Desta vez ele está deprimido.",
+      "a": "no5_ex5"
+     },
+     {
+      "fr": "Il a trois fois ton âge.",
+      "pt": "Ele tem três vezes a sua idade.",
+      "a": "no5_ex5"
+     },
+     {
+      "fr": "C'est la dernière fois !",
+      "pt": "É a última vez!",
+      "a": "no5_ex5"
+     }
+    ]
+   }
+  ],
+  "armadilhas": [
+   "<i>Il est</i> 4 heures (São 4 horas): o francês usa <b>il est</b> no singular, mesmo para várias horas.",
+   "“De vez em quando” não usa <i>fois</i>: é <b>de temps en temps</b>.",
+   "<i>Fois</i> não muda no plural: une fois, deux fois."
+  ],
+  "treino": [
+   {
+    "q": "Quelle ___ est-il ?",
+    "r": "heure",
+    "pt": "Que horas são?"
+   },
+   {
+    "q": "Il fait beau ___ aujourd'hui.",
+    "r": "temps",
+    "pt": "O tempo está bom hoje."
+   },
+   {
+    "q": "C'est la première ___ que je viens ici.",
+    "r": "fois",
+    "pt": "É a primeira vez que venho aqui."
+   },
+   {
+    "q": "De temps en ___, Tex va à Opelousas.",
+    "r": "temps",
+    "pt": "De vez em quando, Tex vai a Opelousas."
+   }
+  ]
+ }
+};
 </script>
 <script>
 "use strict";
@@ -356,7 +1025,9 @@ try { Object.assign(TR, JSON.parse(localStorage.getItem("tex-tr") || "{}")); } c
 let DB = null;
 const NO_TR = new Set(["gr/index"]); // the site index is a list of links; its titles are already translated
 const usePt = () => S.lang === "pt";
-const lessonHTML = code => ((usePt() && TR[code]?.html) || LESSONS[code]).replace(/(<br\s*\/?>\s*){2,}/g, '<span class="pbr"></span>');
+const showOrig = new Set(); // lessons the viewer switched back to the original course page
+const isNova = code => NOVAS[code] && !showOrig.has(code);
+const lessonHTML = code => isNova(code) ? novaHTML(code) : ((usePt() && TR[code]?.html) || LESSONS[code]).replace(/(<br\s*\/?>\s*){2,}/g, '<span class="pbr"></span>');
 const cardEn = c => (usePt() && TR[c.l]?.cards?.[c.id]) || c.en;
 function cacheTR() { try { localStorage.setItem("tex-tr", JSON.stringify(Object.fromEntries(Object.entries(TR).filter(([k]) => !TR_BAKED[k])))); } catch (e) {} }
 const trJobs = {};
@@ -408,6 +1079,37 @@ ${JSON.stringify(cards.map(c => c.en))}`;
     if (DB) DB.doc("traducoes/" + slug(p.code)).set(TR[p.code]).catch(() => {});
     return TR[p.code];
   })().finally(() => delete trJobs[p.code]);
+}
+
+/* ---------- rewritten lessons (novas.json): my own Portuguese version of each lesson ---------- */
+function novaHTML(code) {
+  const n = NOVAS[code];
+  const item = i => `<li>${i.a ? `<button class="aud" data-aud="${esc(i.a)}" aria-label="Ouvir">▶</button>` : `<span class="noaud"></span>`}<div><span class="fr">${i.fr}</span><span class="pt">${i.pt}</span>${i.obs ? `<span class="obs">${i.obs}</span>` : ""}</div></li>`;
+  return `<div class="nova">
+    <div class="retiens"><span class="tag">Je retiens</span><p>${n.ideia}</p></div>
+    <p class="resumo">${n.resumo}</p>
+    ${n.blocos.map(b => `<section class="bloco"><h4>${b.t}</h4>${b.txt ? `<p>${b.txt}</p>` : ""}${b.itens?.length ? `<ul class="fl">${b.itens.map(item).join("")}</ul>` : ""}</section>`).join("")}
+    ${n.armadilhas?.length ? `<section class="cuidado"><h4>Cuidado, brasileiro!</h4><ul>${n.armadilhas.map(a => `<li>${a}</li>`).join("")}</ul></section>` : ""}
+    ${n.treino?.length ? `<section class="treino"><h4>Exercices</h4><ol>${n.treino.map((t, i) => `<li>${esc(t.q).replace("___", `<input type="text" id="tr-${i}" data-i="${i}" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(4, t.r.length + 2)}ch" aria-label="Resposta ${i + 1}">`)}<span class="pt">${esc(t.pt)}</span><span class="fb" id="trfb-${i}"></span></li>`).join("")}</ol><button class="primary" id="trcheck">Corrigir</button> <span class="saved" id="trscore"></span></section>` : ""}
+  </div>`;
+}
+function setupTreino(p, el) {
+  const n = NOVAS[p.code], btn = el.querySelector("#trcheck"); if (!btn) return;
+  const norm = s => s.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, " ").trim();
+  btn.onclick = () => {
+    let ok = 0;
+    n.treino.forEach((t, i) => {
+      const inp = $("tr-" + i), v = norm(inp.value), fb = $("trfb-" + i), goods = [t.r, ...(t.alt || [])].map(norm);
+      inp.classList.remove("right", "near", "wrong");
+      if (goods.includes(v)) { inp.classList.add("right"); fb.textContent = "✓"; ok++; }
+      else if (goods.some(g => fold(g) === fold(v)) && v) { inp.classList.add("near"); fb.textContent = `quase: ${t.r}`; }
+      else { inp.classList.add("wrong"); fb.textContent = t.r; }
+      logAnswer(goods.includes(v));
+    });
+    const r = S.cz[p.code] || (S.cz[p.code] = { n: 0, ok: 0 }); r.n += n.treino.length; r.ok += ok; save();
+    $("trscore").textContent = `${ok} de ${n.treino.length} certas` + (ok === n.treino.length ? " · Bravo !" : "");
+  };
+  el.querySelectorAll(".treino input").forEach(inp => inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); btn.click(); } });
 }
 
 /* ---------- examples for vocabulary lists: real lesson sentences first, Claude-made ones for the rest ---------- */
@@ -591,7 +1293,7 @@ function viewLesson(p) {
   const i = pages.indexOf(p), pv = pages[i - 1], nx = pages[i + 1];
   const nCards = CARDS.filter(c => c.l === p.code).length;
   $("topActions").innerHTML = `<button id="markBtn"></button>`;
-  const upd = () => { const d = !!S.done[p.code]; $("markBtn").textContent = d ? "✓ Estudada" : "Marcar como estudada"; $("markBtn").className = d ? "ok" : "primary"; };
+  const upd = () => { const d = !!S.done[p.code]; $("markBtn").textContent = d ? "✓ Estudada" : "Marcar estudada"; $("markBtn").className = d ? "ok" : "primary"; };
   $("markBtn").onclick = () => { S.done[p.code] ? delete S.done[p.code] : S.done[p.code] = 1; save(); upd(); renderNav(); };
   upd();
   $("view").innerHTML = `
@@ -638,8 +1340,14 @@ function viewLesson(p) {
     if (id === p.id) jump(); else { pendingFind = { anchor: anc }; go(id); }
   });
   setupTutor(p);
-  setupTranslation(p);
-  setupExamples(p, el);
+  if (NOVAS[p.code]) {
+    const b = document.createElement("button"); b.className = "ghost";
+    b.textContent = isNova(p.code) ? "Original" : "Minha versão"; b.title = isNova(p.code) ? "Ver a lição como no curso original" : "Voltar à versão reescrita";
+    b.onclick = () => { showOrig.has(p.code) ? showOrig.delete(p.code) : showOrig.add(p.code); CORPUS = null; viewLesson(p); };
+    $("topActions").prepend(b);
+  }
+  if (isNova(p.code)) setupTreino(p, el);
+  else { setupTranslation(p); setupExamples(p, el); }
   // arriving from search: highlight every hit and jump to the chosen one
   if (pendingFind?.q) highlight(el, pendingFind);
   else if (pendingFind?.anchor) setTimeout(() => document.getElementById("a-" + pendingFind.anchor)?.scrollIntoView({ block: "start" }), 0);
